@@ -161,15 +161,18 @@ app.get('/api/health', (req, res) => {
     res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-// Start server
-app.listen(PORT, () => {
-    console.log(`🚀 Armonk-Somers Podiatry server running on http://localhost:${PORT}`);
-    console.log(`📱 Chat API available at http://localhost:${PORT}/api/diagnosis`);
-    
-    if (!process.env.GROQ_API_KEY || process.env.GROQ_API_KEY === 'your-groq-api-key-here') {
-        console.log('⚠️  Warning: GROQ_API_KEY not set. API will return errors until configured.');
-        console.log('   Create a .env file with GROQ_API_KEY=your_actual_key');
-    } else {
-        console.log('✅ Groq API configured and ready');
-    }
-}); 
+module.exports = app;
+
+if (require.main === module) {
+    app.listen(PORT, () => {
+        console.log(`🚀 Armonk-Somers Podiatry server running on http://localhost:${PORT}`);
+        console.log(`📱 Chat API available at http://localhost:${PORT}/api/diagnosis`);
+
+        if (!process.env.GROQ_API_KEY || process.env.GROQ_API_KEY === 'your-groq-api-key-here') {
+            console.log('⚠️  Warning: GROQ_API_KEY not set. API will return errors until configured.');
+            console.log('   Create a .env file with GROQ_API_KEY=your_actual_key');
+        } else {
+            console.log('✅ Groq API configured and ready');
+        }
+    });
+}
