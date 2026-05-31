@@ -1,0 +1,145 @@
+/* Contact Page */
+
+.contact-hero {
+    padding: var(--spacing-xl) 0;
+    background: var(--surface);
+}
+
+.contact-hero .section-header {
+    margin-bottom: var(--spacing-lg);
+}
+
+.contact-hero .section-header h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin-bottom: 0.5rem;
+}
+
+.contact-hero .section-header p {
+    font-size: 1rem;
+    max-width: 32rem;
+}
+
+.phone-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    max-width: 36rem;
+    margin: 0 auto var(--spacing-lg);
+}
+
+.phone-card {
+    background: var(--surface);
+    border: 1px solid var(--divider);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem 1.25rem;
+    text-align: center;
+    box-shadow: var(--shadow-xs);
+}
+
+.phone-card .card-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--blue);
+    font-size: 1rem;
+    background: var(--surface-muted);
+    border: 1px solid var(--divider);
+    border-radius: var(--radius-md);
+    margin: 0 auto 1rem;
+}
+
+.phone-card h3 {
+    font-size: 1rem;
+    margin-bottom: 0.375rem;
+}
+
+.phone-link {
+    display: inline-block;
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: var(--blue);
+    text-decoration: none;
+}
+
+.phone-link:hover {
+    color: var(--blue-hover);
+    text-decoration: underline;
+}
+
+.patient-form-panel {
+    max-width: 36rem;
+    margin: 0 auto;
+    padding: 1.25rem 1.5rem;
+    text-align: center;
+    background: var(--surface);
+    border: 1px solid var(--divider);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xs);
+}
+
+.btn-download {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.375rem;
+    padding: 0.625rem 1.25rem;
+    background: var(--blue);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-pill);
+    cursor: pointer;
+    font-size: 0.9375rem;
+    text-decoration: none;
+    font-family: inherit;
+    font-weight: 600;
+}
+
+.btn-download:hover {
+    background: var(--blue-hover);
+    color: #fff;
+}
+
+.patient-form-note {
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    margin: 0.75rem 0 0;
+}
+
+.contact-form {
+    padding: var(--spacing-xl) 0;
+    background: var(--surface-secondary);
+    border-bottom: 1px solid var(--divider);
+}
+
+.contact-form .section-header {
+    margin-bottom: var(--spacing-lg);
+}
+
+.contact-form .section-header h1 {
+    font-size: clamp(1.875rem, 4vw, 2.75rem);
+    margin-bottom: 0.5rem;
+}
+
+.contact-form .section-header p {
+    font-size: 0.9375rem;
+}
+
+.typeform-container {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    min-height: 420px;
+    background: var(--surface);
+    border: 1px solid var(--divider);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-xs);
+}
+
+@media (min-width: 768px) {
+    .phone-cards {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 42rem;
+    }
+}
