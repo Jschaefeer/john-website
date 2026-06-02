@@ -1,66 +1,73 @@
 /* Contact Page */
 
-.contact-hero {
-    padding: var(--spacing-xl) 0;
-    background: var(--surface);
+/* ── Phone hero — dark band, leads the page ── */
+
+.contact-phone-hero {
+    background: var(--surface-dark);
+    padding: var(--spacing-76) 0 var(--section-gap);
+    text-align: left;
 }
 
-.contact-hero .section-header {
-    margin-bottom: var(--spacing-lg);
+.contact-eyebrow {
+    color: var(--color-cloud-dark);
 }
 
-.contact-hero .section-header h2 {
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    margin-bottom: 0.5rem;
+.contact-phone-hero h1 {
+    font-family: var(--font-serif);
+    font-size: var(--text-heading-lg);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--leading-heading-lg);
+    color: var(--color-ivory-light);
+    margin-bottom: var(--spacing-12);
 }
 
-.contact-hero .section-header p {
-    font-size: 1rem;
-    max-width: 32rem;
+.contact-phone-lead {
+    max-width: 40rem;
+    margin: 0 0 var(--spacing-32);
+    font-size: var(--text-subheading);
+    color: var(--color-ivory-dark);
 }
 
-.phone-cards {
+.office-cards {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1rem;
-    max-width: 36rem;
-    margin: 0 auto var(--spacing-lg);
+    gap: var(--spacing-16);
 }
 
-.phone-card {
-    background: var(--surface);
-    border: 1px solid var(--divider);
-    border-radius: var(--radius-lg);
-    padding: 1.5rem 1.25rem;
-    text-align: center;
-    box-shadow: var(--shadow-xs);
+.contact-phone-hero .office-card,
+.contact-phone-hero .office-card--ivory,
+.contact-phone-hero .office-card--oat {
+    background: none;
+    padding: 0;
+    border-radius: 0;
 }
 
-.phone-card .card-icon {
-    width: 2.5rem;
-    height: 2.5rem;
+.office-card {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--blue);
-    font-size: 1rem;
-    background: var(--surface-muted);
-    border: 1px solid var(--divider);
-    border-radius: var(--radius-md);
-    margin: 0 auto 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-12);
 }
 
-.phone-card h3 {
-    font-size: 1rem;
-    margin-bottom: 0.375rem;
+.contact-phone-hero .office-label {
+    color: var(--color-cloud-dark);
+}
+
+.office-label {
+    font-family: var(--font-mono);
+    font-size: var(--text-caption);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-tertiary);
 }
 
 .phone-link {
-    display: inline-block;
-    font-size: 1.125rem;
-    font-weight: 500;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.15;
     color: var(--blue);
     text-decoration: none;
+    letter-spacing: -0.02em;
 }
 
 .phone-link:hover {
@@ -68,15 +75,54 @@
     text-decoration: underline;
 }
 
-.patient-form-panel {
-    max-width: 36rem;
-    margin: 0 auto;
-    padding: 1.25rem 1.5rem;
-    text-align: center;
+/* ── Typeform section ── */
+
+.contact-form {
+    padding: var(--section-gap) 0;
     background: var(--surface);
-    border: 1px solid var(--divider);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-xs);
+}
+
+.contact-section-header {
+    margin-bottom: var(--spacing-32);
+    text-align: left;
+    max-width: none;
+}
+
+.contact-section-header h2 {
+    font-size: var(--text-heading);
+    margin-bottom: var(--spacing-12);
+}
+
+.contact-section-header p {
+    font-size: var(--text-body-sm);
+    max-width: 40rem;
+    margin: 0;
+}
+
+.typeform-container {
+    width: 100%;
+    min-height: 420px;
+    overflow: hidden;
+}
+
+/* ── Patient form callout strip ── */
+
+.contact-patient {
+    padding: 0 0 var(--section-gap);
+    background: var(--surface);
+}
+
+.patient-form-callout {
+    border-top: 1px solid var(--color-cloud-light);
+    border-bottom: 1px solid var(--color-cloud-light);
+    padding: var(--spacing-32) 0;
+}
+
+.patient-form-callout__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-16);
 }
 
 .btn-download {
@@ -84,62 +130,84 @@
     align-items: center;
     justify-content: center;
     gap: 0.375rem;
-    padding: 0.625rem 1.25rem;
+    padding: 12px 31px;
     background: var(--blue);
     color: #fff;
-    border: none;
-    border-radius: var(--radius-pill);
+    border: 1px solid var(--blue);
+    border-radius: var(--radius-buttons);
     cursor: pointer;
-    font-size: 0.9375rem;
+    font-size: var(--text-body-sm);
     text-decoration: none;
     font-family: inherit;
-    font-weight: 600;
+    font-weight: var(--font-weight-medium);
 }
 
 .btn-download:hover {
     background: var(--blue-hover);
+    border-color: var(--blue-hover);
     color: #fff;
+    text-decoration: none;
 }
 
 .patient-form-note {
-    font-size: 0.8125rem;
+    font-size: var(--text-body-sm);
     color: var(--text-secondary);
-    margin: 0.75rem 0 0;
+    margin: 0;
+    max-width: 40rem;
 }
 
-.contact-form {
-    padding: var(--spacing-xl) 0;
-    background: var(--surface-secondary);
-    border-bottom: 1px solid var(--divider);
+/* ── Insurance reminder — matches insurance-questions pattern ── */
+
+.insurance-reminder {
+    background: var(--surface-dark);
+    padding: var(--section-gap) 0;
+    text-align: left;
 }
 
-.contact-form .section-header {
-    margin-bottom: var(--spacing-lg);
+.insurance-reminder h3 {
+    font-family: var(--font-serif);
+    font-size: var(--text-heading-lg);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--leading-heading-lg);
+    color: var(--color-ivory-light);
+    margin-bottom: var(--spacing-12);
 }
 
-.contact-form .section-header h1 {
-    font-size: clamp(1.875rem, 4vw, 2.75rem);
-    margin-bottom: 0.5rem;
+.insurance-reminder > .container > p {
+    max-width: 40rem;
+    margin: 0 0 var(--spacing-32);
+    font-size: var(--text-subheading);
+    color: var(--color-ivory-dark);
 }
 
-.contact-form .section-header p {
-    font-size: 0.9375rem;
+.insurance-reminder .btn {
+    background: var(--color-ivory-light);
+    color: var(--text);
+    border-color: var(--text);
+    text-decoration: none;
 }
 
-.typeform-container {
-    max-width: var(--content-max);
-    margin: 0 auto;
-    min-height: 420px;
-    background: var(--surface);
-    border: 1px solid var(--divider);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    box-shadow: var(--shadow-xs);
+.insurance-reminder .btn:hover {
+    background: var(--color-ivory-medium);
+    border-color: var(--text);
+    color: var(--text);
 }
 
 @media (min-width: 768px) {
-    .phone-cards {
+    .office-cards {
         grid-template-columns: repeat(2, 1fr);
-        max-width: 42rem;
+    }
+
+    .patient-form-callout__content {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--spacing-32);
+    }
+
+    .patient-form-note {
+        text-align: right;
+        flex: 1;
+        max-width: none;
     }
 }

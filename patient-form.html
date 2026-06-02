@@ -6,18 +6,20 @@
     <meta name="description" content="New patient form for Armonk-Somers Podiatry — complete online and bring to your first appointment.">
     <title>New Patient Form | Armonk-Somers Podiatry</title>
     <link rel="icon" href="img/favcon.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/patient-form.css">
+    <link rel="stylesheet" href="css/patient-form.css?v=3">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="js/main.js" defer></script>
-    <script src="js/patient-form.js" defer></script>
+    <script src="js/patient-form.js?v=3" defer></script>
 </head>
-<body>
+<body class="page-patient-form">
     <header>
         <div class="container">
             <div class="logo">
                 <a href="index.html" class="logo-link" aria-label="Armonk-Somers Podiatry">
-                    <img src="img/favcon.png" alt="" class="logo-mark" width="28" height="28">
                     <span class="logo-text">Armonk-Somers Podiatry</span>
                 </a>
             </div>
@@ -38,14 +40,14 @@
         </div>
     </header>
 
-    <main id="patientFormApp" class="patient-form-page"></main>
+    <main id="patientFormApp" class="patient-form-page" aria-label="New patient information form"></main>
 
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
                     <a href="index.html" class="logo-link" aria-label="Armonk-Somers Podiatry">
-                        <img src="img/SC.png" alt="Armonk-Somers Podiatry" class="logo-img">
+                        <span class="logo-text">Armonk-Somers Podiatry</span>
                     </a>
                     <p>Dr. John O'Hanlon</p>
                     <div class="social-links">

@@ -33,19 +33,20 @@ class PatientForm {
 
     buildPageHTML() {
         return `
-<div class="container patient-form-shell">
+<div class="patient-form-layout">
 
-  <div class="form-page-intro">
-    <h1>New Patient Information Form</h1>
+  <div class="container">
+    <div class="form-page-intro">
+      <span class="section-eyebrow">New patient intake</span>
+      <h1>New Patient Information Form</h1>
+      <p>Complete this form before your first appointment. Your responses generate a PDF to print and bring with you.</p>
+    </div>
   </div>
 
+  <div class="container patient-form-shell">
   <form id="patientForm" novalidate>
 
     <!-- ── 1. PERSONAL INFORMATION ──────────────────────────────────────── -->
-    <section class="form-section">
-      <h2 class="form-section-title">Personal Information</h2>
-      <p class="form-section-desc">Your basic contact and identification details.</p>
-
       <div class="form-grid form-grid--3">
         <div class="field">
           <label class="field-label" for="lastName">Last Name <span aria-hidden="true">*</span></label>
@@ -149,13 +150,8 @@ class PatientForm {
           <input type="text" id="occupation" name="occupation" autocomplete="organization-title">
         </div>
       </div>
-    </section>
 
     <!-- ── 2. PERSONAL STATUS ────────────────────────────────────────────── -->
-    <section class="form-section">
-      <h2 class="form-section-title">Personal Status</h2>
-      <p class="form-section-desc">Please indicate your current marital, employment, and student status.</p>
-
       <div class="field-group">
         <span class="field-label">Marital Status</span>
         <div class="choice-list choice-row">
@@ -225,13 +221,8 @@ class PatientForm {
           </label>
         </div>
       </div>
-    </section>
 
     <!-- ── 3. PRIMARY INSURANCE ──────────────────────────────────────────── -->
-    <section class="form-section">
-      <h2 class="form-section-title">Primary Insurance Information</h2>
-      <p class="form-section-desc">Please provide your primary insurance details.</p>
-
       <div class="form-grid form-grid--2">
         <div class="field">
           <label class="field-label" for="primaryInsuranceCompany">Insurance Company <span aria-hidden="true">*</span></label>
@@ -288,13 +279,8 @@ class PatientForm {
           </label>
         </div>
       </div>
-    </section>
 
     <!-- ── 4. SECONDARY INSURANCE ────────────────────────────────────────── -->
-    <section class="form-section">
-      <h2 class="form-section-title">Secondary Insurance</h2>
-      <p class="form-section-desc">If you have secondary insurance, please provide details (optional).</p>
-
       <div class="field-group">
         <span class="field-label">Do you have secondary insurance?</span>
         <div class="choice-list choice-row">
@@ -365,13 +351,8 @@ class PatientForm {
           </div>
         </div>
       </div>
-    </section>
 
     <!-- ── 5. MEDICAL HISTORY & REFERRAL ─────────────────────────────────── -->
-    <section class="form-section">
-      <h2 class="form-section-title">Medical History &amp; Referral</h2>
-      <p class="form-section-desc">Tell us about your medical background and how you found us.</p>
-
       <div class="form-grid">
         <div class="field">
           <label class="field-label" for="referredBy">Who referred you to our practice?</label>
@@ -437,13 +418,8 @@ class PatientForm {
           </div>
         </div>
       </div>
-    </section>
 
     <!-- ── 6. CURRENT COMPLAINT ──────────────────────────────────────────── -->
-    <section class="form-section">
-      <h2 class="form-section-title">Current Complaint</h2>
-      <p class="form-section-desc">Tell us about the problem that brought you here today.</p>
-
       <div class="form-grid">
         <div class="field">
           <label class="field-label" for="chiefComplaint">
@@ -487,13 +463,8 @@ class PatientForm {
           </div>
         </div>
       </div>
-    </section>
 
     <!-- ── 7. ALLERGIES & MEDICAL HISTORY ────────────────────────────────── -->
-    <section class="form-section">
-      <h2 class="form-section-title">Allergies &amp; Medical History</h2>
-      <p class="form-section-desc">Check all that apply. This helps us keep you safe during your visit.</p>
-
       <div class="field-group">
         <span class="field-label">Allergies — are you allergic or sensitive to any of the following?</span>
         <div class="check-grid">
@@ -613,13 +584,8 @@ class PatientForm {
           </label>
         </div>
       </div>
-    </section>
 
     <!-- ── 8. ADDITIONAL INFORMATION ─────────────────────────────────────── -->
-    <section class="form-section">
-      <h2 class="form-section-title">Additional Information</h2>
-      <p class="form-section-desc">Please share any other medical details that may be relevant.</p>
-
       <div class="form-grid">
         <div class="field">
           <label class="field-label" for="otherConditions">Other conditions:</label>
@@ -662,21 +628,23 @@ class PatientForm {
         </label>
         <span class="field-error" id="ackError">You must acknowledge the policy to continue</span>
       </div>
-    </section>
 
   </form><!-- /#patientForm -->
+  </div><!-- /.patient-form-shell -->
 
   <div class="form-actions">
-    <div class="container form-actions-inner">
-      <a href="contact.html" class="btn-cancel-form">Cancel</a>
-      <button type="submit" form="patientForm" class="btn-submit-form">
-        <i class="fas fa-file-pdf" aria-hidden="true"></i>
-        Submit &amp; Generate My Form
-      </button>
+    <div class="container">
+      <div class="form-actions-inner">
+        <a href="contact.html" class="btn-cancel-form">Cancel</a>
+        <button type="submit" form="patientForm" class="btn-submit-form">
+          <i class="fas fa-file-pdf" aria-hidden="true"></i>
+          Submit &amp; Generate My Form
+        </button>
+      </div>
     </div>
   </div>
 
-</div><!-- /.patient-form-shell -->
+</div><!-- /.patient-form-layout -->
         `;
     }
 
@@ -1289,10 +1257,16 @@ class PatientForm {
 
     showSuccess() {
         const shell = this.container.querySelector('.patient-form-shell');
+        const actions = this.container.querySelector('.form-actions');
+        const introContainer = this.container.querySelector('.form-page-intro')?.closest('.container');
         if (!shell) return;
+
+        if (introContainer) introContainer.hidden = true;
+        if (actions) actions.hidden = true;
 
         shell.innerHTML = `
 <div class="form-success-panel">
+  <span class="section-eyebrow">Form complete</span>
   <div class="form-success-icon" aria-hidden="true">
     <i class="fas fa-check-circle"></i>
   </div>

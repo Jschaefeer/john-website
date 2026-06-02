@@ -18,6 +18,9 @@
     <meta property="twitter:title" content="Services | Armonk-Somers Podiatry | Dr. John O'Hanlon">
     <meta property="twitter:description" content="Comprehensive foot care services in Westchester County">
     <meta property="twitter:image" content="img/SC.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/services.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -29,7 +32,6 @@
         <div class="container">
             <div class="logo">
                 <a href="index.html" class="logo-link" aria-label="Armonk-Somers Podiatry">
-                    <img src="img/favcon.png" alt="" class="logo-mark" width="28" height="28">
                     <span class="logo-text">Armonk-Somers Podiatry</span>
                 </a>
             </div>
@@ -53,7 +55,7 @@
     <section class="page-header">
         <div class="container">
             <h2>Our Services</h2>
-            <p>Comprehensive foot and ankle care for the entire family</p>
+            <p>Comprehensive foot and ankle care for the entire family. From routine preventative care to advanced surgical procedures, Dr. O'Hanlon provides comprehensive podiatric treatment tailored to your needs.</p>
         </div>
     </section>
     <!-- Practice Assistant -->
@@ -67,22 +69,11 @@
         <div class="chat-container">
             <div class="chat-header">
                 <div class="chat-header-info">
-                    <div class="doctor-avatar">
-                        <img src="img/favcon.png" alt="" class="avatar-img" width="36" height="36">
-                    </div>
-                    <div class="header-text">
-                        <h4 id="practiceChatTitle">Practice Assistant</h4>
-                        <span class="status-text">Hours · insurance · visits · billing</span>
-                    </div>
+                    <span class="logo-text" id="practiceChatTitle">Practice Assistant</span>
                 </div>
                 <button class="close-chat-btn" id="closeChatBtn" type="button" aria-label="Close chat">
                     <i class="fas fa-times" aria-hidden="true"></i>
                 </button>
-            </div>
-
-            <div class="chat-disclaimer">
-                <i class="fas fa-info-circle" aria-hidden="true"></i>
-                Office logistics only — not medical advice. Clinical questions go to Dr. O'Hanlon or our staff.
             </div>
 
             <div class="chat-messages" id="chatMessages" aria-live="polite"></div>
@@ -133,216 +124,202 @@
         </div>
     </div>
 
-    <section class="services-list">
+    <section class="services-content">
         <div class="container">
-            <div class="service-filter">
-                <button class="filter-btn active" data-filter="all">All Services</button>
-                <button class="filter-btn" data-filter="preventative">Preventative Care</button>
-                <button class="filter-btn" data-filter="treatment">Treatment</button>
-                <button class="filter-btn" data-filter="surgical">Surgical</button>
-                <button class="filter-btn" data-filter="specialized">Specialized Care</button>
-            </div>
-            
-            <div class="services-grid">
-                <div class="service-card" data-category="preventative treatment">
-                    <div class="card-content">
-                        <div class="card-icon">
-                            <i class="fas fa-shoe-prints"></i>
-                        </div>
-                        <h3>Custom Orthotics</h3>
-                        <p>Personalized orthotic devices designed to correct biomechanical issues, provide support, and alleviate pain. Our custom orthotics are crafted specifically for your foot structure and needs.</p>
-                        <div class="card-footer">
-                            <span class="service-count"><i class="fas fa-user-plus"></i> Popular Service</span>
-                            <span class="expand-icon"><i class="fas fa-plus"></i></span>
-                        </div>
+            <div class="services-catalog">
+                <p>Browse our services below or filter by category to find the care you are looking for:</p>
+
+                <div class="services-tabs">
+                    <div class="tab-controls service-filter" role="tablist" aria-label="Filter services by category">
+                        <button class="filter-btn active" type="button" data-filter="all" role="tab" aria-selected="true">All Services</button>
+                        <button class="filter-btn" type="button" data-filter="preventative" role="tab" aria-selected="false">Preventative Care</button>
+                        <button class="filter-btn" type="button" data-filter="treatment" role="tab" aria-selected="false">Treatment</button>
+                        <button class="filter-btn" type="button" data-filter="surgical" role="tab" aria-selected="false">Surgical</button>
+                        <button class="filter-btn" type="button" data-filter="specialized" role="tab" aria-selected="false">Specialized Care</button>
+                    </div>
+
+                    <div class="services-grid">
+                        <article class="service-card" data-category="preventative treatment">
+                                            <div class="card-icon" aria-hidden="true"><i class="fas fa-shoe-prints"></i></div>
+                                            <h3>Custom Orthotics</h3>
+                                            <span class="service-category">Preventative · Treatment</span>
+                                            <p>Personalized orthotic devices designed to correct biomechanical issues, provide support, and alleviate pain. Our custom orthotics are crafted specifically for your foot structure and needs.</p>
+                                            <div class="service-card-footer">
+                                            <span class="service-tag">Popular Service</span>
+                                            <span class="service-expand" aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
+                                        </div>
+                                    </article>
+
+                        <article class="service-card" data-category="specialized preventative">
+                                            <div class="card-icon" aria-hidden="true"><i class="fas fa-heartbeat"></i></div>
+                                            <h3>Diabetic Foot Care</h3>
+                                            <span class="service-category">Specialized · Preventative</span>
+                                            <p>Specialized care for diabetic patients including comprehensive foot exams, treatment of neuropathy, wound care, and preventative measures to avoid complications.</p>
+                                            <div class="service-card-footer">
+                                            <span class="service-tag">Essential Care</span>
+                                            <span class="service-expand" aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
+                                        </div>
+                                    </article>
+
+                        <article class="service-card" data-category="treatment preventative">
+                                            <div class="card-icon" aria-hidden="true"><i class="fas fa-x-ray"></i></div>
+                                            <h3>In-House X-Ray</h3>
+                                            <span class="service-category">Treatment · Preventative</span>
+                                            <p>Convenient diagnostic imaging performed right in our office. Our in-house X-ray capabilities allow for immediate assessment and treatment planning without referrals.</p>
+                                            <div class="service-card-footer">
+                                            <span class="service-tag">Quick Service</span>
+                                            <span class="service-expand" aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
+                                        </div>
+                                    </article>
+
+                        <article class="service-card" data-category="specialized preventative">
+                                            <div class="card-icon" aria-hidden="true"><i class="fas fa-users"></i></div>
+                                            <h3>Pediatric & Geriatric Foot Care</h3>
+                                            <span class="service-category">Specialized · Preventative</span>
+                                            <p>Specialized care for patients of all ages. From children's developmental foot concerns to the unique needs of seniors, we provide age-appropriate treatment approaches.</p>
+                                            <div class="service-card-footer">
+                                            <span class="service-tag">Family Care</span>
+                                            <span class="service-expand" aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
+                                        </div>
+                                    </article>
+
+                        <article class="service-card" data-category="treatment">
+                                            <div class="card-icon" aria-hidden="true"><i class="fas fa-bone"></i></div>
+                                            <h3>Arthritic Conditions</h3>
+                                            <span class="service-category">Treatment</span>
+                                            <p>Treatment for various forms of arthritis affecting the feet and ankles, including osteoarthritis, rheumatoid arthritis, and gout. We focus on reducing pain and improving mobility.</p>
+                                            <div class="service-card-footer">
+                                            <span class="service-tag">Pain Relief</span>
+                                            <span class="service-expand" aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
+                                        </div>
+                                    </article>
+
+                        <article class="service-card" data-category="treatment">
+                                            <div class="card-icon" aria-hidden="true"><i class="fas fa-walking"></i></div>
+                                            <h3>Plantar Fasciitis</h3>
+                                            <span class="service-category">Treatment</span>
+                                            <p>Comprehensive treatment for heel pain and plantar fasciitis, including stretching protocols, custom orthotics, anti-inflammatory treatments, and advanced therapies for chronic cases.</p>
+                                            <div class="service-card-footer">
+                                            <span class="service-tag">Popular Service</span>
+                                            <span class="service-expand" aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
+                                        </div>
+                                    </article>
+
+                        <article class="service-card" data-category="treatment">
+                                            <div class="card-icon" aria-hidden="true"><i class="fas fa-bacteria"></i></div>
+                                            <h3>Fungal Infections</h3>
+                                            <span class="service-category">Treatment</span>
+                                            <p>Treatment for various fungal conditions including athlete's foot, fungal nails, and other dermatological issues. We offer both topical and oral treatment options.</p>
+                                            <div class="service-card-footer">
+                                            <span class="service-tag">Infection Control</span>
+                                            <span class="service-expand" aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
+                                        </div>
+                                    </article>
+
+                        <article class="service-card" data-category="specialized treatment">
+                                            <div class="card-icon" aria-hidden="true"><i class="fas fa-band-aid"></i></div>
+                                            <h3>Wound Care</h3>
+                                            <span class="service-category">Specialized · Treatment</span>
+                                            <p>Specialized treatment for diabetic ulcers, traumatic wounds, and post-surgical wounds. Our advanced wound care protocols promote faster healing and prevent complications.</p>
+                                            <div class="service-card-footer">
+                                            <span class="service-tag">Urgent Care</span>
+                                            <span class="service-expand" aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
+                                        </div>
+                                    </article>
+
+                        <article class="service-card" data-category="surgical">
+                                            <div class="card-icon" aria-hidden="true"><i class="fas fa-cut"></i></div>
+                                            <h3>Bunion Surgery</h3>
+                                            <span class="service-category">Surgical</span>
+                                            <p>Surgical correction of bunions to alleviate pain, improve foot function, and enhance appearance. We offer modern surgical techniques with faster recovery times.</p>
+                                            <div class="service-card-footer">
+                                            <span class="service-tag">Surgical</span>
+                                            <span class="service-expand" aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
+                                        </div>
+                                    </article>
+
+                        <article class="service-card" data-category="treatment">
+                                            <div class="card-icon" aria-hidden="true"><i class="fas fa-fire"></i></div>
+                                            <h3>Tendinitis</h3>
+                                            <span class="service-category">Treatment</span>
+                                            <p>Treatment for inflammation of tendons in the foot and ankle, including Achilles tendinitis, posterior tibial tendinitis, and peroneal tendinitis. We focus on reducing pain and restoring function.</p>
+                                            <div class="service-card-footer">
+                                            <span class="service-tag">Pain Relief</span>
+                                            <span class="service-expand" aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
+                                        </div>
+                                    </article>
+
+                        <article class="service-card" data-category="specialized treatment">
+                                            <div class="card-icon" aria-hidden="true"><i class="fas fa-network-wired"></i></div>
+                                            <h3>Foot Nerve Care</h3>
+                                            <span class="service-category">Specialized · Treatment</span>
+                                            <p>Diagnosis and treatment of nerve-related conditions such as neuromas, neuropathy, and nerve entrapment. We offer both conservative and surgical approaches.</p>
+                                            <div class="service-card-footer">
+                                            <span class="service-tag">Sensation Restore</span>
+                                            <span class="service-expand" aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
+                                        </div>
+                                    </article>
+
+                        <article class="service-card" data-category="surgical treatment">
+                                            <div class="card-icon" aria-hidden="true"><i class="fas fa-magic"></i></div>
+                                            <h3>Hammertoe Straightening</h3>
+                                            <span class="service-category">Surgical · Treatment</span>
+                                            <p>Treatment for hammertoes ranging from conservative approaches like padding and orthotics to surgical correction. We help restore normal toe alignment and alleviate discomfort.</p>
+                                            <div class="service-card-footer">
+                                            <span class="service-tag">Corrective</span>
+                                            <span class="service-expand" aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
+                                        </div>
+                                    </article>
                     </div>
                 </div>
-                
-                <div class="service-card" data-category="specialized preventative">
-                    <div class="card-content">
-                        <div class="card-icon">
-                            <i class="fas fa-heartbeat"></i>
-                        </div>
-                        <h3>Diabetic Foot Care</h3>
-                        <p>Specialized care for diabetic patients including comprehensive foot exams, treatment of neuropathy, wound care, and preventative measures to avoid complications.</p>
-                        <div class="card-footer">
-                            <span class="service-count"><i class="fas fa-shield-alt"></i> Essential Care</span>
-                            <span class="expand-icon"><i class="fas fa-plus"></i></span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="service-card" data-category="treatment preventative">
-                    <div class="card-content">
-                        <div class="card-icon">
-                            <i class="fas fa-x-ray"></i>
-                        </div>
-                        <h3>In-House X-Ray</h3>
-                        <p>Convenient diagnostic imaging performed right in our office. Our in-house X-ray capabilities allow for immediate assessment and treatment planning without referrals.</p>
-                        <div class="card-footer">
-                            <span class="service-count"><i class="fas fa-bolt"></i> Quick Service</span>
-                            <span class="expand-icon"><i class="fas fa-plus"></i></span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="service-card" data-category="specialized preventative">
-                    <div class="card-content">
-                        <div class="card-icon">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <h3>Pediatric & Geriatric Foot Care</h3>
-                        <p>Specialized care for patients of all ages. From children's developmental foot concerns to the unique needs of seniors, we provide age-appropriate treatment approaches.</p>
-                        <div class="card-footer">
-                            <span class="service-count"><i class="fas fa-users"></i> Family Care</span>
-                            <span class="expand-icon"><i class="fas fa-plus"></i></span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="service-card" data-category="treatment">
-                    <div class="card-content">
-                        <div class="card-icon">
-                            <i class="fas fa-bone"></i>
-                        </div>
-                        <h3>Arthritic Conditions</h3>
-                        <p>Treatment for various forms of arthritis affecting the feet and ankles, including osteoarthritis, rheumatoid arthritis, and gout. We focus on reducing pain and improving mobility.</p>
-                        <div class="card-footer">
-                            <span class="service-count"><i class="fas fa-hand-holding-medical"></i> Pain Relief</span>
-                            <span class="expand-icon"><i class="fas fa-plus"></i></span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="service-card" data-category="treatment">
-                    <div class="card-content">
-                        <div class="card-icon">
-                            <i class="fas fa-walking"></i>
-                        </div>
-                        <h3>Plantar Fasciitis</h3>
-                        <p>Comprehensive treatment for heel pain and plantar fasciitis, including stretching protocols, custom orthotics, anti-inflammatory treatments, and advanced therapies for chronic cases.</p>
-                        <div class="card-footer">
-                            <span class="service-count"><i class="fas fa-user-plus"></i> Popular Service</span>
-                            <span class="expand-icon"><i class="fas fa-plus"></i></span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="service-card" data-category="treatment">
-                    <div class="card-content">
-                        <div class="card-icon">
-                            <i class="fas fa-bacteria"></i>
-                        </div>
-                        <h3>Fungal Infections</h3>
-                        <p>Treatment for various fungal conditions including athlete's foot, fungal nails, and other dermatological issues. We offer both topical and oral treatment options.</p>
-                        <div class="card-footer">
-                            <span class="service-count"><i class="fas fa-shield-virus"></i> Infection Control</span>
-                            <span class="expand-icon"><i class="fas fa-plus"></i></span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="service-card" data-category="specialized treatment">
-                    <div class="card-content">
-                        <div class="card-icon">
-                            <i class="fas fa-band-aid"></i>
-                        </div>
-                        <h3>Wound Care</h3>
-                        <p>Specialized treatment for diabetic ulcers, traumatic wounds, and post-surgical wounds. Our advanced wound care protocols promote faster healing and prevent complications.</p>
-                        <div class="card-footer">
-                            <span class="service-count"><i class="fas fa-first-aid"></i> Urgent Care</span>
-                            <span class="expand-icon"><i class="fas fa-plus"></i></span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="service-card" data-category="surgical">
-                    <div class="card-content">
-                        <div class="card-icon">
-                            <i class="fas fa-cut"></i>
-                        </div>
-                        <h3>Bunion Surgery</h3>
-                        <p>Surgical correction of bunions to alleviate pain, improve foot function, and enhance appearance. We offer modern surgical techniques with faster recovery times.</p>
-                        <div class="card-footer">
-                            <span class="service-count"><i class="fas fa-procedures"></i> Surgical</span>
-                            <span class="expand-icon"><i class="fas fa-plus"></i></span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="service-card" data-category="treatment">
-                    <div class="card-content">
-                        <div class="card-icon">
-                            <i class="fas fa-fire"></i>
-                        </div>
-                        <h3>Tendinitis</h3>
-                        <p>Treatment for inflammation of tendons in the foot and ankle, including Achilles tendinitis, posterior tibial tendinitis, and peroneal tendinitis. We focus on reducing pain and restoring function.</p>
-                        <div class="card-footer">
-                            <span class="service-count"><i class="fas fa-hand-holding-medical"></i> Pain Relief</span>
-                            <span class="expand-icon"><i class="fas fa-plus"></i></span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="service-card" data-category="specialized treatment">
-                    <div class="card-content">
-                        <div class="card-icon">
-                            <i class="fas fa-network-wired"></i>
-                        </div>
-                        <h3>Foot Nerve Care</h3>
-                        <p>Diagnosis and treatment of nerve-related conditions such as neuromas, neuropathy, and nerve entrapment. We offer both conservative and surgical approaches.</p>
-                        <div class="card-footer">
-                            <span class="service-count"><i class="fas fa-hand-sparkles"></i> Sensation Restore</span>
-                            <span class="expand-icon"><i class="fas fa-plus"></i></span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="service-card" data-category="surgical treatment">
-                    <div class="card-content">
-                        <div class="card-icon">
-                            <i class="fas fa-magic"></i>
-                        </div>
-                        <h3>Hammertoe Straightening</h3>
-                        <p>Treatment for hammertoes ranging from conservative approaches like padding and orthotics to surgical correction. We help restore normal toe alignment and alleviate discomfort.</p>
-                        <div class="card-footer">
-                            <span class="service-count"><i class="fas fa-check-circle"></i> Corrective</span>
-                            <span class="expand-icon"><i class="fas fa-plus"></i></span>
-                        </div>
-                    </div>
-                </div>
+
+                <p class="services-note">Don't see the service you need listed here? Contact our office — we treat a wide range of foot and ankle conditions.</p>
             </div>
         </div>
     </section>
 
     <!-- Service Modals -->
-    <div id="serviceModal" class="service-modal">
-        <div class="modal-content">
+    <div id="serviceModal" class="service-modal" aria-hidden="true">
+        <div class="modal-content" role="document">
             <div class="modal-header">
-                <div class="modal-icon">
-                    <div class="card-icon">
-                        <i class="modal-service-icon"></i>
+                <div class="modal-header-row">
+                    <div class="modal-header-text">
+                        <p class="modal-eyebrow">Service detail</p>
+                        <h3 id="modalTitle"></h3>
                     </div>
-                    <h3 id="modalTitle"></h3>
+                    <button type="button" class="close-modal" aria-label="Close service details">
+                        <i class="fas fa-times" aria-hidden="true"></i>
+                    </button>
                 </div>
-                <div class="close-modal">
-                    <i class="fas fa-times"></i>
+                <div class="modal-icon" aria-hidden="true">
+                    <div class="card-icon">
+                        <i class="modal-service-icon fas" aria-hidden="true"></i>
+                    </div>
                 </div>
             </div>
             <div class="modal-body" id="modalBody">
                 <!-- Content will be dynamically populated -->
             </div>
-            <div class="modal-footer">
-                <a href="contact.html" class="btn">Schedule Appointment <i class="fas fa-calendar-check"></i></a>
-            </div>
+            <footer class="modal-footer">
+                <a href="contact.html" class="btn btn-modal">Schedule Appointment <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+            </footer>
         </div>
     </div>
 
-    <section class="cta-section">
+    <section class="services-questions">
         <div class="container">
             <h3>Ready to take the first step toward healthier feet?</h3>
             <p>Contact Armonk-Somers Podiatry today to schedule your appointment with Dr. O'Hanlon.</p>
-            <a href="contact.html" class="btn btn-primary">Schedule Appointment</a>
+            <div class="office-contacts">
+                <div class="office">
+                    <h4>Somers Office</h4>
+                    <p>(914) 276-3718</p>
+                </div>
+                <div class="office">
+                    <h4>Armonk Office</h4>
+                    <p>(914) 273-3100</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -351,7 +328,7 @@
             <div class="footer-content">
                 <div class="footer-logo">
                     <a href="index.html" class="logo-link" aria-label="Armonk-Somers Podiatry">
-                        <img src="img/SC.png" alt="Armonk-Somers Podiatry" class="logo-img">
+                        <span class="logo-text">Armonk-Somers Podiatry</span>
                     </a>
                     <p>Dr. John O'Hanlon</p>
                     <div class="social-links">
@@ -663,21 +640,23 @@
                     
                     // Show modal
                     modal.classList.add('active');
+                    modal.setAttribute('aria-hidden', 'false');
                     document.body.style.overflow = 'hidden';
                 });
             });
             
             // Close modal
-            closeModal.addEventListener('click', function() {
+            function closeServiceModal() {
                 modal.classList.remove('active');
+                modal.setAttribute('aria-hidden', 'true');
                 document.body.style.overflow = '';
-            });
+            }
+
+            closeModal.addEventListener('click', closeServiceModal);
             
-            // Close modal when clicking outside content
             modal.addEventListener('click', function(e) {
                 if (e.target === modal) {
-                    modal.classList.remove('active');
-                    document.body.style.overflow = '';
+                    closeServiceModal();
                 }
             });
             
@@ -686,11 +665,12 @@
             
             filterButtons.forEach(button => {
                 button.addEventListener('click', function() {
-                    // Remove active class from all buttons
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
-                    
-                    // Add active class to clicked button
+                    filterButtons.forEach(btn => {
+                        btn.classList.remove('active');
+                        btn.setAttribute('aria-selected', 'false');
+                    });
                     this.classList.add('active');
+                    this.setAttribute('aria-selected', 'true');
                     
                     const filter = this.getAttribute('data-filter');
                     

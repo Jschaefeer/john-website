@@ -189,11 +189,4 @@ function initTestimonialNavigation() {
             dots[activeIndex].classList.add('active');
         }
     });
-    
-    // Auto-scroll testimonials every 5 seconds
-    let currentIndex = 0;
-    setInterval(() => {
-        currentIndex = (currentIndex + 1) % dots.length;
-        dots[currentIndex].click();
-    }, 5000);
 } 
