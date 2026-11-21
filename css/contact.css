@@ -1,213 +1,88 @@
-/* Contact Page */
+/* Contact */
 
-/* ── Phone hero — dark band, leads the page ── */
-
-.contact-phone-hero {
-    background: var(--surface-dark);
-    padding: var(--spacing-76) 0 var(--section-gap);
-    text-align: left;
-}
-
-.contact-eyebrow {
-    color: var(--color-cloud-dark);
-}
-
-.contact-phone-hero h1 {
-    font-family: var(--font-serif);
-    font-size: var(--text-heading-lg);
-    font-weight: var(--font-weight-regular);
-    line-height: var(--leading-heading-lg);
-    color: var(--color-ivory-light);
-    margin-bottom: var(--spacing-12);
-}
-
-.contact-phone-lead {
-    max-width: 40rem;
-    margin: 0 0 var(--spacing-32);
-    font-size: var(--text-subheading);
-    color: var(--color-ivory-dark);
-}
-
-.office-cards {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--spacing-16);
-}
-
-.contact-phone-hero .office-card,
-.contact-phone-hero .office-card--ivory,
-.contact-phone-hero .office-card--oat {
-    background: none;
-    padding: 0;
-    border-radius: 0;
-}
-
-.office-card {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--spacing-12);
-}
-
-.contact-phone-hero .office-label {
-    color: var(--color-cloud-dark);
-}
-
-.office-label {
-    font-family: var(--font-mono);
-    font-size: var(--text-caption);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--text-tertiary);
-}
-
-.phone-link {
-    font-size: clamp(1.75rem, 4vw, 2.5rem);
-    font-weight: var(--font-weight-semibold);
-    line-height: 1.15;
-    color: var(--blue);
+.contact-phone {
+    margin-top: -12px;
+    font-size: clamp(2rem, 1.55rem + 1.9vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 1;
     text-decoration: none;
-    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+    transition: color 0.2s;
 }
+.contact-phone:hover { color: var(--pine); }
 
-.phone-link:hover {
-    color: var(--blue-hover);
-    text-decoration: underline;
+.office-map {
+    margin-top: auto;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: var(--radius-sm);
+    background: var(--tint-strong);
 }
-
-/* ── Typeform section ── */
-
-.contact-form {
-    padding: var(--section-gap) 0;
-    background: var(--surface);
-}
-
-.contact-section-header {
-    margin-bottom: var(--spacing-32);
-    text-align: left;
-    max-width: none;
-}
-
-.contact-section-header h2 {
-    font-size: var(--text-heading);
-    margin-bottom: var(--spacing-12);
-}
-
-.contact-section-header p {
-    font-size: var(--text-body-sm);
-    max-width: 40rem;
-    margin: 0;
-}
-
-.typeform-container {
+.office-map iframe {
     width: 100%;
-    min-height: 420px;
+    height: 100%;
+    border: 0;
+    filter: grayscale(0.7) contrast(0.95);
+    transition: filter 0.3s;
+}
+.office-map:hover iframe { filter: none; }
+.office-map + .office-card-foot { margin-top: 0; }
+
+/* Message form */
+.message { padding-top: clamp(40px, 5vw, 72px); }
+.message .split-head p + p { margin-top: 12px; }
+
+.typeform-card {
+    min-height: 560px;
+    padding: 8px;
+    background: var(--tint);
+    border-radius: var(--radius);
     overflow: hidden;
 }
+.typeform-card > div { height: 544px; border-radius: var(--radius-sm); overflow: hidden; }
+.typeform-card iframe { width: 100%; height: 100%; border: 0; }
 
-/* ── Patient form callout strip ── */
-
-.contact-patient {
-    padding: 0 0 var(--section-gap);
-    background: var(--surface);
+/* Next steps */
+.next-steps {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
 }
 
-.patient-form-callout {
-    border-top: 1px solid var(--color-cloud-light);
-    border-bottom: 1px solid var(--color-cloud-light);
-    padding: var(--spacing-32) 0;
-}
-
-.patient-form-callout__content {
+.step-card {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: var(--spacing-16);
+    gap: 12px;
+    min-height: 240px;
+    padding: 28px;
+    background: var(--tint);
+    border-radius: var(--radius);
+    text-decoration: none;
+    transition: background-color 0.25s;
 }
+.step-card:hover { background: var(--tint-strong); }
+.step-card h3 { margin-top: 8px; font-size: clamp(1.25rem, 1.15rem + 0.4vw, 1.5rem); letter-spacing: -0.025em; }
+.step-card p { color: var(--ink-2); font-size: 1rem; }
 
-.btn-download {
-    display: inline-flex;
+.step-card-foot {
+    margin-top: auto;
+    align-self: stretch;
+    display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 0.375rem;
-    padding: 12px 31px;
-    background: var(--blue);
-    color: #fff;
-    border: 1px solid var(--blue);
-    border-radius: var(--radius-buttons);
-    cursor: pointer;
-    font-size: var(--text-body-sm);
-    text-decoration: none;
-    font-family: inherit;
-    font-weight: var(--font-weight-medium);
+    justify-content: space-between;
+    padding-top: 16px;
+    border-top: 1px solid var(--line-strong);
+    font-size: var(--fs-small);
+    font-weight: 600;
 }
+.step-card-foot .i { transition: transform 0.25s var(--ease); }
+.step-card:hover .step-card-foot .i-arrow { transform: translateX(4px); color: var(--pine); }
+.step-card:hover .step-card-foot .i-ext { transform: translate(2px, -2px); color: var(--pine); }
 
-.btn-download:hover {
-    background: var(--blue-hover);
-    border-color: var(--blue-hover);
-    color: #fff;
-    text-decoration: none;
-}
-
-.patient-form-note {
-    font-size: var(--text-body-sm);
-    color: var(--text-secondary);
-    margin: 0;
-    max-width: 40rem;
-}
-
-/* ── Insurance reminder — matches insurance-questions pattern ── */
-
-.insurance-reminder {
-    background: var(--surface-dark);
-    padding: var(--section-gap) 0;
-    text-align: left;
-}
-
-.insurance-reminder h3 {
-    font-family: var(--font-serif);
-    font-size: var(--text-heading-lg);
-    font-weight: var(--font-weight-regular);
-    line-height: var(--leading-heading-lg);
-    color: var(--color-ivory-light);
-    margin-bottom: var(--spacing-12);
-}
-
-.insurance-reminder > .container > p {
-    max-width: 40rem;
-    margin: 0 0 var(--spacing-32);
-    font-size: var(--text-subheading);
-    color: var(--color-ivory-dark);
-}
-
-.insurance-reminder .btn {
-    background: var(--color-ivory-light);
-    color: var(--text);
-    border-color: var(--text);
-    text-decoration: none;
-}
-
-.insurance-reminder .btn:hover {
-    background: var(--color-ivory-medium);
-    border-color: var(--text);
-    color: var(--text);
-}
-
-@media (min-width: 768px) {
-    .office-cards {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .patient-form-callout__content {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        gap: var(--spacing-32);
-    }
-
-    .patient-form-note {
-        text-align: right;
-        flex: 1;
-        max-width: none;
-    }
+@media (max-width: 900px) {
+    .next-steps { grid-template-columns: 1fr; }
+    .step-card { min-height: 0; }
 }

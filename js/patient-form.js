@@ -35,38 +35,52 @@ class PatientForm {
         return `
 <div class="patient-form-layout">
 
-  <div class="container">
-    <div class="form-page-intro">
-      <span class="section-eyebrow">New patient intake</span>
-      <h1>New Patient Information Form</h1>
-      <p>Complete this form before your first appointment. Your responses generate a PDF to print and bring with you.</p>
+  <section class="page-hero form-page-intro">
+    <div class="container page-hero-grid">
+      <div>
+        <span class="eyebrow">New patients</span>
+        <h1>New patient form</h1>
+      </div>
+      <div class="page-hero-aside">
+        <p class="lead">Complete this before your first appointment. When you're done, we'll create a PDF for you to print and bring with you.</p>
+        <ul class="form-facts" role="list">
+          <li><span>Fields marked <span class="req" aria-hidden="true">*</span> are required.</span></li>
+          <li><span>Your answers stay on this device. Nothing is sent over the internet.</span></li>
+        </ul>
+      </div>
     </div>
-  </div>
+  </section>
 
   <div class="container patient-form-shell">
   <form id="patientForm" novalidate>
 
-    <!-- ── 1. PERSONAL INFORMATION ──────────────────────────────────────── -->
+    <section class="form-section" aria-labelledby="fs-personal">
+      <header class="form-section-head">
+        <span class="form-section-num">01</span>
+        <h2 id="fs-personal">Personal information</h2>
+        <p>How to reach you, as it appears on your ID.</p>
+      </header>
+      <div class="form-section-body">
       <div class="form-grid form-grid--3">
         <div class="field">
-          <label class="field-label" for="lastName">Last Name <span aria-hidden="true">*</span></label>
+          <label class="field-label" for="lastName">Last name <span aria-hidden="true">*</span></label>
           <input type="text" id="lastName" name="lastName" required autocomplete="family-name">
           <span class="field-error">Please enter your last name</span>
         </div>
         <div class="field">
-          <label class="field-label" for="firstName">First Name <span aria-hidden="true">*</span></label>
+          <label class="field-label" for="firstName">First name <span aria-hidden="true">*</span></label>
           <input type="text" id="firstName" name="firstName" required autocomplete="given-name">
           <span class="field-error">Please enter your first name</span>
         </div>
         <div class="field">
-          <label class="field-label" for="middleInitial">Middle Initial</label>
+          <label class="field-label" for="middleInitial">Middle initial</label>
           <input type="text" id="middleInitial" name="middleInitial" maxlength="1" autocomplete="additional-name">
         </div>
       </div>
 
       <div class="form-grid">
         <div class="field">
-          <label class="field-label" for="streetAddress">Street Address <span aria-hidden="true">*</span></label>
+          <label class="field-label" for="streetAddress">Street address <span aria-hidden="true">*</span></label>
           <input type="text" id="streetAddress" name="streetAddress" required autocomplete="street-address">
           <span class="field-error">Please enter your street address</span>
         </div>
@@ -81,7 +95,7 @@ class PatientForm {
         <div class="field">
           <label class="field-label" for="state">State <span aria-hidden="true">*</span></label>
           <select id="state" name="state" required autocomplete="address-level1">
-            <option value="">Select State</option>
+            <option value="">Select state</option>
             <option value="NY">New York</option>
             <option value="CT">Connecticut</option>
             <option value="NJ">New Jersey</option>
@@ -95,7 +109,7 @@ class PatientForm {
           <span class="field-error">Please select your state</span>
         </div>
         <div class="field">
-          <label class="field-label" for="zip">ZIP Code <span aria-hidden="true">*</span></label>
+          <label class="field-label" for="zip">ZIP code <span aria-hidden="true">*</span></label>
           <input type="text" id="zip" name="zip" pattern="[0-9]{5}" maxlength="5" required autocomplete="postal-code">
           <span class="field-error">Please enter a valid 5-digit ZIP</span>
         </div>
@@ -103,15 +117,15 @@ class PatientForm {
 
       <div class="form-grid form-grid--3">
         <div class="field">
-          <label class="field-label" for="homePhone">Home Phone</label>
+          <label class="field-label" for="homePhone">Home phone</label>
           <input type="tel" id="homePhone" name="homePhone" placeholder="(555) 123-4567" autocomplete="home tel">
         </div>
         <div class="field">
-          <label class="field-label" for="workPhone">Work Phone</label>
+          <label class="field-label" for="workPhone">Work phone</label>
           <input type="tel" id="workPhone" name="workPhone" placeholder="(555) 123-4567" autocomplete="work tel">
         </div>
         <div class="field">
-          <label class="field-label" for="cellPhone">Cell Phone <span aria-hidden="true">*</span></label>
+          <label class="field-label" for="cellPhone">Cell phone <span aria-hidden="true">*</span></label>
           <input type="tel" id="cellPhone" name="cellPhone" placeholder="(555) 123-4567" required autocomplete="mobile tel">
           <span class="field-error">Please enter your cell phone number</span>
         </div>
@@ -119,12 +133,12 @@ class PatientForm {
 
       <div class="form-grid form-grid--3">
         <div class="field">
-          <label class="field-label" for="dateOfBirth">Date of Birth <span aria-hidden="true">*</span></label>
+          <label class="field-label" for="dateOfBirth">Date of birth <span aria-hidden="true">*</span></label>
           <input type="date" id="dateOfBirth" name="dateOfBirth" required autocomplete="bday">
           <span class="field-error">Please enter your date of birth</span>
         </div>
         <div class="field">
-          <label class="field-label" for="ssn">Social Security Number <span aria-hidden="true">*</span></label>
+          <label class="field-label" for="ssn">Social Security number <span aria-hidden="true">*</span></label>
           <input type="text" id="ssn" name="ssn" placeholder="123-45-6789" pattern="[0-9]{3}-[0-9]{2}-[0-9]{4}" required inputmode="numeric">
           <span class="field-error">Please enter your SSN (123-45-6789)</span>
         </div>
@@ -141,7 +155,7 @@ class PatientForm {
 
       <div class="form-grid form-grid--2">
         <div class="field">
-          <label class="field-label" for="email">Email Address <span aria-hidden="true">*</span></label>
+          <label class="field-label" for="email">Email address <span aria-hidden="true">*</span></label>
           <input type="email" id="email" name="email" required autocomplete="email">
           <span class="field-error">Please enter a valid email address</span>
         </div>
@@ -151,9 +165,18 @@ class PatientForm {
         </div>
       </div>
 
-    <!-- ── 2. PERSONAL STATUS ────────────────────────────────────────────── -->
+      </div>
+    </section>
+
+    <section class="form-section" aria-labelledby="fs-status">
+      <header class="form-section-head">
+        <span class="form-section-num">02</span>
+        <h2 id="fs-status">About you</h2>
+        <p>Marital, employment and student status.</p>
+      </header>
+      <div class="form-section-body">
       <div class="field-group">
-        <span class="field-label">Marital Status</span>
+        <span class="field-label">Marital status</span>
         <div class="choice-list choice-row">
           <label class="choice">
             <input type="radio" name="maritalStatus" id="single" value="SINGLE">
@@ -169,7 +192,7 @@ class PatientForm {
           </label>
           <label class="choice">
             <input type="radio" name="maritalStatus" id="widow" value="WIDOW">
-            <span>Widow / Widower</span>
+            <span>Widow / widower</span>
           </label>
           <label class="choice">
             <input type="radio" name="maritalStatus" id="otherMarital" value="OTHER">
@@ -179,19 +202,19 @@ class PatientForm {
       </div>
 
       <div class="field-group">
-        <span class="field-label">Employment Status</span>
+        <span class="field-label">Employment status</span>
         <div class="choice-list choice-row">
           <label class="choice">
             <input type="radio" name="employmentStatus" id="fullTime" value="FULL TIME">
-            <span>Full Time</span>
+            <span>Full time</span>
           </label>
           <label class="choice">
             <input type="radio" name="employmentStatus" id="partTime" value="PART-TIME">
-            <span>Part Time</span>
+            <span>Part time</span>
           </label>
           <label class="choice">
             <input type="radio" name="employmentStatus" id="selfEmployed" value="SELF EMPLOYED">
-            <span>Self Employed</span>
+            <span>Self employed</span>
           </label>
           <label class="choice">
             <input type="radio" name="employmentStatus" id="retired" value="RETIRED">
@@ -199,38 +222,47 @@ class PatientForm {
           </label>
           <label class="choice">
             <input type="radio" name="employmentStatus" id="unemployed" value="NO">
-            <span>Not Employed</span>
+            <span>Not employed</span>
           </label>
         </div>
       </div>
 
       <div class="field-group">
-        <span class="field-label">Student Status</span>
+        <span class="field-label">Student status</span>
         <div class="choice-list choice-row">
           <label class="choice">
             <input type="radio" name="studentStatus" id="fullTimeStudent" value="FULL TIME">
-            <span>Full Time Student</span>
+            <span>Full time student</span>
           </label>
           <label class="choice">
             <input type="radio" name="studentStatus" id="partTimeStudent" value="PART TIME">
-            <span>Part Time Student</span>
+            <span>Part time student</span>
           </label>
           <label class="choice">
             <input type="radio" name="studentStatus" id="notStudent" value="NO">
-            <span>Not a Student</span>
+            <span>Not a student</span>
           </label>
         </div>
       </div>
 
-    <!-- ── 3. PRIMARY INSURANCE ──────────────────────────────────────────── -->
+      </div>
+    </section>
+
+    <section class="form-section" aria-labelledby="fs-primary">
+      <header class="form-section-head">
+        <span class="form-section-num">03</span>
+        <h2 id="fs-primary">Primary insurance</h2>
+        <p>As it appears on your insurance card.</p>
+      </header>
+      <div class="form-section-body">
       <div class="form-grid form-grid--2">
         <div class="field">
-          <label class="field-label" for="primaryInsuranceCompany">Insurance Company <span aria-hidden="true">*</span></label>
+          <label class="field-label" for="primaryInsuranceCompany">Insurance company <span aria-hidden="true">*</span></label>
           <input type="text" id="primaryInsuranceCompany" name="primaryInsuranceCompany" required>
           <span class="field-error">Please enter your insurance company</span>
         </div>
         <div class="field">
-          <label class="field-label" for="primaryInsuranceId">Policy / ID Number <span aria-hidden="true">*</span></label>
+          <label class="field-label" for="primaryInsuranceId">Policy / ID number <span aria-hidden="true">*</span></label>
           <input type="text" id="primaryInsuranceId" name="primaryInsuranceId" required>
           <span class="field-error">Please enter your insurance ID</span>
         </div>
@@ -238,28 +270,28 @@ class PatientForm {
 
       <div class="form-grid form-grid--2">
         <div class="field">
-          <label class="field-label" for="primaryGroupNumber">Group Number</label>
+          <label class="field-label" for="primaryGroupNumber">Group number</label>
           <input type="text" id="primaryGroupNumber" name="primaryGroupNumber">
         </div>
         <div class="field">
-          <label class="field-label" for="primaryGroupName">Group Name</label>
+          <label class="field-label" for="primaryGroupName">Group name</label>
           <input type="text" id="primaryGroupName" name="primaryGroupName">
         </div>
       </div>
 
       <div class="form-grid form-grid--2">
         <div class="field">
-          <label class="field-label" for="primaryInsuredName">Insured Person's Name</label>
+          <label class="field-label" for="primaryInsuredName">Insured person's name</label>
           <input type="text" id="primaryInsuredName" name="primaryInsuredName" placeholder="If different from patient">
         </div>
         <div class="field">
-          <label class="field-label" for="primaryInsuredDOB">Insured Person's Date of Birth</label>
+          <label class="field-label" for="primaryInsuredDOB">Insured person's date of birth</label>
           <input type="date" id="primaryInsuredDOB" name="primaryInsuredDOB">
         </div>
       </div>
 
       <div class="field-group">
-        <span class="field-label">Relationship to Insured Person</span>
+        <span class="field-label">Relationship to insured person</span>
         <div class="choice-list choice-row">
           <label class="choice">
             <input type="radio" name="primaryRelationship" id="primarySelf" value="SELF" checked>
@@ -280,7 +312,16 @@ class PatientForm {
         </div>
       </div>
 
-    <!-- ── 4. SECONDARY INSURANCE ────────────────────────────────────────── -->
+      </div>
+    </section>
+
+    <section class="form-section" aria-labelledby="fs-secondary">
+      <header class="form-section-head">
+        <span class="form-section-num">04</span>
+        <h2 id="fs-secondary">Secondary insurance</h2>
+        <p>Only if you have a second plan.</p>
+      </header>
+      <div class="form-section-body">
       <div class="field-group">
         <span class="field-label">Do you have secondary insurance?</span>
         <div class="choice-list choice-row">
@@ -298,39 +339,39 @@ class PatientForm {
       <div class="conditional-block" id="secondaryInsuranceDetails">
         <div class="form-grid form-grid--2">
           <div class="field">
-            <label class="field-label" for="secondaryInsuranceCompany">Insurance Company</label>
+            <label class="field-label" for="secondaryInsuranceCompany">Insurance company</label>
             <input type="text" id="secondaryInsuranceCompany" name="secondaryInsuranceCompany">
           </div>
           <div class="field">
-            <label class="field-label" for="secondaryInsuranceId">Policy / ID Number</label>
+            <label class="field-label" for="secondaryInsuranceId">Policy / ID number</label>
             <input type="text" id="secondaryInsuranceId" name="secondaryInsuranceId">
           </div>
         </div>
 
         <div class="form-grid form-grid--2">
           <div class="field">
-            <label class="field-label" for="secondaryGroupNumber">Group Number</label>
+            <label class="field-label" for="secondaryGroupNumber">Group number</label>
             <input type="text" id="secondaryGroupNumber" name="secondaryGroupNumber">
           </div>
           <div class="field">
-            <label class="field-label" for="secondaryGroupName">Group Name</label>
+            <label class="field-label" for="secondaryGroupName">Group name</label>
             <input type="text" id="secondaryGroupName" name="secondaryGroupName">
           </div>
         </div>
 
         <div class="form-grid form-grid--2">
           <div class="field">
-            <label class="field-label" for="secondaryInsuredName">Insured Person's Name</label>
+            <label class="field-label" for="secondaryInsuredName">Insured person's name</label>
             <input type="text" id="secondaryInsuredName" name="secondaryInsuredName" placeholder="If different from patient">
           </div>
           <div class="field">
-            <label class="field-label" for="secondaryInsuredDOB">Insured Person's Date of Birth</label>
+            <label class="field-label" for="secondaryInsuredDOB">Insured person's date of birth</label>
             <input type="date" id="secondaryInsuredDOB" name="secondaryInsuredDOB">
           </div>
         </div>
 
         <div class="field-group">
-          <span class="field-label">Relationship to Insured Person</span>
+          <span class="field-label">Relationship to insured person</span>
           <div class="choice-list choice-row">
             <label class="choice">
               <input type="radio" name="secondaryRelationship" id="secondarySelf" value="SELF">
@@ -352,7 +393,16 @@ class PatientForm {
         </div>
       </div>
 
-    <!-- ── 5. MEDICAL HISTORY & REFERRAL ─────────────────────────────────── -->
+      </div>
+    </section>
+
+    <section class="form-section" aria-labelledby="fs-care">
+      <header class="form-section-head">
+        <span class="form-section-num">05</span>
+        <h2 id="fs-care">Your care team</h2>
+        <p>Referral, primary care physician and pharmacy.</p>
+      </header>
+      <div class="form-section-body">
       <div class="form-grid">
         <div class="field">
           <label class="field-label" for="referredBy">Who referred you to our practice?</label>
@@ -362,36 +412,36 @@ class PatientForm {
 
       <div class="form-grid form-grid--2">
         <div class="field">
-          <label class="field-label" for="primaryCarePhysician">Primary Care Physician Name</label>
+          <label class="field-label" for="primaryCarePhysician">Primary care physician name</label>
           <input type="text" id="primaryCarePhysician" name="primaryCarePhysician">
         </div>
         <div class="field">
-          <label class="field-label" for="primaryCarePhone">Primary Care Phone</label>
+          <label class="field-label" for="primaryCarePhone">Primary care phone</label>
           <input type="tel" id="primaryCarePhone" name="primaryCarePhone" placeholder="(555) 123-4567">
         </div>
       </div>
 
       <div class="form-grid">
         <div class="field">
-          <label class="field-label" for="primaryCareAddress">Primary Care Address</label>
+          <label class="field-label" for="primaryCareAddress">Primary care address</label>
           <input type="text" id="primaryCareAddress" name="primaryCareAddress">
         </div>
       </div>
 
       <div class="form-grid form-grid--2">
         <div class="field">
-          <label class="field-label" for="lastVisitDate">Date of Last Visit</label>
+          <label class="field-label" for="lastVisitDate">Date of last visit</label>
           <input type="date" id="lastVisitDate" name="lastVisitDate">
         </div>
         <div class="field">
-          <label class="field-label" for="lastVisitReason">Reason for Last Visit</label>
+          <label class="field-label" for="lastVisitReason">Reason for last visit</label>
           <input type="text" id="lastVisitReason" name="lastVisitReason">
         </div>
       </div>
 
       <div class="form-grid">
         <div class="field">
-          <label class="field-label" for="preferredPharmacy">Preferred Pharmacy</label>
+          <label class="field-label" for="preferredPharmacy">Preferred pharmacy</label>
           <input type="text" id="preferredPharmacy" name="preferredPharmacy">
         </div>
       </div>
@@ -419,7 +469,16 @@ class PatientForm {
         </div>
       </div>
 
-    <!-- ── 6. CURRENT COMPLAINT ──────────────────────────────────────────── -->
+      </div>
+    </section>
+
+    <section class="form-section" aria-labelledby="fs-visit">
+      <header class="form-section-head">
+        <span class="form-section-num">06</span>
+        <h2 id="fs-visit">Reason for your visit</h2>
+        <p>Tell us what's bothering you.</p>
+      </header>
+      <div class="form-section-body">
       <div class="form-grid">
         <div class="field">
           <label class="field-label" for="chiefComplaint">
@@ -454,7 +513,7 @@ class PatientForm {
       <div class="conditional-block" id="previousPodiatristDetails">
         <div class="form-grid form-grid--2">
           <div class="field">
-            <label class="field-label" for="previousPodiatrist">Doctor's Name</label>
+            <label class="field-label" for="previousPodiatrist">Doctor's name</label>
             <input type="text" id="previousPodiatrist" name="previousPodiatrist" placeholder="Previous podiatrist's name">
           </div>
           <div class="field">
@@ -464,17 +523,26 @@ class PatientForm {
         </div>
       </div>
 
-    <!-- ── 7. ALLERGIES & MEDICAL HISTORY ────────────────────────────────── -->
+      </div>
+    </section>
+
+    <section class="form-section" aria-labelledby="fs-conditions">
+      <header class="form-section-head">
+        <span class="form-section-num">07</span>
+        <h2 id="fs-conditions">Allergies and conditions</h2>
+        <p>Check everything that applies.</p>
+      </header>
+      <div class="form-section-body">
       <div class="field-group">
         <span class="field-label">Allergies — are you allergic or sensitive to any of the following?</span>
         <div class="check-grid">
           <label class="choice">
             <input type="checkbox" id="allergyTape" name="allergies" value="Adhesive Tape">
-            <span>Adhesive Tape</span>
+            <span>Adhesive tape</span>
           </label>
           <label class="choice">
             <input type="checkbox" id="allergyAnticoagulant" name="allergies" value="Anticoagulant Therapy">
-            <span>Anticoagulant Therapy</span>
+            <span>Anticoagulant therapy</span>
           </label>
           <label class="choice">
             <input type="checkbox" id="allergyAspirin" name="allergies" value="Aspirin">
@@ -494,7 +562,7 @@ class PatientForm {
           </label>
           <label class="choice">
             <input type="checkbox" id="allergyInsectStings" name="allergies" value="Insect Stings">
-            <span>Insect Stings</span>
+            <span>Insect stings</span>
           </label>
           <label class="choice">
             <input type="checkbox" id="allergyIodine" name="allergies" value="Iodine">
@@ -506,7 +574,7 @@ class PatientForm {
           </label>
           <label class="choice">
             <input type="checkbox" id="allergyLocalAnesthetic" name="allergies" value="Local Anesthetic">
-            <span>Local Anesthetic</span>
+            <span>Local anesthetic</span>
           </label>
           <label class="choice">
             <input type="checkbox" id="allergyPenicillin" name="allergies" value="Penicillin">
@@ -525,22 +593,22 @@ class PatientForm {
       </div>
 
       <div class="field-group">
-        <span class="field-label">Medical Conditions — check all you currently have or have had in the past:</span>
+        <span class="field-label">Medical conditions — check all you currently have or have had in the past</span>
         <div class="check-grid check-grid--conditions" id="medicalConditionsGrid">
           <!-- injected by injectMedicalConditions() -->
         </div>
       </div>
 
       <div class="field-group">
-        <span class="field-label">Foot Problems — check any that apply:</span>
+        <span class="field-label">Foot problems — check any that apply</span>
         <div class="check-grid">
           <label class="choice">
             <input type="checkbox" id="anklePain" name="footProblems" value="Ankle Pain">
-            <span>Ankle Pain</span>
+            <span>Ankle pain</span>
           </label>
           <label class="choice">
             <input type="checkbox" id="athletesFoot" name="footProblems" value="Athlete's foot">
-            <span>Athlete's Foot</span>
+            <span>Athlete's foot</span>
           </label>
           <label class="choice">
             <input type="checkbox" id="bunions" name="footProblems" value="Bunions">
@@ -548,15 +616,15 @@ class PatientForm {
           </label>
           <label class="choice">
             <input type="checkbox" id="callusesCorns" name="footProblems" value="Calluses and/or Corns">
-            <span>Calluses and/or Corns</span>
+            <span>Calluses and/or corns</span>
           </label>
           <label class="choice">
             <input type="checkbox" id="crampsNumbness" name="footProblems" value="Cramps or numbness in feet or legs">
-            <span>Cramps or Numbness in Feet or Legs</span>
+            <span>Cramps or numbness in feet or legs</span>
           </label>
           <label class="choice">
             <input type="checkbox" id="flatFeet" name="footProblems" value="Flat feet">
-            <span>Flat Feet</span>
+            <span>Flat feet</span>
           </label>
           <label class="choice">
             <input type="checkbox" id="hammertoes" name="footProblems" value="Hammertoes">
@@ -564,45 +632,54 @@ class PatientForm {
           </label>
           <label class="choice">
             <input type="checkbox" id="heelArchPain" name="footProblems" value="Heel pain/Arch Pain">
-            <span>Heel Pain / Arch Pain</span>
+            <span>Heel pain / arch pain</span>
           </label>
           <label class="choice">
             <input type="checkbox" id="ingrownToenails" name="footProblems" value="Ingrown toenails">
-            <span>Ingrown Toenails</span>
+            <span>Ingrown toenails</span>
           </label>
           <label class="choice">
             <input type="checkbox" id="plantarWarts" name="footProblems" value="Plantar Warts">
-            <span>Plantar Warts</span>
+            <span>Plantar warts</span>
           </label>
           <label class="choice">
             <input type="checkbox" id="swollenAnklesFeet" name="footProblems" value="Swollen ankles/feet">
-            <span>Swollen Ankles / Feet</span>
+            <span>Swollen ankles / feet</span>
           </label>
           <label class="choice">
             <input type="checkbox" id="tiredFeetLegs" name="footProblems" value="Tired feet or legs">
-            <span>Tired Feet or Legs</span>
+            <span>Tired feet or legs</span>
           </label>
         </div>
       </div>
 
-    <!-- ── 8. ADDITIONAL INFORMATION ─────────────────────────────────────── -->
+      </div>
+    </section>
+
+    <section class="form-section" aria-labelledby="fs-history">
+      <header class="form-section-head">
+        <span class="form-section-num">08</span>
+        <h2 id="fs-history">Medical history</h2>
+        <p>Other conditions, surgeries, hospitalizations and medications.</p>
+      </header>
+      <div class="form-section-body">
       <div class="form-grid">
         <div class="field">
-          <label class="field-label" for="otherConditions">Other conditions:</label>
+          <label class="field-label" for="otherConditions">Other conditions</label>
           <textarea id="otherConditions" name="otherConditions" rows="3" placeholder="List any other medical conditions not mentioned above"></textarea>
         </div>
       </div>
 
       <div class="form-grid">
         <div class="field">
-          <label class="field-label" for="surgeries">Surgeries you have had:</label>
+          <label class="field-label" for="surgeries">Surgeries you have had</label>
           <textarea id="surgeries" name="surgeries" rows="3" placeholder="List any surgeries and approximate dates"></textarea>
         </div>
       </div>
 
       <div class="form-grid">
         <div class="field">
-          <label class="field-label" for="hospitalizations">Hospitalizations (other than surgeries listed):</label>
+          <label class="field-label" for="hospitalizations">Hospitalizations (other than surgeries listed)</label>
           <textarea id="hospitalizations" name="hospitalizations" rows="3" placeholder="List any hospitalizations and approximate dates"></textarea>
         </div>
       </div>
@@ -610,12 +687,22 @@ class PatientForm {
       <div class="form-grid">
         <div class="field">
           <label class="field-label" for="medications">
-            All current medications — include prescription, vitamins, supplements, and over-the-counter:
+            All current medications — include prescription, vitamins, supplements, and over-the-counter
           </label>
           <textarea id="medications" name="medications" rows="4" placeholder="List medications, dosages, and frequency if known"></textarea>
         </div>
       </div>
 
+      </div>
+    </section>
+
+    <section class="form-section" aria-labelledby="fs-consent">
+      <header class="form-section-head">
+        <span class="form-section-num">09</span>
+        <h2 id="fs-consent">Consent</h2>
+        <p>Please read and confirm.</p>
+      </header>
+      <div class="form-section-body">
       <div class="acknowledgment">
         <label class="choice">
           <input type="checkbox" id="acknowledgePolicyTerms" name="acknowledgePolicyTerms" required>
@@ -629,16 +716,20 @@ class PatientForm {
         <span class="field-error" id="ackError">You must acknowledge the policy to continue</span>
       </div>
 
+      </div>
+    </section>
+
   </form><!-- /#patientForm -->
   </div><!-- /.patient-form-shell -->
 
   <div class="form-actions">
     <div class="container">
       <div class="form-actions-inner">
-        <a href="contact.html" class="btn-cancel-form">Cancel</a>
-        <button type="submit" form="patientForm" class="btn-submit-form">
-          <i class="fas fa-file-pdf" aria-hidden="true"></i>
-          Submit &amp; Generate My Form
+        <p class="form-actions-note">Your PDF downloads right away. Nothing is sent online.</p>
+        <a href="contact.html" class="btn btn-ghost btn-cancel-form">Cancel</a>
+        <button type="submit" form="patientForm" class="btn btn-primary btn-submit-form">
+          Create my PDF
+          <svg class="i i-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
         </button>
       </div>
     </div>
@@ -670,7 +761,7 @@ class PatientForm {
             const id = condition.toLowerCase().replace(/[^a-z0-9]/g, '');
             return `<label class="choice">
               <input type="checkbox" id="${id}" name="medicalConditions" value="${condition}">
-              <span>${condition}</span>
+              <span>${condition.replace(/([\s/]+)([A-Z])([a-z'])/g, (m, sep, a, b) => sep + a.toLowerCase() + b)}</span>
             </label>`;
         }).join('\n');
     }
@@ -725,12 +816,6 @@ class PatientForm {
             }
             if (e.target.name === 'ssn') {
                 this.formatSSN(e.target);
-            }
-        });
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                window.location.href = 'contact.html';
             }
         });
     }
@@ -881,7 +966,7 @@ class PatientForm {
         const btn = this.container.querySelector('.btn-submit-form');
         if (btn) {
             btn.disabled = true;
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Preparing your form…';
+            btn.innerHTML = '<span class="spinner" aria-hidden="true"></span> Preparing your PDF…';
         }
 
         setTimeout(() => {
@@ -1258,34 +1343,31 @@ class PatientForm {
     showSuccess() {
         const shell = this.container.querySelector('.patient-form-shell');
         const actions = this.container.querySelector('.form-actions');
-        const introContainer = this.container.querySelector('.form-page-intro')?.closest('.container');
+        const intro = this.container.querySelector('.form-page-intro');
         if (!shell) return;
 
-        if (introContainer) introContainer.hidden = true;
+        if (intro) intro.hidden = true;
         if (actions) actions.hidden = true;
 
         shell.innerHTML = `
 <div class="form-success-panel">
-  <span class="section-eyebrow">Form complete</span>
   <div class="form-success-icon" aria-hidden="true">
-    <i class="fas fa-check-circle"></i>
+    <svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
   </div>
-  <h1 class="form-success-title">Your Form is Ready!</h1>
+  <span class="eyebrow">Form complete</span>
+  <h1 class="form-success-title">Your form is ready</h1>
   <p class="form-success-message">
-    Your patient information form has been completed and downloaded. Please bring the printed form to your appointment with Dr. O'Hanlon.
+    Your new patient form has been downloaded as a PDF. Please print it and bring it to your appointment with Dr. O'Hanlon.
   </p>
   <div class="form-success-actions">
-    <button type="button" class="btn btn--primary" id="downloadAgainBtn">
-      <i class="fas fa-download" aria-hidden="true"></i>
-      Download Form Again
+    <button type="button" class="btn btn-primary" id="downloadAgainBtn">
+      <svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.5v8M4.5 7L8 10.5 11.5 7M3 13.5h10"/></svg>
+      Download again
     </button>
-    <a href="contact.html" class="btn btn--secondary">
-      <i class="fas fa-arrow-left" aria-hidden="true"></i>
-      Back to Contact Page
-    </a>
+    <a href="contact.html" class="btn btn-secondary">Back to contact</a>
   </div>
   <p class="form-success-help">
-    Questions? Call us at <a href="tel:+19142763718">(914) 276-3718</a> (Somers) or <a href="tel:+19142733100">(914) 273-3100</a> (Armonk).
+    Questions? Call <a class="text-link" href="tel:+19142763718">Somers (914) 276-3718</a> or <a class="text-link" href="tel:+19142733100">Armonk (914) 273-3100</a>.
   </p>
 </div>
         `;
@@ -1295,7 +1377,7 @@ class PatientForm {
             downloadBtn.addEventListener('click', () => this.generatePDF());
         }
 
-        shell.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 }
 
