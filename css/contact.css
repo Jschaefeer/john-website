@@ -1,213 +1,28 @@
-/* Contact Page */
+/* Contact */
 
-/* ── Phone hero — dark band, leads the page ── */
-
-.contact-phone-hero {
-    background: var(--surface-dark);
-    padding: var(--spacing-76) 0 var(--section-gap);
-    text-align: left;
-}
-
-.contact-eyebrow {
-    color: var(--color-cloud-dark);
-}
-
-.contact-phone-hero h1 {
-    font-family: var(--font-serif);
-    font-size: var(--text-heading-lg);
-    font-weight: var(--font-weight-regular);
-    line-height: var(--leading-heading-lg);
-    color: var(--color-ivory-light);
-    margin-bottom: var(--spacing-12);
-}
-
-.contact-phone-lead {
-    max-width: 40rem;
-    margin: 0 0 var(--spacing-32);
-    font-size: var(--text-subheading);
-    color: var(--color-ivory-dark);
-}
-
-.office-cards {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--spacing-16);
-}
-
-.contact-phone-hero .office-card,
-.contact-phone-hero .office-card--ivory,
-.contact-phone-hero .office-card--oat {
-    background: none;
-    padding: 0;
-    border-radius: 0;
-}
-
-.office-card {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--spacing-12);
-}
-
-.contact-phone-hero .office-label {
-    color: var(--color-cloud-dark);
-}
-
-.office-label {
-    font-family: var(--font-mono);
-    font-size: var(--text-caption);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--text-tertiary);
-}
-
-.phone-link {
-    font-size: clamp(1.75rem, 4vw, 2.5rem);
-    font-weight: var(--font-weight-semibold);
-    line-height: 1.15;
-    color: var(--blue);
+.office h3 { margin-top: 14px; }
+.office-phone {
+    font-size: clamp(1.75rem, 1.45rem + 1.2vw, 2.5rem);
+    letter-spacing: -0.035em;
     text-decoration: none;
-    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+    transition: color 0.2s;
 }
+.office-phone:hover { color: var(--blue); }
 
-.phone-link:hover {
-    color: var(--blue-hover);
-    text-decoration: underline;
-}
-
-/* ── Typeform section ── */
-
-.contact-form {
-    padding: var(--section-gap) 0;
-    background: var(--surface);
-}
-
-.contact-section-header {
-    margin-bottom: var(--spacing-32);
-    text-align: left;
-    max-width: none;
-}
-
-.contact-section-header h2 {
-    font-size: var(--text-heading);
-    margin-bottom: var(--spacing-12);
-}
-
-.contact-section-header p {
-    font-size: var(--text-body-sm);
-    max-width: 40rem;
-    margin: 0;
-}
-
-.typeform-container {
-    width: 100%;
-    min-height: 420px;
+/* Typeform embed: the widget sets its own height inline (500px). At 360px it
+   switches to a compact layout with the Start button under the intro text. */
+.typeform [data-tf-widget] { height: 360px !important; }
+.typeform .tf-v1-widget,
+.typeform [data-tf-live]:not([data-tf-loaded]) {
+    border: 1px solid var(--line);
+    border-radius: 12px;
     overflow: hidden;
 }
+.typeform [data-tf-live]:not([data-tf-loaded]) { height: 360px; background: var(--tint); }
+.typeform iframe { width: 100%; height: 100%; border: 0; }
 
-/* ── Patient form callout strip ── */
-
-.contact-patient {
-    padding: 0 0 var(--section-gap);
-    background: var(--surface);
-}
-
-.patient-form-callout {
-    border-top: 1px solid var(--color-cloud-light);
-    border-bottom: 1px solid var(--color-cloud-light);
-    padding: var(--spacing-32) 0;
-}
-
-.patient-form-callout__content {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--spacing-16);
-}
-
-.btn-download {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.375rem;
-    padding: 12px 31px;
-    background: var(--blue);
-    color: #fff;
-    border: 1px solid var(--blue);
-    border-radius: var(--radius-buttons);
-    cursor: pointer;
-    font-size: var(--text-body-sm);
-    text-decoration: none;
-    font-family: inherit;
-    font-weight: var(--font-weight-medium);
-}
-
-.btn-download:hover {
-    background: var(--blue-hover);
-    border-color: var(--blue-hover);
-    color: #fff;
-    text-decoration: none;
-}
-
-.patient-form-note {
-    font-size: var(--text-body-sm);
-    color: var(--text-secondary);
-    margin: 0;
-    max-width: 40rem;
-}
-
-/* ── Insurance reminder — matches insurance-questions pattern ── */
-
-.insurance-reminder {
-    background: var(--surface-dark);
-    padding: var(--section-gap) 0;
-    text-align: left;
-}
-
-.insurance-reminder h3 {
-    font-family: var(--font-serif);
-    font-size: var(--text-heading-lg);
-    font-weight: var(--font-weight-regular);
-    line-height: var(--leading-heading-lg);
-    color: var(--color-ivory-light);
-    margin-bottom: var(--spacing-12);
-}
-
-.insurance-reminder > .container > p {
-    max-width: 40rem;
-    margin: 0 0 var(--spacing-32);
-    font-size: var(--text-subheading);
-    color: var(--color-ivory-dark);
-}
-
-.insurance-reminder .btn {
-    background: var(--color-ivory-light);
-    color: var(--text);
-    border-color: var(--text);
-    text-decoration: none;
-}
-
-.insurance-reminder .btn:hover {
-    background: var(--color-ivory-medium);
-    border-color: var(--text);
-    color: var(--text);
-}
-
-@media (min-width: 768px) {
-    .office-cards {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .patient-form-callout__content {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        gap: var(--spacing-32);
-    }
-
-    .patient-form-note {
-        text-align: right;
-        flex: 1;
-        max-width: none;
-    }
+@media (max-width: 640px) {
+    .typeform [data-tf-widget],
+    .typeform [data-tf-live]:not([data-tf-loaded]) { height: 420px !important; }
 }

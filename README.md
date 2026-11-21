@@ -1,83 +1,54 @@
 # Armonk-Somers Podiatry Website
 
-A modern, responsive website for Dr. John O'Hanlon's podiatry practice with locations in Armonk and Somers, NY.
+Website for Dr. John O'Hanlon's podiatry practice, with offices in Somers and Armonk, NY. Plain static HTML, CSS and JavaScript, deployed to Vercel with no build step.
 
-## Project Structure
+## Pages
 
+| File | Purpose |
+| --- | --- |
+| `index.html` | Home: statement and office photo, office cards with today's hours, Dr. O'Hanlon panel, services list, patient reviews |
+| `about.html` | Dr. O'Hanlon's biography, credentials and the practice's mission |
+| `services.html` | Services in three groups of expandable sections (each linkable, e.g. `services.html#bunion-surgery`), and the "Ask the office" assistant |
+| `insurance.html` | Insurer logos, searchable list of accepted plans, what to bring, payment policy, ways to pay and billing questions |
+| `contact.html` | Phone numbers, hours, maps, the Typeform message form, and links for new patients |
+| `patient-form.html` | New patient form that generates a printable PDF in the browser (nothing is sent anywhere) |
+| `404.html` | Not-found page (uses root-relative links so it works from any path) |
+
+## Design system
+
+Everything shared lives in `css/global.css`: color and type tokens, header, footer, buttons, and layout patterns. Each page has a small stylesheet of its own.
+
+- **Colors:** off-white paper `#f6f6f3`, ink `#14171c`, blue accent `#0066cc`, near-black footer `#0f1216`
+- **Layout:** modeled on anthropic.com: heading-left / content-right sections divided by hairlines, expandable sections for detail, a few tinted feature cards, a dark call-to-action band
+- **Type:** Hanken Grotesk for headlines and UI, Newsreader for editorial serif text, IBM Plex Mono for small labels. Self-hosted in `fonts/` (`css/fonts.css`, SIL Open Font License) so text renders without waiting on Google
+- **Icons:** inline SVG, no icon font. Service and payment icons are from [Lucide](https://lucide.dev) (ISC license), used sparingly
+- **Insurance logos:** `img/insurance/` (Aetna, Blue Cross Blue Shield, Cigna, EmblemHealth, Medicare, UnitedHealthcare), shown in grayscale and in color on hover
+- **Credential logos:** `img/credentials/` (American Board of Podiatric Medicine medallion, New York Yankees, Northwell / Northern Westchester Hospital mark)
+- **Motion:** home page only. The hero starts on load: the headline rises word by word once its font is ready, the photo opens out from a smaller frame as soon as it's decoded. Further down, headings rise word by word and cards open out from a slightly smaller rounded frame as they come into view (no fades, nothing rising from below). Expandable sections animate their height (`initAccordions` in `js/main.js`). The chat grows out of its "Ask the office" button (`animateMorph` in `js/practice-chat.js`)
+- **Loading:** key photos and the two main fonts are preloaded and nothing is lazy-loaded. The Contact page has no embedded maps (the office cards link to Google Maps directions)
+- **Custom icons:** the Book a visit / New patient form / Pay a bill icons are hand-drawn SVGs inlined in `index.html`; their pen strokes draw in once and again on hover
+- **Pay a bill:** every "Pay a bill" link uses Curalta's online payment portal. In the HTML it's repeated in each page; in `js/practice-chat.js` it's set once
+
+## JavaScript
+
+| File | What it does |
+| --- | --- |
+| `js/main.js` | Mobile menu, header border on scroll, today's office hours, reviews carousel, opening an expandable section from a `#link`, scroll reveal |
+| `js/practice-chat.js` | Rule-based assistant for office logistics only; it never gives medical advice |
+| `js/insurance.js` | Live plan search with match highlighting |
+| `js/patient-form.js` | Renders the intake form, validates it, and builds the PDF with jsPDF |
+
+## Editing notes
+
+- The header and footer are repeated in every HTML page. When you change one, change all seven.
+- Office hours appear in `index.html`, `contact.html` and `js/practice-chat.js`. Each hours row has `data-days="1 3 5"` with JavaScript day numbers (0 = Sunday), which is how the "Open today" label and today's highlighted row work.
+- Photos are served as WebP with JPEG fallbacks (`img/hero.*`, `img/john.*`). The original PNGs are kept as source files.
+
+## Local preview
+
+```sh
+python3 -m http.server 4173
+# open http://localhost:4173
 ```
-/
-├── index.html              # Homepage
-├── about.html              # About Dr. O'Hanlon page
-├── services.html           # Services offered page
-├── insurance.html          # Insurance information page
-├── contact.html            # Contact and location information page
-├── css/
-│   ├── global.css          # Global styles for all pages
-│   ├── home.css            # Homepage specific styles
-│   ├── about.css           # About page specific styles
-│   ├── services.css        # Services page specific styles
-│   ├── insurance.css       # Insurance page specific styles
-│   └── contact.css         # Contact page specific styles
-├── js/
-│   └── main.js             # Main JavaScript functionality
-└── img/                    # Directory for images (to be added)
-```
 
-## Features
-
-- Modern, responsive design optimized for both mobile and desktop
-- Custom color scheme using earthy tones with no blue (as requested)
-- Distinct visual identity that doesn't look like a generic template
-- Mobile-friendly navigation menu
-- Smooth scroll animations for enhanced user experience
-- Placeholder for Typeform contact form integration
-
-## Notes for Final Implementation
-
-### Images
-
-- The website currently uses placeholder elements for images. These should be replaced with actual photos of Dr. O'Hanlon, the office locations, and relevant imagery.
-- Add images to the `img/` directory and update the references in the CSS and HTML files.
-
-### Google Maps Integration
-
-- The location maps are currently placeholders. Add Google Maps embeds for both office locations in the contact.html file.
-
-### Typeform Integration
-
-- The contact form is a placeholder for a Typeform form. Once created, add the Typeform embed code to the `.typeform-container` in contact.html.
-
-## Browser Compatibility
-
-The website is built using modern CSS and JavaScript features with appropriate fallbacks. It is compatible with:
-
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-- Mobile browsers (iOS and Android)
-
-## Development Notes
-
-### CSS Structure
-
-- Each page has its own CSS file for page-specific styles
-- Global styles are in `global.css`
-- The website uses CSS variables for consistent theming
-
-### JavaScript Features
-
-- Mobile menu toggle
-- Smooth scrolling for anchor links
-- Scroll animations using Intersection Observer API with fallback
-
-## Future Enhancements
-
-- Add schema.org structured data for improved SEO
-- Implement a blog/news section
-- Add patient testimonials
-- Set up analytics tracking
-- Implement appointment scheduling system integration  
-  
-Buzzed Tech
-
+Site design by Buzzed Tech.

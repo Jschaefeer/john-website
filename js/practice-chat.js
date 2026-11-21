@@ -69,20 +69,79 @@ class PracticeAssistant {
     }
 
     openChat() {
+        if (this.modal.classList.contains('active') && !this.closing) return;
+        if (this.morph) this.morph.cancel();
+        this.closing = false;
+        this.modal.classList.remove('closing');
         this.modal.classList.add('active');
+        document.body.classList.add('chat-open');
         document.body.style.overflow = 'hidden';
+
+        this.morph = this.animateMorph(true);
+        if (this.morph) this.morph.onfinish = () => { this.morph = null; };
 
         if (!this.initialized) {
             this.initialized = true;
-            setTimeout(() => this.loadWelcomeMessage(), 200);
+            setTimeout(() => this.loadWelcomeMessage(), 350);
         }
 
-        setTimeout(() => this.chatInput.focus(), 400);
+        setTimeout(() => this.chatInput.focus({ preventScroll: true }), 450);
     }
 
     closeChat() {
-        this.modal.classList.remove('active');
+        if (!this.modal.classList.contains('active') || this.closing) return;
+        this.closing = true;
+        if (this.morph) this.morph.cancel();
+        this.modal.classList.add('closing');
         document.body.style.overflow = '';
+
+        const finish = () => {
+            this.modal.classList.remove('active', 'closing');
+            document.body.classList.remove('chat-open');
+            if (this.morph) { this.morph.cancel(); this.morph = null; }
+            this.closing = false;
+            document.getElementById('openPracticeChatBtn')?.focus({ preventScroll: true });
+        };
+
+        this.morph = this.animateMorph(false);
+        if (this.morph) this.morph.onfinish = finish;
+        else finish();
+    }
+
+    /* The "Ask the office" pill grows into the chat window (and shrinks back)
+       by animating a clip from the pill's shape to the full panel. */
+    animateMorph(opening) {
+        const box = this.modal.querySelector('.chat-container');
+        const fab = document.getElementById('openPracticeChatBtn');
+        if (!box || !fab || typeof box.animate !== 'function') return null;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return null;
+
+        const b = box.getBoundingClientRect();
+        const f = fab.getBoundingClientRect();
+        if (!f.width) return null;
+        const cs = getComputedStyle(box);
+        const radii = [cs.borderTopLeftRadius, cs.borderTopRightRadius, cs.borderBottomRightRadius, cs.borderBottomLeftRadius].join(' ');
+        const clamp = (v) => Math.max(0, v);
+        const from = `inset(${clamp(f.top - b.top)}px ${clamp(b.right - f.right)}px ${clamp(b.bottom - f.bottom)}px ${clamp(f.left - b.left)}px round ${f.height / 2}px)`;
+        const to = `inset(0px 0px 0px 0px round ${radii})`;
+
+        const frames = [{ clipPath: from }, { clipPath: to }];
+        const anim = box.animate(opening ? frames : frames.reverse(), {
+            duration: opening ? 560 : 380,
+            easing: opening ? 'cubic-bezier(0.2, 0.9, 0.2, 1)' : 'cubic-bezier(0.5, 0, 0.75, 0)',
+            fill: opening ? 'none' : 'forwards',
+        });
+
+        // Let the contents settle into place as the window opens
+        if (opening) {
+            box.querySelectorAll('.chat-header, .chat-messages, .chat-input-area').forEach((el, i) => {
+                el.animate(
+                    [{ transform: 'translateY(14px)' }, { transform: 'none' }],
+                    { duration: 620, delay: 40 + i * 50, easing: 'cubic-bezier(0.16, 1, 0.3, 1)', fill: 'backwards' }
+                );
+            });
+        }
+        return anim;
     }
 
     autoResizeTextarea() {
@@ -449,7 +508,7 @@ class PracticeAssistant {
                 patterns: ['pay', 'bill', 'balance', 'invoice', 'payment', 'online pay', 'pay online', 'statement'],
                 response: this.buildResponse(`
                     <p>You can <strong>pay a bill online</strong> through our secure payment portal:</p>
-                    <p>${this.link('https://somerspodiatry.ema.md/ema/pay/onlinepayments#/pm/payfac/pay', 'Pay your bill online', true)}</p>
+                    <p>${this.link('https://curalta.modmedapp.com/ema/pay/onlinepayNY#/pm/payfac/pay;recaptchaKey=6LfDLTQUAAAAANEtVv-uKlqvX3s3TPYAA7xnEy4g;businessUnitName=Boltrope%20Podiatry%20NY;locationName=Nanuet;shouldDisplayBalance=false;locationZip=10954-0000;locationStreet1=111%20Main%20Street;locationPhone=%28845%29%20623-5863;patientFirstLastDob=true;language=en;recaptchaUrl=https:%2F%2Fwww.google.com%2Frecaptcha%2Fapi.js;strictPatientIdentification=false;invoiceNumberDob=false;patientFirstLastMrn=true;userLoggedIn=false;openGraphUrl=https:%2F%2Fcuralta.ema.md%2Fema%2Fpay%2FonlinepayNY;firmName=Curalta%20Health,%20LLC;locationState=NY;openGraphImage=https:%2F%2Fcuralta.ema.md%2Fema%2Fws%2Fv3%2Ffirm%2Flogo%2FLOGIN;locationCity=Nanuet', 'Pay your bill online', true)}</p>
                     <p>In-office payments (co-pays, balances, self-pay) are accepted at the time of service by cash, check, money order, Visa, MasterCard, or Discover.</p>
                     <p>Questions about a specific statement? Call Somers <a href="tel:9142763718">(914) 276-3718</a> or Armonk <a href="tel:9142733100">(914) 273-3100</a>.</p>
                 `, ['Insurance accepted', 'Self-pay options', 'Office hours'])

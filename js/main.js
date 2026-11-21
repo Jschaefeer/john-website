@@ -1,192 +1,270 @@
-// Main JavaScript - Armonk-Somers Podiatry
+/* Armonk-Somers Podiatry — shared behaviour */
 
-document.addEventListener('DOMContentLoaded', function() {
-    initCopyrightYear();
-
-    // Mobile Navigation Menu Toggle
+document.addEventListener('DOMContentLoaded', () => {
+    setCopyrightYear();
+    initHeader();
     initMobileMenu();
-    
-    // Smooth Scrolling for Anchor Links
-    initSmoothScroll();
-    
-    // Insurance Tabs
-    const tabButtons = document.querySelectorAll('.tab-btn');
-    const tabContents = document.querySelectorAll('.tab-content');
-    
-    if (tabButtons.length > 0 && tabContents.length > 0) {
-        tabButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Remove active class from all buttons and contents
-                tabButtons.forEach(btn => btn.classList.remove('active'));
-                tabContents.forEach(content => content.classList.remove('active'));
-                
-                // Add active class to clicked button
-                button.classList.add('active');
-                
-                // Get the tab to show
-                const tabToShow = button.getAttribute('data-tab');
-                
-                // Show the selected tab content
-                document.getElementById(tabToShow).classList.add('active');
-            });
-        });
-    }
-
-    // Testimonial Navigation
-    initTestimonialNavigation();
+    initTodayHours();
+    initReviewTrack();
+    initAccordions();
+    initDisclosureLinks();
+    initReveal();
 });
 
-function initCopyrightYear() {
-    document.querySelectorAll('.copyright-year').forEach(function(el) {
-        el.textContent = new Date().getFullYear();
-    });
+function setCopyrightYear() {
+    const year = String(new Date().getFullYear());
+    document.querySelectorAll('.copyright-year').forEach((el) => { el.textContent = year; });
 }
 
-/**
- * Initialize the mobile navigation menu
- */
+/* Hairline under the header once the page scrolls */
+function initHeader() {
+    const header = document.querySelector('.site-header');
+    if (!header) return;
+    const update = () => header.classList.toggle('is-scrolled', window.scrollY > 8);
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+}
+
 function initMobileMenu() {
-    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
-    const header = document.querySelector('header');
-    
-    if (mobileMenuToggle && navLinks) {
-        mobileMenuToggle.addEventListener('click', function() {
-            mobileMenuToggle.classList.toggle('active');
-            navLinks.classList.toggle('active');
-            
-            // Add class to header when menu is open to adjust its style if needed
-            header.classList.toggle('menu-open');
-            
-            // Prevent scrolling when menu is open
-            document.body.classList.toggle('menu-open');
-        });
-        
-        // Close menu when clicking outside
-        document.addEventListener('click', function(event) {
-            if (navLinks.classList.contains('active') && 
-                !navLinks.contains(event.target) && 
-                !mobileMenuToggle.contains(event.target)) {
-                mobileMenuToggle.classList.remove('active');
-                navLinks.classList.remove('active');
-                header.classList.remove('menu-open');
-                document.body.classList.remove('menu-open');
-            }
-        });
-        
-        // Close menu when window is resized to desktop size
-        window.addEventListener('resize', function() {
-            if (window.innerWidth > 768 && navLinks.classList.contains('active')) {
-                mobileMenuToggle.classList.remove('active');
-                navLinks.classList.remove('active');
-                header.classList.remove('menu-open');
-                document.body.classList.remove('menu-open');
-            }
-        });
-        
-        // Close menu when scrolling past a threshold
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 100 && navLinks.classList.contains('active')) {
-                mobileMenuToggle.classList.remove('active');
-                navLinks.classList.remove('active');
-                header.classList.remove('menu-open');
-                document.body.classList.remove('menu-open');
-            }
-        });
-    }
-    
-    // Add scroll event to make header more compact when scrolling down
-    window.addEventListener('scroll', function() {
-        if (header) {
-            if (window.scrollY > 100) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
+    const toggle = document.querySelector('.menu-toggle');
+    const menu = document.getElementById('mobile-menu');
+    if (!toggle || !menu) return;
+
+    const setOpen = (open) => {
+        toggle.setAttribute('aria-expanded', String(open));
+        toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+        menu.hidden = !open;
+        document.body.classList.toggle('menu-open', open);
+    };
+
+    toggle.addEventListener('click', () => setOpen(menu.hidden));
+    menu.addEventListener('click', (e) => { if (e.target.closest('a')) setOpen(false); });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !menu.hidden) { setOpen(false); toggle.focus(); }
+    });
+    window.matchMedia('(min-width: 1001px)').addEventListener('change', (e) => { if (e.matches) setOpen(false); });
+}
+
+/* Highlight today's hours row in each office card and show open or closed */
+function initTodayHours() {
+    const today = String(new Date().getDay());
+    document.querySelectorAll('.hours').forEach((list) => {
+        const row = Array.from(list.querySelectorAll('[data-days]'))
+            .find((li) => li.dataset.days.split(' ').includes(today));
+        if (row) row.classList.add('is-today');
+        const card = list.closest('.card');
+        const status = card && card.querySelector('[data-open-status]');
+        if (!status) return;
+        // "Open today" + the hours (the hours part is hidden on small cards)
+        const text = document.createElement('span');
+        text.textContent = row ? 'Open today' : 'Closed today';
+        if (row) {
+            const time = document.createElement('span');
+            time.className = 'status-time';
+            time.textContent = `, ${row.lastElementChild.textContent.trim()}`;
+            text.appendChild(time);
         }
+        status.replaceChildren(text);
+        status.classList.toggle('is-closed', !row);
+        status.hidden = false;
     });
 }
 
-/**
- * Initialize smooth scrolling for anchor links
- */
-function initSmoothScroll() {
-    // Select all links with hashes
-    document.querySelectorAll('a[href*="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            // Skip links that don't link to the current page
-            if (this.pathname !== window.location.pathname) return;
-            
-            // Skip if link is just "#"
-            if (this.getAttribute('href') === '#') return;
-            
-            const targetId = this.getAttribute('href').split('#')[1];
-            const targetElement = document.getElementById(targetId);
-            
-            if (targetElement) {
-                e.preventDefault();
-                
-                // Close mobile menu if it's open
-                const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-                const navLinks = document.querySelector('.nav-links');
-                
-                if (mobileMenuToggle && mobileMenuToggle.classList.contains('active')) {
-                    mobileMenuToggle.classList.remove('active');
-                    navLinks.classList.remove('active');
-                    document.body.classList.remove('menu-open');
-                }
-                
-                // Scroll to target
-                window.scrollTo({
-                    top: targetElement.offsetTop - 100, // Offset for fixed header
-                    behavior: 'smooth'
-                });
-            }
+/* Review cards: arrow buttons scroll the track one card at a time */
+function initReviewTrack() {
+    const track = document.querySelector('[data-review-track]');
+    if (!track) return;
+    const prev = document.querySelector('[data-review-prev]');
+    const next = document.querySelector('[data-review-next]');
+
+    const step = () => {
+        const card = track.firstElementChild;
+        const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+        return card ? card.getBoundingClientRect().width + gap : track.clientWidth;
+    };
+    const update = () => {
+        const max = track.scrollWidth - track.clientWidth - 2;
+        if (prev) prev.disabled = track.scrollLeft <= 2;
+        if (next) next.disabled = track.scrollLeft >= max;
+    };
+
+    prev && prev.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
+    next && next.addEventListener('click', () => track.scrollBy({ left: step(), behavior: 'smooth' }));
+    track.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+}
+
+/* Expandable sections open and close by animating their height, so the
+   content below is pushed down and pulled back up smoothly. */
+function initAccordions() {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    document.querySelectorAll('.accordion details').forEach((d) => {
+        const summary = d.querySelector('summary');
+        if (!summary || typeof d.animate !== 'function') return;
+
+        let anim = null;
+        let target = d.open;
+        // Keep in sync when opened from code (e.g. a #link)
+        d.addEventListener('toggle', () => { if (!anim) target = d.open; });
+
+        const closedHeight = () => summary.offsetHeight + (d.offsetHeight - d.clientHeight);
+
+        summary.addEventListener('click', (e) => {
+            if (reduce.matches) return;
+            e.preventDefault();
+
+            const from = d.offsetHeight;
+            if (anim) anim.cancel();
+            target = !target;
+
+            d.classList.add('is-animating');
+            d.classList.toggle('is-closing', !target);
+            if (target) d.open = true;
+            const to = target ? d.offsetHeight : closedHeight();
+
+            anim = d.animate(
+                { height: [`${from}px`, `${to}px`] },
+                { duration: Math.min(520, 260 + Math.abs(to - from) * 0.25), easing: 'cubic-bezier(0.3, 0.7, 0.2, 1)' }
+            );
+            anim.onfinish = () => {
+                anim = null;
+                d.classList.remove('is-animating', 'is-closing');
+                if (!target) d.open = false;
+            };
         });
     });
 }
 
-// Function to handle testimonial navigation
-function initTestimonialNavigation() {
-    const testimonialCards = document.querySelector('.testimonial-cards');
-    const dots = document.querySelectorAll('.testimonial-dot');
-    
-    if (!testimonialCards || !dots.length) return;
-    
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-            // Update active dot
-            document.querySelector('.testimonial-dot.active').classList.remove('active');
-            dot.classList.add('active');
-            
-            // Calculate scroll position
-            const cardWidth = testimonialCards.querySelector('.testimonial-card').offsetWidth;
-            const gap = parseInt(getComputedStyle(testimonialCards).gap);
-            const scrollPosition = index * (cardWidth + gap);
-            
-            // Smooth scroll to the selected testimonial
-            testimonialCards.scrollTo({
-                left: scrollPosition,
-                behavior: 'smooth'
+/* Expandable sections with an id open from links like services.html#bunion-surgery,
+   and keep the address bar in sync so an open section can be shared. */
+function initDisclosureLinks() {
+    const openFromHash = () => {
+        const id = decodeURIComponent(location.hash.slice(1));
+        const el = id && document.getElementById(id);
+        if (!el || el.tagName !== 'DETAILS') return;
+        el.open = true;
+        requestAnimationFrame(() => el.scrollIntoView({ block: 'start' }));
+    };
+
+    document.querySelectorAll('details[id]').forEach((d) => {
+        d.addEventListener('toggle', () => {
+            const hash = `#${d.id}`;
+            if (d.open && location.hash !== hash) history.replaceState(null, '', hash);
+            if (!d.open && location.hash === hash) history.replaceState(null, '', location.pathname + location.search);
+        });
+    });
+
+    openFromHash();
+    window.addEventListener('hashchange', openFromHash);
+}
+
+/* Home page reveals (no fades). Headings rise word by word; cards and photos
+   open out from a slightly smaller rounded frame. The hero starts on load:
+   the photo as soon as it is decoded, the headline once its font is ready
+   (each capped so nothing waits). Items entering together are staggered. */
+function initReveal() {
+    const items = Array.from(document.querySelectorAll('[data-reveal]'));
+    if (!items.length) return;
+
+    document.querySelectorAll('[data-reveal="words"]').forEach((el) => {
+        splitWords(el);
+        el.classList.add('is-split');
+    });
+
+    const show = (el, delay) => {
+        // Commit the starting state first, then flip on the next frame, so the
+        // transition always plays (even when this runs before the first paint)
+        void getComputedStyle(el).clipPath;
+        requestAnimationFrame(() => reveal(el, delay));
+    };
+
+    const reveal = (el, delay) => {
+        el.style.setProperty('--reveal-delay', `${delay}ms`);
+        el.classList.add('is-visible');
+        if (el.dataset.reveal !== 'words') {
+            el.addEventListener('transitionend', function done(e) {
+                if (e.target !== el || e.propertyName !== 'clip-path') return;
+                el.classList.add('is-revealed');
+                el.removeEventListener('transitionend', done);
             });
-        });
-    });
-    
-    // Update active dot when scrolling
-    testimonialCards.addEventListener('scroll', () => {
-        if (testimonialCards.scrollWidth <= testimonialCards.clientWidth) return;
-        
-        const scrollPosition = testimonialCards.scrollLeft;
-        const cardWidth = testimonialCards.querySelector('.testimonial-card').offsetWidth;
-        const gap = parseInt(getComputedStyle(testimonialCards).gap);
-        
-        const activeIndex = Math.round(scrollPosition / (cardWidth + gap));
-        
-        // Only update if different
-        const activeDot = document.querySelector('.testimonial-dot.active');
-        if (activeDot && dots[activeIndex] && activeDot !== dots[activeIndex]) {
-            activeDot.classList.remove('active');
-            dots[activeIndex].classList.add('active');
         }
+        // Custom icons draw their ink once, then only redraw on hover
+        if (el.querySelector('.draw')) setTimeout(() => el.classList.add('is-drawn'), delay + 2000);
+    };
+
+    const cap = (promise, ms) => Promise.race([promise, new Promise((r) => setTimeout(r, ms))]);
+
+    // Hero: no scroll trigger, no stagger
+    const hero = items.filter((el) => el.closest('.hero'));
+    hero.forEach((el) => {
+        let ready = Promise.resolve();
+        if (el.dataset.reveal === 'words' && document.fonts) ready = document.fonts.ready;
+        if (el.dataset.reveal === 'image') {
+            const img = el.querySelector('img');
+            if (img && !img.complete && img.decode) ready = img.decode().catch(() => {});
+        }
+        cap(ready, 400).then(() => show(el, 0));
     });
-} 
+
+    // Everything else: reveal as it reaches the lower part of the screen.
+    // A position check rather than IntersectionObserver: a fully clipped
+    // element counts as invisible to the observer.
+    const pending = new Set(items.filter((el) => !el.closest('.hero')));
+    let queued = false;
+    const check = () => {
+        queued = false;
+        const line = window.innerHeight * 0.88;
+        let batch = 0;
+        pending.forEach((el) => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top > line) return;
+            // Already scrolled past (e.g. after a jump): show at once, no stagger
+            const delay = rect.bottom < 0 ? 0 : parseInt(el.dataset.revealDelay || '0', 10) + batch++ * 90;
+            show(el, delay);
+            pending.delete(el);
+        });
+        if (!pending.size) {
+            window.removeEventListener('scroll', onScroll);
+            window.removeEventListener('resize', onScroll);
+        }
+    };
+    const onScroll = () => {
+        if (!queued) { queued = true; requestAnimationFrame(check); }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    check();
+}
+
+/* Wrap each word in a mask so it can slide up on its own */
+function splitWords(el) {
+    const label = el.textContent.replace(/\s+/g, ' ').trim();
+    let index = 0;
+    const walk = (node) => {
+        Array.from(node.childNodes).forEach((child) => {
+            if (child.nodeType === Node.ELEMENT_NODE) { walk(child); return; }
+            if (child.nodeType !== Node.TEXT_NODE) return;
+            const frag = document.createDocumentFragment();
+            child.textContent.split(/(\s+)/).forEach((part) => {
+                if (!part) return;
+                if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(' ')); return; }
+                const mask = document.createElement('span');
+                mask.className = 'rw';
+                mask.setAttribute('aria-hidden', 'true');
+                const word = document.createElement('span');
+                word.textContent = part;
+                word.style.setProperty('--wi', index++);
+                mask.appendChild(word);
+                frag.appendChild(mask);
+            });
+            child.replaceWith(frag);
+        });
+    };
+    walk(el);
+    const sr = document.createElement('span');
+    sr.className = 'sr-only';
+    sr.textContent = label;
+    el.appendChild(sr);
+}
