@@ -1,79 +1,32 @@
 /* Contact */
 
-.contact-phone {
-    margin-top: -12px;
-    font-size: clamp(2rem, 1.55rem + 1.9vw, 3rem);
-    font-weight: 700;
-    letter-spacing: -0.035em;
-    line-height: 1;
-    text-decoration: none;
-    font-variant-numeric: tabular-nums;
-    transition: color 0.2s;
-}
-.contact-phone:hover { color: var(--blue); }
-
-.office-map {
-    margin-top: auto;
+.office .office-map {
+    order: -1;
     aspect-ratio: 16 / 9;
+    margin-bottom: 28px;
     overflow: hidden;
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius);
     background: var(--tint-strong);
 }
 .office-map iframe {
     width: 100%;
     height: 100%;
     border: 0;
-    filter: grayscale(0.7) contrast(0.95);
+    filter: grayscale(0.6) contrast(0.95);
     transition: filter 0.3s;
 }
 .office-map:hover iframe { filter: none; }
-.office-map + .office-card-foot { margin-top: 0; }
 
-/* Message form */
-.message { padding-top: clamp(40px, 5vw, 72px); }
-.message .split-head p + p { margin-top: 12px; }
-
-.typeform-card {
-    padding-top: 24px;
-    border-top: 1px solid var(--line-strong);
-}
-.typeform-card > div { height: 560px; border-radius: var(--radius-xs); overflow: hidden; background: var(--paper-raised); }
-.typeform-card iframe { width: 100%; height: 100%; border: 0; }
-
-/* Next steps */
-.next-steps {
-    margin-top: 20px;
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 40px clamp(24px, 3vw, 48px);
-}
-
-.step-card {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-    padding-top: 20px;
-    border-top: 1px solid var(--line-strong);
+.office h3 { margin-top: 14px; }
+.office-phone {
+    font-size: clamp(1.75rem, 1.45rem + 1.2vw, 2.5rem);
+    letter-spacing: -0.035em;
     text-decoration: none;
+    font-variant-numeric: tabular-nums;
+    transition: color 0.2s;
 }
-.step-card h3 { margin-top: 4px; font-size: clamp(1.25rem, 1.15rem + 0.4vw, 1.5rem); letter-spacing: -0.025em; transition: color 0.2s; }
-.step-card:hover h3 { color: var(--blue); }
-.step-card p { color: var(--ink-2); font-size: 1rem; }
+.office-phone:hover { color: var(--blue); }
 
-.step-card-foot {
-    margin-top: auto;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding-top: 12px;
-    font-size: var(--fs-small);
-    font-weight: 600;
-}
-.step-card-foot .i { transition: transform 0.25s var(--ease); }
-.step-card:hover .step-card-foot .i-arrow { transform: translateX(4px); color: var(--blue); }
-.step-card:hover .step-card-foot .i-ext { transform: translate(2px, -2px); color: var(--blue); }
-
-@media (max-width: 900px) {
-    .next-steps { grid-template-columns: 1fr; }
-}
+/* Typeform embed */
+.typeform > div { height: 560px; overflow: hidden; border-radius: var(--radius); background: var(--tint); }
+.typeform iframe { width: 100%; height: 100%; border: 0; }

@@ -37,10 +37,7 @@ class PatientForm {
 
   <section class="page-hero form-page-intro">
     <div class="container page-hero-grid">
-      <div>
-        <span class="eyebrow">New patients</span>
-        <h1>New patient form</h1>
-      </div>
+      <h1>New patient form</h1>
       <div class="page-hero-aside">
         <p class="lead">Complete this before your first appointment. When you're done, we'll create a PDF for you to print and bring with you.</p>
         <ul class="form-facts" role="list">
@@ -56,7 +53,6 @@ class PatientForm {
 
     <section class="form-section" aria-labelledby="fs-personal">
       <header class="form-section-head">
-        <span class="form-section-num">01</span>
         <h2 id="fs-personal">Personal information</h2>
         <p>How to reach you, as it appears on your ID.</p>
       </header>
@@ -170,7 +166,6 @@ class PatientForm {
 
     <section class="form-section" aria-labelledby="fs-status">
       <header class="form-section-head">
-        <span class="form-section-num">02</span>
         <h2 id="fs-status">About you</h2>
         <p>Marital, employment and student status.</p>
       </header>
@@ -250,7 +245,6 @@ class PatientForm {
 
     <section class="form-section" aria-labelledby="fs-primary">
       <header class="form-section-head">
-        <span class="form-section-num">03</span>
         <h2 id="fs-primary">Primary insurance</h2>
         <p>As it appears on your insurance card.</p>
       </header>
@@ -317,7 +311,6 @@ class PatientForm {
 
     <section class="form-section" aria-labelledby="fs-secondary">
       <header class="form-section-head">
-        <span class="form-section-num">04</span>
         <h2 id="fs-secondary">Secondary insurance</h2>
         <p>Only if you have a second plan.</p>
       </header>
@@ -398,7 +391,6 @@ class PatientForm {
 
     <section class="form-section" aria-labelledby="fs-care">
       <header class="form-section-head">
-        <span class="form-section-num">05</span>
         <h2 id="fs-care">Your care team</h2>
         <p>Referral, primary care physician and pharmacy.</p>
       </header>
@@ -474,7 +466,6 @@ class PatientForm {
 
     <section class="form-section" aria-labelledby="fs-visit">
       <header class="form-section-head">
-        <span class="form-section-num">06</span>
         <h2 id="fs-visit">Reason for your visit</h2>
         <p>Tell us what's bothering you.</p>
       </header>
@@ -528,7 +519,6 @@ class PatientForm {
 
     <section class="form-section" aria-labelledby="fs-conditions">
       <header class="form-section-head">
-        <span class="form-section-num">07</span>
         <h2 id="fs-conditions">Allergies and conditions</h2>
         <p>Check everything that applies.</p>
       </header>
@@ -658,7 +648,6 @@ class PatientForm {
 
     <section class="form-section" aria-labelledby="fs-history">
       <header class="form-section-head">
-        <span class="form-section-num">08</span>
         <h2 id="fs-history">Medical history</h2>
         <p>Other conditions, surgeries, hospitalizations and medications.</p>
       </header>
@@ -698,7 +687,6 @@ class PatientForm {
 
     <section class="form-section" aria-labelledby="fs-consent">
       <header class="form-section-head">
-        <span class="form-section-num">09</span>
         <h2 id="fs-consent">Consent</h2>
         <p>Please read and confirm.</p>
       </header>
@@ -1354,7 +1342,6 @@ class PatientForm {
   <div class="form-success-icon" aria-hidden="true">
     <svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
   </div>
-  <span class="eyebrow">Form complete</span>
   <h1 class="form-success-title">Your form is ready</h1>
   <p class="form-success-message">
     Your new patient form has been downloaded as a PDF. Please print it and bring it to your appointment with Dr. O'Hanlon.

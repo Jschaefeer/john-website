@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initMobileMenu();
     initTodayHours();
     initCarousels();
+    initDisclosureLinks();
     initReveal();
 });
 
@@ -43,36 +44,31 @@ function initMobileMenu() {
     window.matchMedia('(min-width: 1001px)').addEventListener('change', (e) => { if (e.matches) setOpen(false); });
 }
 
-/* Highlight today's row in each hours table and show "Open today" */
+/* Highlight today's hours row in each office card and show open or closed */
 function initTodayHours() {
-    const today = new Date().getDay();
-    document.querySelectorAll('.hours').forEach((table) => {
-        const row = table.querySelector(`tr[data-day="${today}"]`);
-        if (!row) return;
-        row.classList.add('is-today');
-        const card = table.closest('.office-card');
+    const today = String(new Date().getDay());
+    document.querySelectorAll('.hours').forEach((list) => {
+        const row = Array.from(list.querySelectorAll('[data-days]'))
+            .find((li) => li.dataset.days.split(' ').includes(today));
+        if (row) row.classList.add('is-today');
+        const card = list.closest('.card');
         const status = card && card.querySelector('[data-open-status]');
-        if (status) {
-            status.textContent = `Open today · ${row.querySelector('td').textContent.trim()}`;
-            status.hidden = false;
-        }
+        if (!status) return;
+        status.textContent = row ? `Open today, ${row.lastElementChild.textContent.trim()}` : 'Closed today';
+        status.classList.toggle('is-closed', !row);
+        status.hidden = false;
     });
 }
 
-/* Fade carousel with counter, arrows, keyboard and swipe */
+/* Fade carousel with arrows, keyboard and swipe */
 function initCarousels() {
     document.querySelectorAll('[data-carousel]').forEach((root) => {
         const slides = Array.from(root.querySelectorAll('.quote'));
         const prev = root.querySelector('[data-prev]');
         const next = root.querySelector('[data-next]');
-        const current = root.querySelector('[data-current]');
-        const total = root.querySelector('[data-total]');
         if (slides.length < 2) return;
 
         let index = 0;
-        const pad = (n) => String(n).padStart(2, '0');
-        if (total) total.textContent = pad(slides.length);
-
         const go = (i) => {
             index = (i + slides.length) % slides.length;
             slides.forEach((s, n) => {
@@ -80,7 +76,6 @@ function initCarousels() {
                 s.classList.toggle('is-active', active);
                 s.setAttribute('aria-hidden', String(!active));
             });
-            if (current) current.textContent = pad(index + 1);
         };
 
         prev && prev.addEventListener('click', () => go(index - 1));
@@ -100,6 +95,29 @@ function initCarousels() {
             startX = null;
         });
     });
+}
+
+/* Expandable sections with an id open from links like services.html#bunion-surgery,
+   and keep the address bar in sync so an open section can be shared. */
+function initDisclosureLinks() {
+    const openFromHash = () => {
+        const id = decodeURIComponent(location.hash.slice(1));
+        const el = id && document.getElementById(id);
+        if (!el || el.tagName !== 'DETAILS') return;
+        el.open = true;
+        requestAnimationFrame(() => el.scrollIntoView({ block: 'start' }));
+    };
+
+    document.querySelectorAll('details[id]').forEach((d) => {
+        d.addEventListener('toggle', () => {
+            const hash = `#${d.id}`;
+            if (d.open && location.hash !== hash) history.replaceState(null, '', hash);
+            if (!d.open && location.hash === hash) history.replaceState(null, '', location.pathname + location.search);
+        });
+    });
+
+    openFromHash();
+    window.addEventListener('hashchange', openFromHash);
 }
 
 /* Gentle fade-up as sections enter the viewport */

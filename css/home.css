@@ -1,13 +1,13 @@
 /* Home */
 
-.hero { padding-block: clamp(56px, 9vw, 144px) clamp(16px, 3vw, 40px); }
+.hero { padding-top: clamp(48px, 6.5vw, 96px); }
 
 .hero-statement {
-    max-width: 22em;
+    max-width: 26em;
     font-family: var(--font-serif);
-    font-size: clamp(2rem, 1.3rem + 2.9vw, 3.625rem);
+    font-size: var(--fs-statement);
     font-weight: 400;
-    line-height: 1.12;
+    line-height: 1.14;
     letter-spacing: -0.015em;
     text-wrap: pretty;
 }
@@ -17,53 +17,59 @@
     letter-spacing: -0.035em;
 }
 
-.hero-actions { margin-top: 40px; }
-
-/* The practice: facts beside a modest photo */
-.practice-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-    gap: 40px clamp(40px, 6vw, 96px);
-    align-items: end;
-}
-.practice-body .eyebrow + .rule-grid { margin-top: 20px; }
-
-.practice-media img {
-    width: 100%;
-    aspect-ratio: 4 / 3;
+.hero-media { margin-top: clamp(48px, 7vw, 96px); }
+.hero-media img {
+    aspect-ratio: 2 / 1;
     object-fit: cover;
-    object-position: 55% 60%;
-    border-radius: var(--radius-xs);
-    background: var(--tint);
-    filter: saturate(0.88);
+    object-position: 50% 72%;
 }
-.practice-media figcaption { margin-top: 10px; color: var(--ink-3); }
 
-@media (max-width: 900px) {
-    .practice-grid { grid-template-columns: 1fr; }
-    .practice-media { max-width: 560px; }
+@media (max-width: 700px) {
+    .hero-media img { aspect-ratio: 4 / 3.4; object-position: 50% 60%; }
 }
-/* Patient stories */
-.quotes {
+
+/* Intro row under the hero image: quick links + two columns */
+.intro { padding-top: clamp(32px, 3.5vw, 48px); }
+.intro-grid {
     display: grid;
-    grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
-    gap: 40px clamp(32px, 6vw, 96px);
-    padding-top: 24px;
-    border-top: 1px solid var(--line-strong);
+    grid-template-columns: minmax(0, 4fr) minmax(0, 4fr) minmax(0, 4fr);
+    gap: 40px clamp(24px, 3vw, 40px);
+    align-items: start;
+}
+.intro-grid .link-rows { max-width: 340px; }
+.intro-col h2 {
+    font-size: var(--fs-h3);
+    letter-spacing: -0.025em;
+    margin-bottom: 14px;
+}
+.intro-col p { color: var(--ink-2); font-size: 1.0625rem; }
+
+@media (max-width: 960px) {
+    .intro-grid { grid-template-columns: 1fr 1fr; }
+    .intro-grid .link-rows { grid-column: 1 / -1; max-width: none; order: 2; }
+}
+@media (max-width: 640px) {
+    .intro-grid { grid-template-columns: 1fr; gap: 32px; }
 }
 
-.quotes-side { display: flex; flex-direction: column; }
-.quotes-side .eyebrow { margin-bottom: 16px; }
-.quotes-side h2 { font-size: var(--fs-h2); }
+/* Visit cards */
+.visit-cards { margin-top: 28px; }
 
-.carousel-controls {
-    margin-top: auto;
-    padding-top: 40px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
+/* Doctor panel: taller portrait crop */
+.panel-media img { aspect-ratio: 4 / 4.6; object-position: 50% 28%; }
+@media (max-width: 640px) {
+    .panel-media img { aspect-ratio: 4 / 4.2; }
 }
-.carousel-count { color: var(--ink-2); min-width: 4.5em; text-align: center; }
+
+/* Reviews */
+.reviews {
+    display: grid;
+    grid-template-columns: minmax(0, 9fr) minmax(0, 3fr);
+    gap: 32px;
+    align-items: end;
+    padding-top: clamp(32px, 4vw, 56px);
+}
+.reviews:focus-visible { outline-offset: 8px; }
 
 .quote-stack { display: grid; }
 .quote {
@@ -73,20 +79,17 @@
     transition: opacity 0.5s var(--ease), visibility 0.5s;
 }
 .quote.is-active { opacity: 1; visibility: visible; }
-
 .quote blockquote {
     font-family: var(--font-serif);
-    font-size: clamp(1.375rem, 1.1rem + 1.15vw, 2.125rem);
-    line-height: 1.28;
-    letter-spacing: -0.012em;
+    font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.5rem);
+    line-height: 1.22;
+    letter-spacing: -0.015em;
     text-wrap: pretty;
 }
-.quote figcaption { margin-top: 24px; color: var(--ink-3); text-transform: uppercase; }
 
-@media (max-width: 860px) {
-    .quotes { grid-template-columns: 1fr; gap: 28px; }
-    .quotes-side { display: grid; grid-template-columns: 1fr auto; align-items: end; }
-    .quotes-side .eyebrow { grid-column: 1 / -1; }
-    .carousel-controls { margin: 0; padding: 0; gap: 8px; }
-    .carousel-count { min-width: 3.6em; }
+.carousel-controls { display: flex; justify-content: flex-end; gap: 8px; }
+
+@media (max-width: 760px) {
+    .reviews { grid-template-columns: 1fr; gap: 24px; }
+    .carousel-controls { justify-content: flex-start; }
 }

@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return { li, nameEl, name, haystack };
     });
 
-    const count = document.querySelector('[data-plan-count]');
+    const status = document.querySelector('[data-plan-status]');
     const empty = document.querySelector('[data-plan-empty]');
     const queryEl = document.querySelector('[data-plan-query]');
 
@@ -37,9 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 : escape(name);
         });
 
-        count.textContent = q
-            ? `${shown} of ${items.length} plans`
-            : `${items.length} plans`;
+        // Screen-reader only: announce results while searching
+        if (status) status.textContent = q ? (shown ? `${shown} matching plans` : 'No matching plans') : '';
         empty.hidden = shown > 0;
         list.hidden = shown === 0;
         if (queryEl) queryEl.textContent = raw;
@@ -52,7 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const toggle = document.querySelector('[data-plan-toggle]');
     let expanded = false;
     if (toggle) {
-        toggle.firstChild.textContent = `Show all ${items.length} plans `;
         toggle.addEventListener('click', () => { expanded = true; render(); });
     }
 
