@@ -1,7 +1,7 @@
 /* About */
 
-.award-title { display: flex; align-items: center; gap: 8px; }
-.award-title img { width: 18px; height: 18px; }
+/* Logos above the at-a-glance facts */
+.glance-logo { width: auto; height: 48px; margin-bottom: 20px; }
 
 /* Biography panel */
 .bio .panel-media img { aspect-ratio: 4 / 5; object-position: 50% 26%; }

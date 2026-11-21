@@ -23,7 +23,9 @@ Everything shared lives in `css/global.css`: color and type tokens, header, foot
 - **Type:** Hanken Grotesk for headlines and UI, Newsreader for editorial serif text, IBM Plex Mono for small labels (all from Google Fonts)
 - **Icons:** inline SVG, no icon font. Service and payment icons are from [Lucide](https://lucide.dev) (ISC license), used sparingly
 - **Insurance logos:** `img/insurance/` (Aetna, Blue Cross Blue Shield, Cigna, EmblemHealth, Medicare, UnitedHealthcare), shown in grayscale and in color on hover
-- **Motion:** scroll-in animations on the home page only
+- **Credential logos:** `img/credentials/` (American Board of Podiatric Medicine medallion, New York Yankees, Northwell / Northern Westchester Hospital mark)
+- **Motion:** scroll-in animations on the home page only; expandable sections animate their height (`initAccordions` in `js/main.js`)
+- **Pay a bill:** every "Pay a bill" link uses Curalta's online payment portal. In the HTML it's repeated in each page; in `js/practice-chat.js` it's set once
 
 ## JavaScript
 

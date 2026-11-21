@@ -583,8 +583,9 @@ body.menu-open { overflow: hidden; }
 .accordion summary:focus-visible { outline-offset: -2px; }
 .accordion-body { padding: 0 0 32px; max-width: 46rem; }
 .accordion-body > * + * { margin-top: 16px; }
-.accordion details[open] .accordion-body { animation: acc-in 0.35s var(--ease); }
-@keyframes acc-in { from { opacity: 0; transform: translateY(-4px); } }
+/* Height is animated in main.js (initAccordions); clip content while it moves */
+.accordion details.is-animating { overflow: hidden; }
+.accordion details.is-closing > summary .i { transform: none; }
 
 .split > .accordion { align-self: start; }
 .split > .accordion > details:first-child > summary { padding-top: 0; }

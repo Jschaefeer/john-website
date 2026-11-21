@@ -449,7 +449,7 @@ class PracticeAssistant {
                 patterns: ['pay', 'bill', 'balance', 'invoice', 'payment', 'online pay', 'pay online', 'statement'],
                 response: this.buildResponse(`
                     <p>You can <strong>pay a bill online</strong> through our secure payment portal:</p>
-                    <p>${this.link('https://somerspodiatry.ema.md/ema/pay/onlinepayments#/pm/payfac/pay', 'Pay your bill online', true)}</p>
+                    <p>${this.link('https://curalta.modmedapp.com/ema/pay/onlinepayNY#/pm/payfac/pay;recaptchaKey=6LfDLTQUAAAAANEtVv-uKlqvX3s3TPYAA7xnEy4g;businessUnitName=Boltrope%20Podiatry%20NY;locationName=Nanuet;shouldDisplayBalance=false;locationZip=10954-0000;locationStreet1=111%20Main%20Street;locationPhone=%28845%29%20623-5863;patientFirstLastDob=true;language=en;recaptchaUrl=https:%2F%2Fwww.google.com%2Frecaptcha%2Fapi.js;strictPatientIdentification=false;invoiceNumberDob=false;patientFirstLastMrn=true;userLoggedIn=false;openGraphUrl=https:%2F%2Fcuralta.ema.md%2Fema%2Fpay%2FonlinepayNY;firmName=Curalta%20Health,%20LLC;locationState=NY;openGraphImage=https:%2F%2Fcuralta.ema.md%2Fema%2Fws%2Fv3%2Ffirm%2Flogo%2FLOGIN;locationCity=Nanuet', 'Pay your bill online', true)}</p>
                     <p>In-office payments (co-pays, balances, self-pay) are accepted at the time of service by cash, check, money order, Visa, MasterCard, or Discover.</p>
                     <p>Questions about a specific statement? Call Somers <a href="tel:9142763718">(914) 276-3718</a> or Armonk <a href="tel:9142733100">(914) 273-3100</a>.</p>
                 `, ['Insurance accepted', 'Self-pay options', 'Office hours'])
