@@ -1,13 +1,13 @@
 /* Home */
 
-.hero { padding-top: clamp(48px, 7vw, 104px); }
+.hero { padding-block: clamp(56px, 9vw, 144px) clamp(16px, 3vw, 40px); }
 
 .hero-statement {
-    max-width: 25em;
+    max-width: 22em;
     font-family: var(--font-serif);
-    font-size: var(--fs-display);
+    font-size: clamp(2rem, 1.3rem + 2.9vw, 3.625rem);
     font-weight: 400;
-    line-height: 1.16;
+    line-height: 1.12;
     letter-spacing: -0.015em;
     text-wrap: pretty;
 }
@@ -17,31 +17,39 @@
     letter-spacing: -0.035em;
 }
 
-.hero-actions { margin-top: 36px; }
+.hero-actions { margin-top: 40px; }
 
-.hero-media { margin-top: clamp(48px, 6vw, 80px); }
-.hero-media img {
+/* The practice: facts beside a modest photo */
+.practice-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: 40px clamp(40px, 6vw, 96px);
+    align-items: end;
+}
+.practice-body .eyebrow + .rule-grid { margin-top: 20px; }
+
+.practice-media img {
     width: 100%;
-    aspect-ratio: 2 / 1;
+    aspect-ratio: 4 / 3;
     object-fit: cover;
-    object-position: 50% 78%;
+    object-position: 55% 60%;
     border-radius: var(--radius-xs);
     background: var(--tint);
+    filter: saturate(0.88);
 }
-.hero-media figcaption { margin-top: 12px; color: var(--ink-3); }
+.practice-media figcaption { margin-top: 10px; color: var(--ink-3); }
 
-@media (max-width: 700px) {
-    .hero-media img { aspect-ratio: 4 / 5; object-position: 49% 50%; }
+@media (max-width: 900px) {
+    .practice-grid { grid-template-columns: 1fr; }
+    .practice-media { max-width: 560px; }
 }
-
 /* Patient stories */
 .quotes {
     display: grid;
     grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
     gap: 40px clamp(32px, 6vw, 96px);
-    padding: clamp(28px, 4.5vw, 64px);
-    background: var(--tint);
-    border-radius: var(--radius);
+    padding-top: 24px;
+    border-top: 1px solid var(--line-strong);
 }
 
 .quotes-side { display: flex; flex-direction: column; }

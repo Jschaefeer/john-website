@@ -19,9 +19,9 @@
     height: 6px;
     margin-top: 0.55em;
     border-radius: 50%;
-    background: var(--pine);
+    background: var(--blue);
 }
-.req { color: var(--pine); font-weight: 600; }
+.req { color: var(--blue); font-weight: 600; }
 
 .patient-form-shell { padding-bottom: clamp(48px, 6vw, 96px); }
 
@@ -74,7 +74,7 @@
     line-height: 1.35;
     color: var(--ink);
 }
-.field-label span[aria-hidden="true"] { color: var(--pine); font-weight: 600; }
+.field-label span[aria-hidden="true"] { color: var(--blue); font-weight: 600; }
 
 .field textarea { min-height: 112px; resize: vertical; }
 
@@ -82,7 +82,7 @@
     appearance: none;
     -webkit-appearance: none;
     padding-right: 40px;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%2348514b' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%234a5059' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 14px center;
     background-size: 16px;
@@ -130,7 +130,7 @@
     background: var(--paper-raised);
 }
 .choice-row .choice:hover { background: var(--tint); }
-.choice-row .choice:has(input:checked) { border-color: var(--pine); background: var(--pine-soft); color: var(--pine-strong); font-weight: 500; }
+.choice-row .choice:has(input:checked) { border-color: var(--blue); background: var(--blue-soft); color: var(--blue-strong); font-weight: 500; }
 
 .check-grid {
     display: grid;
@@ -143,7 +143,7 @@
     border-radius: var(--radius-sm);
 }
 .check-grid .choice:hover { background: var(--tint); }
-.check-grid .choice:has(input:checked) { background: var(--pine-soft); }
+.check-grid .choice:has(input:checked) { background: var(--blue-soft); }
 .check-grid .choice input { margin-top: 1px; }
 
 @media (max-width: 640px) {
@@ -160,7 +160,7 @@
     width: 18px;
     height: 18px;
     margin: 0;
-    border: 1.5px solid rgba(23, 32, 27, 0.4);
+    border: 1.5px solid rgba(20, 23, 28, 0.4);
     background: var(--paper-raised);
     display: grid;
     place-content: center;
@@ -188,9 +188,9 @@
     transform: scale(0);
     transition: transform 0.15s var(--ease);
 }
-.choice input:checked { background: var(--pine); border-color: var(--pine); }
+.choice input:checked { background: var(--blue); border-color: var(--blue); }
 .choice input:checked::before { transform: scale(1); }
-.choice input:focus-visible { outline: 2px solid var(--pine); outline-offset: 2px; }
+.choice input:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
 
 /* Conditional reveal blocks */
 .conditional-block { display: none; }
@@ -213,7 +213,7 @@
 }
 .acknowledgment .choice { align-items: flex-start; line-height: 1.5; }
 .acknowledgment .choice input { margin-top: 2px; }
-.acknowledgment a { color: var(--pine); text-underline-offset: 0.18em; }
+.acknowledgment a { color: var(--blue); text-underline-offset: 0.18em; }
 .acknowledgment .field-error { margin-top: 10px; padding-left: 28px; }
 .acknowledgment.is-invalid { border-color: var(--danger); }
 
@@ -222,7 +222,7 @@
     position: sticky;
     bottom: 0;
     z-index: 20;
-    background: rgba(244, 244, 239, 0.9);
+    background: rgba(246, 246, 243, 0.9);
     -webkit-backdrop-filter: saturate(1.4) blur(12px);
     backdrop-filter: saturate(1.4) blur(12px);
     border-top: 1px solid var(--line);
@@ -267,8 +267,8 @@
     display: grid;
     place-items: center;
     border-radius: 50%;
-    background: var(--pine-soft);
-    color: var(--pine);
+    background: var(--blue-soft);
+    color: var(--blue);
 }
 .form-success-icon svg {
     width: 26px;

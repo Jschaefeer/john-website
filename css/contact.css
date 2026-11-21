@@ -10,7 +10,7 @@
     font-variant-numeric: tabular-nums;
     transition: color 0.2s;
 }
-.contact-phone:hover { color: var(--pine); }
+.contact-phone:hover { color: var(--blue); }
 
 .office-map {
     margin-top: auto;
@@ -34,13 +34,10 @@
 .message .split-head p + p { margin-top: 12px; }
 
 .typeform-card {
-    min-height: 560px;
-    padding: 8px;
-    background: var(--tint);
-    border-radius: var(--radius);
-    overflow: hidden;
+    padding-top: 24px;
+    border-top: 1px solid var(--line-strong);
 }
-.typeform-card > div { height: 544px; border-radius: var(--radius-sm); overflow: hidden; }
+.typeform-card > div { height: 560px; border-radius: var(--radius-xs); overflow: hidden; background: var(--paper-raised); }
 .typeform-card iframe { width: 100%; height: 100%; border: 0; }
 
 /* Next steps */
@@ -48,41 +45,35 @@
     margin-top: 20px;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 16px;
+    gap: 40px clamp(24px, 3vw, 48px);
 }
 
 .step-card {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 12px;
-    min-height: 240px;
-    padding: 28px;
-    background: var(--tint);
-    border-radius: var(--radius);
+    gap: 10px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line-strong);
     text-decoration: none;
-    transition: background-color 0.25s;
 }
-.step-card:hover { background: var(--tint-strong); }
-.step-card h3 { margin-top: 8px; font-size: clamp(1.25rem, 1.15rem + 0.4vw, 1.5rem); letter-spacing: -0.025em; }
+.step-card h3 { margin-top: 4px; font-size: clamp(1.25rem, 1.15rem + 0.4vw, 1.5rem); letter-spacing: -0.025em; transition: color 0.2s; }
+.step-card:hover h3 { color: var(--blue); }
 .step-card p { color: var(--ink-2); font-size: 1rem; }
 
 .step-card-foot {
     margin-top: auto;
-    align-self: stretch;
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    justify-content: space-between;
-    padding-top: 16px;
-    border-top: 1px solid var(--line-strong);
+    gap: 8px;
+    padding-top: 12px;
     font-size: var(--fs-small);
     font-weight: 600;
 }
 .step-card-foot .i { transition: transform 0.25s var(--ease); }
-.step-card:hover .step-card-foot .i-arrow { transform: translateX(4px); color: var(--pine); }
-.step-card:hover .step-card-foot .i-ext { transform: translate(2px, -2px); color: var(--pine); }
+.step-card:hover .step-card-foot .i-arrow { transform: translateX(4px); color: var(--blue); }
+.step-card:hover .step-card-foot .i-ext { transform: translate(2px, -2px); color: var(--blue); }
 
 @media (max-width: 900px) {
     .next-steps { grid-template-columns: 1fr; }
-    .step-card { min-height: 0; }
 }

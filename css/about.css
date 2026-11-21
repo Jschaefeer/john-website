@@ -8,11 +8,7 @@
     display: grid;
     grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
     gap: clamp(28px, 5vw, 80px);
-    align-items: center;
-    padding: clamp(16px, 2vw, 24px);
-    padding-right: clamp(24px, 5vw, 80px);
-    background: var(--tint);
-    border-radius: var(--radius);
+    align-items: start;
 }
 
 .bio-photo img {
@@ -20,18 +16,18 @@
     aspect-ratio: 4 / 5;
     object-fit: cover;
     object-position: 50% 30%;
-    border-radius: var(--radius-sm);
-    background: var(--tint-strong);
+    border-radius: var(--radius-xs);
+    background: var(--tint);
 }
 
-.bio-body { padding-block: 24px; }
+.bio-body { padding-top: 24px; border-top: 1px solid var(--line-strong); }
 .bio-body .eyebrow { margin-bottom: 16px; }
 .bio-body h2 { font-size: var(--fs-h2); margin-bottom: 24px; }
 .bio-body .prose { max-width: 38rem; }
 
 @media (max-width: 860px) {
-    .bio { grid-template-columns: 1fr; padding: 12px 12px 8px; }
-    .bio-body { padding: 8px 12px 20px; }
+    .bio { grid-template-columns: 1fr; }
+    .bio-photo { max-width: 440px; }
 }
 
 /* Credentials */

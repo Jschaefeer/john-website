@@ -1,35 +1,35 @@
 /* ==========================================================================
    Armonk-Somers Podiatry — design system
-   Linen paper, ink type, pine accent.
+   Off-white paper, ink type, blue accent.
    Hanken Grotesk (UI + headlines) · Newsreader (editorial serif) · IBM Plex Mono (labels)
    ========================================================================== */
 
 :root {
     /* Surfaces */
-    --paper: #f4f4ef;
-    --paper-raised: #fbfbf8;
-    --tint: #eaebe3;
-    --tint-strong: #dfe1d6;
-    --sage: #d5dfd0;
+    --paper: #f6f6f3;
+    --paper-raised: #fcfcfa;
+    --tint: #ecece7;
+    --tint-strong: #e1e1db;
+    --wash: #d6e4f5;
 
     /* Ink */
-    --ink: #17201b;
-    --ink-2: #48514b;
-    --ink-3: #737c75;
-    --line: rgba(23, 32, 27, 0.12);
-    --line-strong: rgba(23, 32, 27, 0.22);
+    --ink: #14171c;
+    --ink-2: #4a5059;
+    --ink-3: #6b717b;
+    --line: rgba(20, 23, 28, 0.12);
+    --line-strong: rgba(20, 23, 28, 0.2);
 
     /* Accent */
-    --pine: #2d5847;
-    --pine-strong: #21443a;
-    --pine-soft: rgba(45, 88, 71, 0.12);
+    --blue: #0066cc;
+    --blue-strong: #0052a6;
+    --blue-soft: rgba(0, 102, 204, 0.1);
 
     /* Dark */
-    --night: #111915;
-    --night-2: #19231e;
-    --on-night: #eceee8;
-    --on-night-2: #a1aba4;
-    --on-night-line: rgba(236, 238, 232, 0.14);
+    --night: #0f1216;
+    --night-2: #171b21;
+    --on-night: #eceef1;
+    --on-night-2: #a3a9b2;
+    --on-night-line: rgba(236, 238, 241, 0.14);
 
     /* Type */
     --font-sans: 'Hanken Grotesk', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
@@ -106,12 +106,12 @@ h1, h2, h3, h4 {
 p { text-wrap: pretty; }
 
 :focus-visible {
-    outline: 2px solid var(--pine);
+    outline: 2px solid var(--blue);
     outline-offset: 3px;
     border-radius: 4px;
 }
 
-::selection { background: var(--sage); color: var(--ink); }
+::selection { background: var(--wash); color: var(--ink); }
 
 .sr-only {
     position: absolute !important;
@@ -191,7 +191,7 @@ p { text-wrap: pretty; }
     text-decoration-color: var(--line-strong);
     transition: color 0.2s, text-decoration-color 0.2s;
 }
-.text-link:hover { color: var(--pine); text-decoration-color: currentColor; }
+.text-link:hover { color: var(--blue); text-decoration-color: currentColor; }
 
 /* --------------------------------------------------------------------------
    Buttons & links
@@ -218,8 +218,8 @@ p { text-wrap: pretty; }
 .btn:hover .i-arrow { transform: translateX(3px); }
 .btn:hover .i-ext { transform: translate(2px, -2px); }
 
-.btn-primary { background: var(--pine); color: #f6f7f2; }
-.btn-primary:hover { background: var(--pine-strong); }
+.btn-primary { background: var(--blue); color: #ffffff; }
+.btn-primary:hover { background: var(--blue-strong); }
 
 .btn-secondary { background: var(--tint); color: var(--ink); }
 .btn-secondary:hover { background: var(--tint-strong); }
@@ -230,8 +230,8 @@ p { text-wrap: pretty; }
 .btn-light { background: var(--on-night); color: var(--night); }
 .btn-light:hover { background: #fff; }
 
-.btn-night { background: rgba(236, 238, 232, 0.08); color: var(--on-night); border-color: var(--on-night-line); }
-.btn-night:hover { background: rgba(236, 238, 232, 0.14); }
+.btn-night { background: rgba(236, 238, 241, 0.08); color: var(--on-night); border-color: var(--on-night-line); }
+.btn-night:hover { background: rgba(236, 238, 241, 0.14); }
 
 .btn-sm { min-height: 38px; padding: 0 16px; font-size: 0.875rem; }
 .btn-block { width: 100%; }
@@ -258,7 +258,7 @@ p { text-wrap: pretty; }
     transition: color 0.2s;
 }
 .link-arrow .i { transition: transform 0.25s var(--ease); }
-.link-arrow:hover { color: var(--pine); }
+.link-arrow:hover { color: var(--blue); }
 .link-arrow:hover .i-arrow { transform: translateX(3px); }
 .link-arrow:hover .i-ext { transform: translate(2px, -2px); }
 
@@ -278,17 +278,13 @@ p { text-wrap: pretty; }
 .icon-btn:disabled { opacity: 0.35; cursor: default; background: none; }
 
 .chip {
-    display: inline-flex;
-    align-items: center;
-    height: 22px;
-    padding: 0 9px;
-    border-radius: 999px;
-    background: var(--tint-strong);
+    display: inline-block;
     font-family: var(--font-mono);
     font-size: 11px;
     font-weight: 500;
-    letter-spacing: 0.04em;
-    color: var(--ink-2);
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--ink-3);
     white-space: nowrap;
 }
 
@@ -296,11 +292,7 @@ p { text-wrap: pretty; }
     display: inline-flex;
     align-items: center;
     gap: 7px;
-    height: 26px;
-    padding: 0 11px;
-    border-radius: 999px;
-    background: var(--pine-soft);
-    color: var(--pine);
+    color: var(--blue);
     font-size: var(--fs-xs);
     font-weight: 600;
     white-space: nowrap;
@@ -431,7 +423,7 @@ p { text-wrap: pretty; }
     text-decoration: none;
 }
 .mobile-nav a .i { font-size: 18px; color: var(--ink-3); }
-.mobile-nav a[aria-current="page"] { color: var(--pine); }
+.mobile-nav a[aria-current="page"] { color: var(--blue); }
 
 .mobile-menu-foot {
     margin-top: auto;
@@ -556,13 +548,6 @@ body.menu-open { overflow: hidden; }
     .rule-grid, .rule-grid--3, .rule-grid--2 { --cols: 1; gap: 28px; }
 }
 
-/* Cards & panels */
-.card {
-    background: var(--tint);
-    border-radius: var(--radius);
-    padding: clamp(24px, 3vw, 36px);
-}
-
 /* Arrow list rows */
 .link-list { list-style: none; padding: 0; border-top: 1px solid var(--line-strong); }
 .link-list a {
@@ -589,8 +574,8 @@ body.menu-open { overflow: hidden; }
     color: var(--ink-3);
 }
 .link-list .i { font-size: 18px; color: var(--ink-3); transition: transform 0.25s var(--ease), color 0.2s; }
-.link-list a:hover .link-list-title { color: var(--pine); }
-.link-list a:hover .i { color: var(--pine); transform: translateX(4px); }
+.link-list a:hover .link-list-title { color: var(--blue); }
+.link-list a:hover .i { color: var(--blue); transform: translateX(4px); }
 
 @media (max-width: 600px) {
     .link-list-meta { display: none; }
@@ -639,16 +624,15 @@ body.menu-open { overflow: hidden; }
 .office-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
+    gap: 56px clamp(40px, 6vw, 96px);
 }
 
 .office-card {
     display: flex;
     flex-direction: column;
     gap: 28px;
-    padding: clamp(24px, 3vw, 40px);
-    background: var(--tint);
-    border-radius: var(--radius);
+    padding-top: 24px;
+    border-top: 1px solid var(--ink);
 }
 
 .office-card-head {
@@ -673,7 +657,7 @@ body.menu-open { overflow: hidden; }
     font-variant-numeric: tabular-nums;
     transition: color 0.2s;
 }
-.office-phone:hover { color: var(--pine); }
+.office-phone:hover { color: var(--blue); }
 
 .hours { width: 100%; border-collapse: collapse; font-size: var(--fs-small); }
 .hours caption { text-align: left; margin-bottom: 8px; }
@@ -681,13 +665,13 @@ body.menu-open { overflow: hidden; }
 .hours tr:last-child th, .hours tr:last-child td { border-bottom: 1px solid var(--line); }
 .hours th { text-align: left; font-weight: 500; }
 .hours td { text-align: right; color: var(--ink-2); font-variant-numeric: tabular-nums; }
-.hours tr.is-today th, .hours tr.is-today td { color: var(--pine); font-weight: 600; }
+.hours tr.is-today th, .hours tr.is-today td { color: var(--blue); font-weight: 600; }
 .hours tr.is-today th::after {
     content: "Today";
     margin-left: 10px;
     padding: 2px 7px;
     border-radius: 999px;
-    background: var(--pine-soft);
+    background: var(--blue-soft);
     font-family: var(--font-mono);
     font-size: 10.5px;
     font-weight: 500;
@@ -783,7 +767,7 @@ body.menu-open { overflow: hidden; }
     color: var(--on-night-2);
     transition: color 0.2s, background-color 0.2s;
 }
-.footer-social a:hover { color: var(--on-night); background: rgba(236, 238, 232, 0.06); }
+.footer-social a:hover { color: var(--on-night); background: rgba(236, 238, 241, 0.06); }
 .footer-social .i { font-size: 18px; }
 
 .footer-cols {
@@ -869,13 +853,13 @@ body.menu-open { overflow: hidden; }
 .field textarea::placeholder { color: var(--ink-3); }
 
 .input:hover,
-.field input:hover, .field select:hover, .field textarea:hover { border-color: rgba(23, 32, 27, 0.35); }
+.field input:hover, .field select:hover, .field textarea:hover { border-color: rgba(20, 23, 28, 0.35); }
 
 .input:focus,
 .field input:focus, .field select:focus, .field textarea:focus {
     outline: none;
-    border-color: var(--pine);
-    box-shadow: 0 0 0 3px var(--pine-soft);
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px var(--blue-soft);
 }
 
 /* --------------------------------------------------------------------------
