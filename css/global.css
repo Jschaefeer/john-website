@@ -716,33 +716,6 @@ body.menu-open { overflow: hidden; }
     .cards, .cards--2 { grid-template-columns: 1fr; }
 }
 
-/* Phones: the two office cards sit side by side in a compact form */
-@media (max-width: 640px) {
-    .cards--offices { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-    .cards--offices > .card:not(.office) { grid-column: 1 / -1; }
-
-    .card.office { padding: 16px 14px 14px; border-radius: 14px; }
-    .card.office .card-meta { gap: 2px 8px; min-height: 0; font-size: 0.8125rem; }
-    .visit-cards .card.office .meta-label { display: none; }
-    .card.office .status { font-size: 0.8125rem; white-space: normal; }
-    .card.office .status-time { display: none; }
-    .card.office h3 { margin-top: 8px; font-size: 1.25rem; }
-    .card.office .card-desc { margin-top: 6px; font-size: 0.8125rem; line-height: 1.45; color: var(--ink-2); }
-    .card.office .desc-more { display: none; }
-    .card.office .card-rows { margin-top: 0; padding-top: 14px; margin-bottom: 12px; }
-    .card.office .card-rows li {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1px;
-        padding: 8px 0;
-        font-size: 0.875rem;
-    }
-    .card.office .card-rows li > :first-child { font-size: 0.75rem; font-weight: 400; color: var(--ink-2); }
-    .card.office .card-rows li > :last-child { text-align: left; color: var(--ink); font-weight: 500; }
-    .card.office .card-rows li.is-today > * { color: var(--blue); }
-    .card.office .btn { min-height: 42px; margin-top: auto; padding: 0 10px; font-size: 0.9375rem; }
-    .card.office .btn-num { display: none; }
-}
 
 /* --------------------------------------------------------------------------
    Dark call-to-action band

@@ -10,13 +10,6 @@
 }
 .office-phone:hover { color: var(--blue); }
 
-@media (max-width: 640px) {
-    .office-phone { font-size: 1.1875rem; letter-spacing: -0.02em; }
-}
-@media (max-width: 380px) {
-    .office-phone { font-size: 1.0625rem; }
-}
-
 /* Typeform embed: the widget sets its own height inline (500px). At 360px it
    switches to a compact layout with the Start button under the intro text. */
 .typeform [data-tf-widget] { height: 360px !important; }
