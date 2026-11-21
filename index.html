@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/home.css">
     <script src="js/main.js" defer></script>
+    <link rel="preload" as="image" href="img/hero.webp" type="image/webp" imagesrcset="img/hero-900.webp 900w, img/hero.webp 1672w" imagesizes="(max-width: 1440px) 100vw, 1280px" fetchpriority="high">
 </head>
 <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -77,17 +78,17 @@
 
         <section class="intro">
             <div class="container intro-grid">
-                <ul class="quick-links" role="list" data-reveal>
-                    <li><a href="contact.html"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="3.5"/><path d="M8.5 3v3.5M15.5 3v3.5"/><path d="M3.5 10h17"/><path class="draw" pathLength="1" d="M7.4 15.3c.8-.4 1.6.1 2.5 1.7.3.5.6.6.9.1 1.3-2.4 3.2-4.1 5.8-5"/></svg><span>Book a visit</span><svg class="i i-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a></li>
-                    <li><a href="patient-form.html"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 3.5H8a3 3 0 0 0-3 3v11a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V9z"/><path d="M13.5 3.5V7a2 2 0 0 0 2 2H19"/><path d="M8.5 9.5h2.5"/><path class="draw" pathLength="1" d="M8 17.6c2.1-.1 2.5-5 3.2-5.9.5-.6 1.3-.3 1.1.6-.3 1.6-2.1 3.3-2.2 4.5 0 .8 1 .6 1.6-.1.5-.6.9-1.2 1.4-1.2.6 0 .3 1.2 1 1.2.4 0 .9-.4 1.4-.8"/></svg><span>New patient form</span><svg class="i i-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a></li>
-                    <li><a href="https://curalta.modmedapp.com/ema/pay/onlinepayNY#/pm/payfac/pay;recaptchaKey=6LfDLTQUAAAAANEtVv-uKlqvX3s3TPYAA7xnEy4g;businessUnitName=Boltrope%20Podiatry%20NY;locationName=Nanuet;shouldDisplayBalance=false;locationZip=10954-0000;locationStreet1=111%20Main%20Street;locationPhone=%28845%29%20623-5863;patientFirstLastDob=true;language=en;recaptchaUrl=https:%2F%2Fwww.google.com%2Frecaptcha%2Fapi.js;strictPatientIdentification=false;invoiceNumberDob=false;patientFirstLastMrn=true;userLoggedIn=false;openGraphUrl=https:%2F%2Fcuralta.ema.md%2Fema%2Fpay%2FonlinepayNY;firmName=Curalta%20Health,%20LLC;locationState=NY;openGraphImage=https:%2F%2Fcuralta.ema.md%2Fema%2Fws%2Fv3%2Ffirm%2Flogo%2FLOGIN;locationCity=Nanuet" target="_blank" rel="noopener noreferrer"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="3"/><path d="M6 9h3"/><path class="draw" pathLength="1" d="M6 15.6c1.6 0 2.3-1.9 3-1.9.8 0 .2 1.8 1 1.8 1 0 1.8-2.2 2.9-2.2.8 0 .4 1.6 1.2 1.6.5 0 1-.4 1.6-.9"/><path d="M17.2 9.2a3.5 3.5 0 0 1 0 4.2"/><path d="M15.4 10.1a1.9 1.9 0 0 1 0 2.4"/></svg><span>Pay a bill</span><svg class="i i-ext" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 11l6-6M6 5h5v5"/></svg></a></li>
+                <ul class="quick-links" role="list">
+                    <li data-reveal><a href="contact.html"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="3.5"/><path d="M8.5 3v3.5M15.5 3v3.5"/><path d="M3.5 10h17"/><path class="draw" pathLength="1" d="M7.4 15.3c.8-.4 1.6.1 2.5 1.7.3.5.6.6.9.1 1.3-2.4 3.2-4.1 5.8-5"/></svg><span>Book a visit</span><svg class="i i-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a></li>
+                    <li data-reveal><a href="patient-form.html"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 3.5H8a3 3 0 0 0-3 3v11a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V9z"/><path d="M13.5 3.5V7a2 2 0 0 0 2 2H19"/><path d="M8.5 9.5h2.5"/><path class="draw" pathLength="1" d="M8 17.6c2.1-.1 2.5-5 3.2-5.9.5-.6 1.3-.3 1.1.6-.3 1.6-2.1 3.3-2.2 4.5 0 .8 1 .6 1.6-.1.5-.6.9-1.2 1.4-1.2.6 0 .3 1.2 1 1.2.4 0 .9-.4 1.4-.8"/></svg><span>New patient form</span><svg class="i i-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a></li>
+                    <li data-reveal><a href="https://curalta.modmedapp.com/ema/pay/onlinepayNY#/pm/payfac/pay;recaptchaKey=6LfDLTQUAAAAANEtVv-uKlqvX3s3TPYAA7xnEy4g;businessUnitName=Boltrope%20Podiatry%20NY;locationName=Nanuet;shouldDisplayBalance=false;locationZip=10954-0000;locationStreet1=111%20Main%20Street;locationPhone=%28845%29%20623-5863;patientFirstLastDob=true;language=en;recaptchaUrl=https:%2F%2Fwww.google.com%2Frecaptcha%2Fapi.js;strictPatientIdentification=false;invoiceNumberDob=false;patientFirstLastMrn=true;userLoggedIn=false;openGraphUrl=https:%2F%2Fcuralta.ema.md%2Fema%2Fpay%2FonlinepayNY;firmName=Curalta%20Health,%20LLC;locationState=NY;openGraphImage=https:%2F%2Fcuralta.ema.md%2Fema%2Fws%2Fv3%2Ffirm%2Flogo%2FLOGIN;locationCity=Nanuet" target="_blank" rel="noopener noreferrer"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="3"/><path d="M6 9h3"/><path class="draw" pathLength="1" d="M6 15.6c1.6 0 2.3-1.9 3-1.9.8 0 .2 1.8 1 1.8 1 0 1.8-2.2 2.9-2.2.8 0 .4 1.6 1.2 1.6.5 0 1-.4 1.6-.9"/><path d="M17.2 9.2a3.5 3.5 0 0 1 0 4.2"/><path d="M15.4 10.1a1.9 1.9 0 0 1 0 2.4"/></svg><span>Pay a bill</span><svg class="i i-ext" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 11l6-6M6 5h5v5"/></svg></a></li>
                 </ul>
-                <div class="intro-col" data-reveal>
-                    <h2 class="cred-title"><img class="cred-logo" src="img/credentials/abpm.png" alt="" width="160" height="160">Board-certified, since 1991</h2>
+                <div class="intro-col">
+                    <h2 class="cred-title" data-reveal="words"><img class="cred-logo" src="img/credentials/abpm.png" alt="" width="160" height="160">Board-certified, since 1991</h2>
                     <p>A Diplomate of the American Board of Podiatric Medicine, Dr. O'Hanlon treats everything from heel pain to bunion surgery, with X-ray on site, so many problems are diagnosed and treated in a single visit.</p>
                 </div>
-                <div class="intro-col" data-reveal>
-                    <h2 class="cred-title"><img class="cred-logo" src="img/credentials/yankees.svg" alt="" width="129" height="145">Team podiatrist to the Yankees</h2>
+                <div class="intro-col">
+                    <h2 class="cred-title" data-reveal="words"><img class="cred-logo" src="img/credentials/yankees.svg" alt="" width="129" height="145">Team podiatrist to the Yankees</h2>
                     <p>Since 2018 he has cared for the feet of the New York Yankees, and brings the same standard of care to every patient, from young athletes to grandparents.</p>
                 </div>
             </div>
@@ -145,10 +146,10 @@
                         <h2>Meet Dr. O'Hanlon</h2>
                         <p>A podiatrist and foot surgeon who has spent more than three decades caring for Westchester families.</p>
                     </div>
-                    <figure class="panel-media">
+                    <figure class="panel-media" data-reveal="image" data-reveal-delay="120">
                         <picture>
                             <source type="image/webp" srcset="img/john.webp">
-                            <img src="img/john.jpg" alt="Dr. John O'Hanlon in an exam room, holding a model of the bones of the foot" width="1000" height="1778" loading="lazy">
+                            <img src="img/john.jpg" alt="Dr. John O'Hanlon in an exam room, holding a model of the bones of the foot" width="1000" height="1778">
                         </picture>
                     </figure>
                     <div class="panel-body">
@@ -164,7 +165,7 @@
         <section class="section">
             <div class="container split">
                 <div class="split-head split-head--sticky">
-                    <h2>What we treat</h2>
+                    <h2 data-reveal="words">What we treat</h2>
                     <p>From routine care to surgery, for patients of every age. Don't see your condition? We treat a wide range of foot and ankle problems.</p>
                     <a class="pill" href="services.html">All services <svg class="i i-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
                 </div>
@@ -181,11 +182,11 @@
             </div>
         </section>
 
-        <section class="section reviews" data-reveal>
+        <section class="section reviews">
             <div class="container">
                 <div class="reviews-head">
                     <div>
-                        <h2>What patients say</h2>
+                        <h2 data-reveal="words">What patients say</h2>
                         <p>Kind words from patients of Dr. O'Hanlon.</p>
                     </div>
                     <div class="review-controls">
@@ -194,32 +195,32 @@
                     </div>
                 </div>
                 <div class="review-track" data-review-track tabindex="0" role="region" aria-label="Patient reviews">
-                    <figure class="review-card review-card--long">
+                    <figure class="review-card review-card--long" data-reveal>
                         <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z" /><path d="M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z" /></svg>
                         <blockquote>After seeing <em>many</em> doctors for my son's leg pain with either a misdiagnosis or no diagnosis, Dr. O'Hanlon was spot on within seconds with regard to where the pain was, the cause of the pain, and most importantly the solution to the problem.</blockquote>
                         <figcaption>Patient review</figcaption>
                     </figure>
-                    <figure class="review-card">
+                    <figure class="review-card" data-reveal>
                         <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z" /><path d="M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z" /></svg>
                         <blockquote>I believe Dr. O'Hanlon to be one of the very best podiatrists in Westchester County and a doctor that truly cares about the comfort and well-being of his patients.</blockquote>
                         <figcaption>Patient review</figcaption>
                     </figure>
-                    <figure class="review-card review-card--short">
+                    <figure class="review-card review-card--short" data-reveal>
                         <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z" /><path d="M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z" /></svg>
                         <blockquote>He is the only doctor I trust with my feet. After all, your feet carry you everywhere.</blockquote>
                         <figcaption>Patient review</figcaption>
                     </figure>
-                    <figure class="review-card review-card--long">
+                    <figure class="review-card review-card--long" data-reveal>
                         <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z" /><path d="M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z" /></svg>
                         <blockquote>The office staff is professional and personable. They are respectful and helpful. Making an appointment is a breeze and the staff work with your schedule. The office is super clean, organized, and well kept.</blockquote>
                         <figcaption>Patient review</figcaption>
                     </figure>
-                    <figure class="review-card review-card--short">
+                    <figure class="review-card review-card--short" data-reveal>
                         <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z" /><path d="M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z" /></svg>
                         <blockquote>Dr. O'Hanlon's skills as a surgeon and a diagnostician are A+.</blockquote>
                         <figcaption>Patient review</figcaption>
                     </figure>
-                    <figure class="review-card review-card--short">
+                    <figure class="review-card review-card--short" data-reveal>
                         <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z" /><path d="M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z" /></svg>
                         <blockquote>He is knowledgeable, deft, compassionate, and makes you feel like a valued patient.</blockquote>
                         <figcaption>Patient review</figcaption>

@@ -24,7 +24,8 @@ Everything shared lives in `css/global.css`: color and type tokens, header, foot
 - **Icons:** inline SVG, no icon font. Service and payment icons are from [Lucide](https://lucide.dev) (ISC license), used sparingly
 - **Insurance logos:** `img/insurance/` (Aetna, Blue Cross Blue Shield, Cigna, EmblemHealth, Medicare, UnitedHealthcare), shown in grayscale and in color on hover
 - **Credential logos:** `img/credentials/` (American Board of Podiatric Medicine medallion, New York Yankees, Northwell / Northern Westchester Hospital mark)
-- **Motion:** home page only: sections rise out of a mask as they scroll in (no fades), the headline comes up word by word, and the hero photo unveils with a slow zoom. Expandable sections animate their height (`initAccordions` in `js/main.js`). The chat grows out of its "Ask the office" button (`animateMorph` in `js/practice-chat.js`)
+- **Motion:** home page only: the headline and section headings come up word by word, cards and photos open out from a slightly smaller rounded frame (no fades, nothing rising from below). Expandable sections animate their height (`initAccordions` in `js/main.js`). The chat grows out of its "Ask the office" button (`animateMorph` in `js/practice-chat.js`)
+- **Maps:** the Contact page uses static map images (`img/map-*.webp/.jpg`, from OpenStreetMap, credited on the map) so they show instantly; tapping one opens Google Maps directions. Key photos are preloaded and nothing is lazy-loaded
 - **Custom icons:** the Book a visit / New patient form / Pay a bill icons are hand-drawn SVGs inlined in `index.html`; their pen strokes draw in once and again on hover
 - **Pay a bill:** every "Pay a bill" link uses Curalta's online payment portal. In the HTML it's repeated in each page; in `js/practice-chat.js` it's set once
 

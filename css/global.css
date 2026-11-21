@@ -639,6 +639,7 @@ body.menu-open { overflow: hidden; }
     padding: clamp(28px, 2.5vw, 32px);
     background: var(--tint);
     border-radius: var(--radius-sm);
+    --reveal-radius: var(--radius-sm);
 }
 .panel-head h2 { font-size: clamp(1.5rem, 1.3rem + 0.8vw, 2rem); letter-spacing: -0.025em; }
 .panel-head p { margin-top: 16px; color: var(--ink-2); max-width: 22rem; }
@@ -848,17 +849,17 @@ body.menu-open { overflow: hidden; }
 }
 
 /* --------------------------------------------------------------------------
-   Reveal on scroll (home page only). No fades: content rises out of a mask,
-   the headline comes up word by word, the photo unveils with a slow zoom.
+   Reveal on scroll (home page only). No fades and nothing rising from below:
+   headings come up word by word, cards and photos open out from a slightly
+   smaller rounded frame into place.
    -------------------------------------------------------------------------- */
 
 .js [data-reveal] {
-    clip-path: inset(100% 0 0 0);
-    transform: translateY(56px);
-    transition: clip-path 1.15s var(--ease-out), transform 1.15s var(--ease-out);
+    clip-path: inset(6% 5% 6% 5% round 28px);
+    transition: clip-path 1.3s var(--ease-out);
     transition-delay: var(--reveal-delay, 0ms);
 }
-.js [data-reveal].is-visible { clip-path: inset(0 0 0 0); transform: none; }
+.js [data-reveal].is-visible { clip-path: inset(0 0 0 0 round var(--reveal-radius, 16px)); }
 .js [data-reveal].is-revealed { clip-path: none; transition: none; }
 
 /* Headline: each word slides up from its own line mask */
@@ -891,6 +892,6 @@ body.menu-open { overflow: hidden; }
 
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-    .js [data-reveal], .js [data-reveal="image"] { clip-path: none; transform: none; }
+    .js [data-reveal], .js [data-reveal="image"] { clip-path: none; }
     .rw > span, .js [data-reveal="image"] img { transform: none; }
 }

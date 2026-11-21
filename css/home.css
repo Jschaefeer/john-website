@@ -38,6 +38,7 @@
 }
 /* Quick links: tinted tiles with a blue icon */
 .quick-links { display: grid; gap: 8px; max-width: 360px; }
+.quick-links li { --reveal-radius: 12px; }
 .quick-links a {
     display: flex;
     align-items: center;
@@ -55,11 +56,11 @@
 
 /* Hand-drawn strokes in the custom icons draw themselves in, and again on hover */
 .ico .draw { stroke-dasharray: 1; stroke-dashoffset: 0; }
-.js .quick-links[data-reveal]:not(.is-visible) .draw { stroke-dashoffset: 1; }
-.quick-links.is-visible:not(.is-drawn) .draw { animation: ink 1.1s var(--ease-out) both; }
-.quick-links.is-visible:not(.is-drawn) li:nth-child(1) .draw { animation-delay: 0.45s; }
-.quick-links.is-visible:not(.is-drawn) li:nth-child(2) .draw { animation-delay: 0.6s; }
-.quick-links.is-visible:not(.is-drawn) li:nth-child(3) .draw { animation-delay: 0.75s; }
+.js .quick-links li[data-reveal]:not(.is-visible) .draw { stroke-dashoffset: 1; }
+.quick-links li.is-visible:not(.is-drawn) .draw {
+    animation: ink 1.1s var(--ease-out) both;
+    animation-delay: calc(var(--reveal-delay, 0ms) + 350ms);
+}
 .quick-links a:hover .draw { animation: ink-again 0.9s var(--ease-out) both; }
 @keyframes ink { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
 @keyframes ink-again { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }

@@ -25,6 +25,11 @@
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/contact.css">
     <script src="js/main.js" defer></script>
+    <link rel="preload" as="image" href="img/map-somers.webp" type="image/webp">
+    <link rel="preload" as="image" href="img/map-armonk.webp" type="image/webp">
+    <link rel="preconnect" href="https://embed.typeform.com">
+    <link rel="preconnect" href="https://api.typeform.com">
+    <link rel="preconnect" href="https://form.typeform.com">
 </head>
 <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -78,7 +83,14 @@
                 <div class="cards cards--2">
                     <article class="card office">
                         <div class="office-map">
-                            <iframe title="Map of the Somers office" src="https://www.google.com/maps?q=268+Route+202,+Somers,+NY+10589&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+                            <a class="map-link" href="https://www.google.com/maps/dir/?api=1&amp;destination=268+Route+202,+Somers,+NY+10589" target="_blank" rel="noopener noreferrer" aria-label="Directions to the Somers office in Google Maps">
+                                <picture>
+                                    <source type="image/webp" srcset="img/map-somers.webp">
+                                    <img src="img/map-somers.jpg" alt="Map of the area around the Somers office" width="880" height="495" fetchpriority="high">
+                                </picture>
+                                <span class="map-pin" aria-hidden="true"></span>
+                            </a>
+                            <a class="map-credit" href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">&copy; OpenStreetMap</a>
                         </div>
                         <div class="card-meta"><span>Somers office</span><span class="status" data-open-status hidden></span></div>
                         <h3><a class="office-phone" href="tel:+19142763718">(914) 276-3718</a></h3>
@@ -94,7 +106,14 @@
                     </article>
                     <article class="card office">
                         <div class="office-map">
-                            <iframe title="Map of the Armonk office" src="https://www.google.com/maps?q=34+Maple+Ave,+Armonk,+NY+10504&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+                            <a class="map-link" href="https://www.google.com/maps/dir/?api=1&amp;destination=34+Maple+Ave,+Armonk,+NY+10504" target="_blank" rel="noopener noreferrer" aria-label="Directions to the Armonk office in Google Maps">
+                                <picture>
+                                    <source type="image/webp" srcset="img/map-armonk.webp">
+                                    <img src="img/map-armonk.jpg" alt="Map of the area around the Armonk office" width="880" height="495" fetchpriority="high">
+                                </picture>
+                                <span class="map-pin" aria-hidden="true"></span>
+                            </a>
+                            <a class="map-credit" href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">&copy; OpenStreetMap</a>
                         </div>
                         <div class="card-meta"><span>Armonk office</span><span class="status" data-open-status hidden></span></div>
                         <h3><a class="office-phone" href="tel:+19142733100">(914) 273-3100</a></h3>
