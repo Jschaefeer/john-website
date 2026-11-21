@@ -19,9 +19,9 @@
     <meta name="twitter:description" content="Board-certified podiatrist Dr. John O'Hanlon has cared for feet and ankles in Somers, Armonk and across Westchester County since 1991.">
     <meta name="twitter:image" content="https://armonk-somers-podiatry.com/img/SC.png">
     <script>document.documentElement.classList.add('js')</script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+    <link rel="preload" href="fonts/hanken-grotesk-normal-400-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/newsreader-normal-400-500-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/home.css">
     <script src="js/main.js" defer></script>
@@ -67,7 +67,7 @@
         <section class="hero">
             <div class="container">
                 <h1 class="hero-statement" data-reveal="words"><strong>Expert foot and ankle care for the whole family.</strong> Dr. John O'Hanlon has treated patients across Westchester County since 1991, from offices in Somers and Armonk.</h1>
-                <figure class="media-full hero-media" data-reveal="image" data-reveal-delay="250">
+                <figure class="media-full hero-media" data-reveal="image">
                     <picture>
                         <source type="image/webp" srcset="img/hero-900.webp 900w, img/hero.webp 1672w" sizes="(max-width: 1440px) 100vw, 1280px">
                         <img src="img/hero.jpg" alt="Dr. John O'Hanlon outside the Somers office in the Towne Centre Professional Building" width="1672" height="941" fetchpriority="high">
@@ -84,11 +84,11 @@
                     <li data-reveal><a href="https://curalta.modmedapp.com/ema/pay/onlinepayNY#/pm/payfac/pay;recaptchaKey=6LfDLTQUAAAAANEtVv-uKlqvX3s3TPYAA7xnEy4g;businessUnitName=Boltrope%20Podiatry%20NY;locationName=Nanuet;shouldDisplayBalance=false;locationZip=10954-0000;locationStreet1=111%20Main%20Street;locationPhone=%28845%29%20623-5863;patientFirstLastDob=true;language=en;recaptchaUrl=https:%2F%2Fwww.google.com%2Frecaptcha%2Fapi.js;strictPatientIdentification=false;invoiceNumberDob=false;patientFirstLastMrn=true;userLoggedIn=false;openGraphUrl=https:%2F%2Fcuralta.ema.md%2Fema%2Fpay%2FonlinepayNY;firmName=Curalta%20Health,%20LLC;locationState=NY;openGraphImage=https:%2F%2Fcuralta.ema.md%2Fema%2Fws%2Fv3%2Ffirm%2Flogo%2FLOGIN;locationCity=Nanuet" target="_blank" rel="noopener noreferrer"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="3"/><path d="M6 9h3"/><path class="draw" pathLength="1" d="M6 15.6c1.6 0 2.3-1.9 3-1.9.8 0 .2 1.8 1 1.8 1 0 1.8-2.2 2.9-2.2.8 0 .4 1.6 1.2 1.6.5 0 1-.4 1.6-.9"/><path d="M17.2 9.2a3.5 3.5 0 0 1 0 4.2"/><path d="M15.4 10.1a1.9 1.9 0 0 1 0 2.4"/></svg><span>Pay a bill</span><svg class="i i-ext" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 11l6-6M6 5h5v5"/></svg></a></li>
                 </ul>
                 <div class="intro-col">
-                    <h2 class="cred-title" data-reveal="words"><img class="cred-logo" src="img/credentials/abpm.png" alt="" width="160" height="160">Board-certified, since 1991</h2>
+                    <h2 class="cred-title"><img class="cred-logo" src="img/credentials/abpm.png" alt="" width="160" height="160"><span data-reveal="words">Board-certified, since 1991</span></h2>
                     <p>A Diplomate of the American Board of Podiatric Medicine, Dr. O'Hanlon treats everything from heel pain to bunion surgery, with X-ray on site, so many problems are diagnosed and treated in a single visit.</p>
                 </div>
                 <div class="intro-col">
-                    <h2 class="cred-title" data-reveal="words"><img class="cred-logo" src="img/credentials/yankees.svg" alt="" width="129" height="145">Team podiatrist to the Yankees</h2>
+                    <h2 class="cred-title"><img class="cred-logo" src="img/credentials/yankees.svg" alt="" width="129" height="145"><span data-reveal="words">Team podiatrist to the Yankees</span></h2>
                     <p>Since 2018 he has cared for the feet of the New York Yankees, and brings the same standard of care to every patient, from young athletes to grandparents.</p>
                 </div>
             </div>
@@ -100,29 +100,29 @@
                     <h2>Visit us</h2>
                     <p>Hours may change on holidays</p>
                 </div>
-                <div class="cards visit-cards">
+                <div class="cards cards--offices visit-cards">
                     <article class="card office" data-reveal>
-                        <div class="card-meta"><span>Office</span><span class="status" data-open-status hidden></span></div>
+                        <div class="card-meta"><span class="meta-label">Office</span><span class="status" data-open-status hidden></span></div>
                         <h3>Somers</h3>
-                        <p class="card-desc">268 Route 202, Somers, NY 10589. In the Towne Centre Professional Building.</p>
+                        <p class="card-desc">268 Route 202, Somers, NY 10589<span class="desc-more">. In the Towne Centre Professional Building.</span></p>
                         <ul class="card-rows hours" role="list">
                             <li data-days="1 3 5"><span>Mon, Wed, Fri</span><span>8am – 6pm</span></li>
                             <li data-days="2"><span>Tuesday</span><span>1pm – 6pm</span></li>
                             <li data-days="6"><span>Saturday</span><span>8am – 12pm</span></li>
                             <li><span>Directions</span><a href="https://www.google.com/maps/dir/?api=1&amp;destination=268+Route+202,+Somers,+NY+10589" target="_blank" rel="noopener noreferrer">Google Maps <svg class="i i-ext" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 11l6-6M6 5h5v5"/></svg></a></li>
                         </ul>
-                        <a class="btn" href="tel:+19142763718">Call (914) 276-3718</a>
+                        <a class="btn" href="tel:+19142763718">Call<span class="btn-num"> (914) 276-3718</span></a>
                     </article>
                     <article class="card office" data-reveal>
-                        <div class="card-meta"><span>Office</span><span class="status" data-open-status hidden></span></div>
+                        <div class="card-meta"><span class="meta-label">Office</span><span class="status" data-open-status hidden></span></div>
                         <h3>Armonk</h3>
-                        <p class="card-desc">34 Maple Ave, Armonk, NY 10504. Open Tuesdays and Thursdays.</p>
+                        <p class="card-desc">34 Maple Ave, Armonk, NY 10504<span class="desc-more">. Open Tuesdays and Thursdays.</span></p>
                         <ul class="card-rows hours" role="list">
                             <li data-days="2"><span>Tuesday</span><span>8am – 12pm</span></li>
                             <li data-days="4"><span>Thursday</span><span>8am – 6pm</span></li>
                             <li><span>Directions</span><a href="https://www.google.com/maps/dir/?api=1&amp;destination=34+Maple+Ave,+Armonk,+NY+10504" target="_blank" rel="noopener noreferrer">Google Maps <svg class="i i-ext" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 11l6-6M6 5h5v5"/></svg></a></li>
                         </ul>
-                        <a class="btn" href="tel:+19142733100">Call (914) 273-3100</a>
+                        <a class="btn" href="tel:+19142733100">Call<span class="btn-num"> (914) 273-3100</span></a>
                     </article>
                     <article class="card" data-reveal>
                         <div class="card-meta"><span>New patients</span></div>

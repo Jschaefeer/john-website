@@ -716,6 +716,34 @@ body.menu-open { overflow: hidden; }
     .cards, .cards--2 { grid-template-columns: 1fr; }
 }
 
+/* Phones: the two office cards sit side by side in a compact form */
+@media (max-width: 640px) {
+    .cards--offices { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .cards--offices > .card:not(.office) { grid-column: 1 / -1; }
+
+    .card.office { padding: 16px 14px 14px; border-radius: 14px; }
+    .card.office .card-meta { gap: 2px 8px; min-height: 0; font-size: 0.8125rem; }
+    .visit-cards .card.office .meta-label { display: none; }
+    .card.office .status { font-size: 0.8125rem; white-space: normal; }
+    .card.office .status-time { display: none; }
+    .card.office h3 { margin-top: 8px; font-size: 1.25rem; }
+    .card.office .card-desc { margin-top: 6px; font-size: 0.8125rem; line-height: 1.45; color: var(--ink-2); }
+    .card.office .desc-more { display: none; }
+    .card.office .card-rows { margin-top: 0; padding-top: 14px; margin-bottom: 12px; }
+    .card.office .card-rows li {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1px;
+        padding: 8px 0;
+        font-size: 0.875rem;
+    }
+    .card.office .card-rows li > :first-child { font-size: 0.75rem; font-weight: 400; color: var(--ink-2); }
+    .card.office .card-rows li > :last-child { text-align: left; color: var(--ink); font-weight: 500; }
+    .card.office .card-rows li.is-today > * { color: var(--blue); }
+    .card.office .btn { min-height: 42px; margin-top: auto; padding: 0 10px; font-size: 0.9375rem; }
+    .card.office .btn-num { display: none; }
+}
+
 /* --------------------------------------------------------------------------
    Dark call-to-action band
    -------------------------------------------------------------------------- */
@@ -856,14 +884,17 @@ body.menu-open { overflow: hidden; }
 
 .js [data-reveal] {
     clip-path: inset(6% 5% 6% 5% round 28px);
-    transition: clip-path 1.3s var(--ease-out);
+    transition: clip-path 1.05s var(--ease-out);
     transition-delay: var(--reveal-delay, 0ms);
 }
 .js [data-reveal].is-visible { clip-path: inset(0 0 0 0 round var(--reveal-radius, 16px)); }
 .js [data-reveal].is-revealed { clip-path: none; transition: none; }
 
-/* Headline: each word slides up from its own line mask */
-.js [data-reveal="words"] { clip-path: none; transform: none; transition: none; }
+/* Headings: each word slides up from its own line mask. Never clipped as a
+   block (that would crop anything beside it), and hidden until split. */
+.js [data-reveal="words"],
+.js [data-reveal="words"].is-visible { clip-path: none; transform: none; transition: none; }
+.js [data-reveal="words"]:not(.is-split) { visibility: hidden; }
 .rw {
     display: inline-block;
     overflow: hidden;
@@ -874,8 +905,8 @@ body.menu-open { overflow: hidden; }
 .rw > span {
     display: inline-block;
     transform: translateY(112%);
-    transition: transform 1.1s var(--ease-out);
-    transition-delay: calc(var(--wi, 0) * 26ms + var(--reveal-delay, 0ms));
+    transition: transform 0.95s var(--ease-out);
+    transition-delay: calc(var(--wi, 0) * 24ms + var(--reveal-delay, 0ms));
 }
 [data-reveal="words"].is-visible .rw > span { transform: none; }
 
@@ -883,15 +914,16 @@ body.menu-open { overflow: hidden; }
 .js [data-reveal="image"] {
     transform: none;
     clip-path: inset(9% 7% 9% 7% round 14px);
-    transition: clip-path 1.5s var(--ease-out);
+    transition: clip-path 1.25s var(--ease-out);
     transition-delay: var(--reveal-delay, 0ms);
 }
 .js [data-reveal="image"].is-visible { clip-path: inset(0 0 0 0 round 6px); }
-.js [data-reveal="image"] img { transform: scale(1.14); transition: transform 1.8s var(--ease-out); transition-delay: var(--reveal-delay, 0ms); }
+.js [data-reveal="image"] img { transform: scale(1.14); transition: transform 1.5s var(--ease-out); transition-delay: var(--reveal-delay, 0ms); }
 .js [data-reveal="image"].is-visible img { transform: none; }
 
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     .js [data-reveal], .js [data-reveal="image"] { clip-path: none; }
     .rw > span, .js [data-reveal="image"] img { transform: none; }
+    .js [data-reveal="words"]:not(.is-split) { visibility: visible; }
 }

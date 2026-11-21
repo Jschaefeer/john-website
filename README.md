@@ -20,12 +20,12 @@ Everything shared lives in `css/global.css`: color and type tokens, header, foot
 
 - **Colors:** off-white paper `#f6f6f3`, ink `#14171c`, blue accent `#0066cc`, near-black footer `#0f1216`
 - **Layout:** modeled on anthropic.com: heading-left / content-right sections divided by hairlines, expandable sections for detail, a few tinted feature cards, a dark call-to-action band
-- **Type:** Hanken Grotesk for headlines and UI, Newsreader for editorial serif text, IBM Plex Mono for small labels (all from Google Fonts)
+- **Type:** Hanken Grotesk for headlines and UI, Newsreader for editorial serif text, IBM Plex Mono for small labels. Self-hosted in `fonts/` (`css/fonts.css`, SIL Open Font License) so text renders without waiting on Google
 - **Icons:** inline SVG, no icon font. Service and payment icons are from [Lucide](https://lucide.dev) (ISC license), used sparingly
 - **Insurance logos:** `img/insurance/` (Aetna, Blue Cross Blue Shield, Cigna, EmblemHealth, Medicare, UnitedHealthcare), shown in grayscale and in color on hover
 - **Credential logos:** `img/credentials/` (American Board of Podiatric Medicine medallion, New York Yankees, Northwell / Northern Westchester Hospital mark)
-- **Motion:** home page only: the headline and section headings come up word by word, cards and photos open out from a slightly smaller rounded frame (no fades, nothing rising from below). Expandable sections animate their height (`initAccordions` in `js/main.js`). The chat grows out of its "Ask the office" button (`animateMorph` in `js/practice-chat.js`)
-- **Maps:** the Contact page uses static map images (`img/map-*.webp/.jpg`, from OpenStreetMap, credited on the map) so they show instantly; tapping one opens Google Maps directions. Key photos are preloaded and nothing is lazy-loaded
+- **Motion:** home page only. The hero starts on load: the headline rises word by word once its font is ready, the photo opens out from a smaller frame as soon as it's decoded. Further down, headings rise word by word and cards open out from a slightly smaller rounded frame as they come into view (no fades, nothing rising from below). Expandable sections animate their height (`initAccordions` in `js/main.js`). The chat grows out of its "Ask the office" button (`animateMorph` in `js/practice-chat.js`)
+- **Loading:** key photos and the two main fonts are preloaded and nothing is lazy-loaded. The Contact page has no embedded maps (the office cards link to Google Maps directions)
 - **Custom icons:** the Book a visit / New patient form / Pay a bill icons are hand-drawn SVGs inlined in `index.html`; their pen strokes draw in once and again on hover
 - **Pay a bill:** every "Pay a bill" link uses Curalta's online payment portal. In the HTML it's repeated in each page; in `js/practice-chat.js` it's set once
 

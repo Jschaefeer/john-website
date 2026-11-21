@@ -55,7 +55,16 @@ function initTodayHours() {
         const card = list.closest('.card');
         const status = card && card.querySelector('[data-open-status]');
         if (!status) return;
-        status.textContent = row ? `Open today, ${row.lastElementChild.textContent.trim()}` : 'Closed today';
+        // "Open today" + the hours (the hours part is hidden on small cards)
+        const text = document.createElement('span');
+        text.textContent = row ? 'Open today' : 'Closed today';
+        if (row) {
+            const time = document.createElement('span');
+            time.className = 'status-time';
+            time.textContent = `, ${row.lastElementChild.textContent.trim()}`;
+            text.appendChild(time);
+        }
+        status.replaceChildren(text);
         status.classList.toggle('is-closed', !row);
         status.hidden = false;
     });
@@ -151,15 +160,27 @@ function initDisclosureLinks() {
     window.addEventListener('hashchange', openFromHash);
 }
 
-/* Home page reveals: masked rise (no fade). Items entering together are
-   staggered; the hero headline is split into words that rise one by one. */
+/* Home page reveals (no fades). Headings rise word by word; cards and photos
+   open out from a slightly smaller rounded frame. The hero starts on load:
+   the photo as soon as it is decoded, the headline once its font is ready
+   (each capped so nothing waits). Items entering together are staggered. */
 function initReveal() {
-    const items = document.querySelectorAll('[data-reveal]');
+    const items = Array.from(document.querySelectorAll('[data-reveal]'));
     if (!items.length) return;
 
-    document.querySelectorAll('[data-reveal="words"]').forEach(splitWords);
+    document.querySelectorAll('[data-reveal="words"]').forEach((el) => {
+        splitWords(el);
+        el.classList.add('is-split');
+    });
 
     const show = (el, delay) => {
+        // Commit the starting state first, then flip on the next frame, so the
+        // transition always plays (even when this runs before the first paint)
+        void getComputedStyle(el).clipPath;
+        requestAnimationFrame(() => reveal(el, delay));
+    };
+
+    const reveal = (el, delay) => {
         el.style.setProperty('--reveal-delay', `${delay}ms`);
         el.classList.add('is-visible');
         if (el.dataset.reveal !== 'words') {
@@ -173,19 +194,34 @@ function initReveal() {
         if (el.querySelector('.draw')) setTimeout(() => el.classList.add('is-drawn'), delay + 2000);
     };
 
-    // Position check rather than IntersectionObserver: a fully clipped element
-    // counts as invisible to the observer, so it would never be revealed.
-    const pending = new Set(items);
+    const cap = (promise, ms) => Promise.race([promise, new Promise((r) => setTimeout(r, ms))]);
+
+    // Hero: no scroll trigger, no stagger
+    const hero = items.filter((el) => el.closest('.hero'));
+    hero.forEach((el) => {
+        let ready = Promise.resolve();
+        if (el.dataset.reveal === 'words' && document.fonts) ready = document.fonts.ready;
+        if (el.dataset.reveal === 'image') {
+            const img = el.querySelector('img');
+            if (img && !img.complete && img.decode) ready = img.decode().catch(() => {});
+        }
+        cap(ready, 400).then(() => show(el, 0));
+    });
+
+    // Everything else: reveal as it reaches the lower part of the screen.
+    // A position check rather than IntersectionObserver: a fully clipped
+    // element counts as invisible to the observer.
+    const pending = new Set(items.filter((el) => !el.closest('.hero')));
     let queued = false;
     const check = () => {
         queued = false;
-        const line = window.innerHeight * 0.9;
+        const line = window.innerHeight * 0.88;
         let batch = 0;
         pending.forEach((el) => {
             const rect = el.getBoundingClientRect();
             if (rect.top > line) return;
             // Already scrolled past (e.g. after a jump): show at once, no stagger
-            const delay = rect.bottom < 0 ? 0 : parseInt(el.dataset.revealDelay || '0', 10) + batch++ * 120;
+            const delay = rect.bottom < 0 ? 0 : parseInt(el.dataset.revealDelay || '0', 10) + batch++ * 90;
             show(el, delay);
             pending.delete(el);
         });
@@ -204,7 +240,7 @@ function initReveal() {
 
 /* Wrap each word in a mask so it can slide up on its own */
 function splitWords(el) {
-    el.setAttribute('aria-label', el.textContent.replace(/\s+/g, ' ').trim());
+    const label = el.textContent.replace(/\s+/g, ' ').trim();
     let index = 0;
     const walk = (node) => {
         Array.from(node.childNodes).forEach((child) => {
@@ -227,4 +263,8 @@ function splitWords(el) {
         });
     };
     walk(el);
+    const sr = document.createElement('span');
+    sr.className = 'sr-only';
+    sr.textContent = label;
+    el.appendChild(sr);
 }
