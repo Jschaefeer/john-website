@@ -27,6 +27,19 @@
 }
 .office-phone:hover { color: var(--blue); }
 
-/* Typeform embed */
-.typeform > div { height: 560px; overflow: hidden; border-radius: var(--radius); background: var(--tint); }
+/* Typeform embed: the widget sets its own height inline (500px). At 360px it
+   switches to a compact layout with the Start button under the intro text. */
+.typeform [data-tf-widget] { height: 360px !important; }
+.typeform .tf-v1-widget,
+.typeform [data-tf-live]:not([data-tf-loaded]) {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+}
+.typeform [data-tf-live]:not([data-tf-loaded]) { height: 360px; background: var(--tint); }
 .typeform iframe { width: 100%; height: 100%; border: 0; }
+
+@media (max-width: 640px) {
+    .typeform [data-tf-widget],
+    .typeform [data-tf-live]:not([data-tf-loaded]) { height: 420px !important; }
+}

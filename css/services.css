@@ -1,5 +1,9 @@
 /* Services */
 
+/* Line up the open content with the title text (past the icon) */
+.service-body { padding-left: 38px; }
+@media (max-width: 640px) { .service-body { padding-left: 0; } }
+
 .service-body .service-intro {
     font-family: var(--font-serif);
     font-size: 1.3125rem;
@@ -16,12 +20,22 @@
     font-weight: 650;
     letter-spacing: -0.005em;
 }
-.service-lists ul { list-style: none; padding: 0; border-top: 1px solid var(--line); }
+.service-lists ul { list-style: none; padding: 0; display: grid; gap: 6px; }
 .service-lists li {
-    padding: 9px 0;
-    border-bottom: 1px solid var(--line);
+    position: relative;
+    padding-left: 18px;
     font-size: 0.96875rem;
     color: var(--ink);
+}
+.service-lists li::before {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: 0.62em;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--blue);
 }
 .service-body .link-arrow { margin-top: 24px; }
 

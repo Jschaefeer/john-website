@@ -9,7 +9,7 @@ Website for Dr. John O'Hanlon's podiatry practice, with offices in Somers and Ar
 | `index.html` | Home: statement and office photo, office cards with today's hours, Dr. O'Hanlon panel, services list, patient reviews |
 | `about.html` | Dr. O'Hanlon's biography, credentials and the practice's mission |
 | `services.html` | Services in three groups of expandable sections (each linkable, e.g. `services.html#bunion-surgery`), and the "Ask the office" assistant |
-| `insurance.html` | Searchable list of accepted plans, what to bring, payment policy and billing questions |
+| `insurance.html` | Insurer logos, searchable list of accepted plans, what to bring, payment policy, ways to pay and billing questions |
 | `contact.html` | Phone numbers, hours, maps, the Typeform message form, and links for new patients |
 | `patient-form.html` | New patient form that generates a printable PDF in the browser (nothing is sent anywhere) |
 | `404.html` | Not-found page (uses root-relative links so it works from any path) |
@@ -21,7 +21,9 @@ Everything shared lives in `css/global.css`: color and type tokens, header, foot
 - **Colors:** off-white paper `#f6f6f3`, ink `#14171c`, blue accent `#0066cc`, near-black footer `#0f1216`
 - **Layout:** modeled on anthropic.com: heading-left / content-right sections divided by hairlines, expandable sections for detail, a few tinted feature cards, a dark call-to-action band
 - **Type:** Hanken Grotesk for headlines and UI, Newsreader for editorial serif text, IBM Plex Mono for small labels (all from Google Fonts)
-- **Icons:** inline SVG, no icon font
+- **Icons:** inline SVG, no icon font. Service and payment icons are from [Lucide](https://lucide.dev) (ISC license), used sparingly
+- **Insurance logos:** `img/insurance/` (Aetna, Blue Cross Blue Shield, Cigna, EmblemHealth, Medicare, UnitedHealthcare), shown in grayscale and in color on hover
+- **Motion:** scroll-in animations on the home page only
 
 ## JavaScript
 

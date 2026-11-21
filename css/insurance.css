@@ -53,20 +53,71 @@
     .plan-toggle:not([hidden]) { display: inline-flex; margin-top: 20px; }
 }
 
-/* Definition rows inside accordions */
+/* Definition rows inside accordions: spacing, no lines */
 .defs {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
-    border-top: 1px solid var(--line);
+    gap: 12px 24px;
 }
-.defs dt, .defs dd { padding: 14px 0; border-bottom: 1px solid var(--line); }
-.defs dt { font-weight: 600; padding-right: 24px; }
+.defs dt { font-weight: 600; }
 .defs dd { margin: 0; color: var(--ink-2); }
 
 @media (max-width: 600px) {
-    .defs { grid-template-columns: 1fr; }
-    .defs dt { padding-bottom: 2px; border-bottom: 0; }
-    .defs dd { padding-top: 0; }
+    .defs { grid-template-columns: 1fr; gap: 2px; }
+    .defs dd + dt { margin-top: 12px; }
 }
 
 .accordion-body > p { color: var(--ink-2); }
+
+/* Insurance logos */
+.logo-grid {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 24px;
+}
+.logo-grid li {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 3 / 2;
+    padding: 0 16%;
+    background: var(--tint);
+    border-radius: 12px;
+}
+.logo-grid img {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 42px;
+    mix-blend-mode: multiply;
+    filter: grayscale(1);
+    opacity: 0.78;
+    transition: filter 0.3s, opacity 0.3s;
+}
+.logo-grid li:hover img { filter: none; opacity: 1; }
+
+@media (max-width: 1024px) { .logo-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .logo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; } .logo-grid img { max-height: 34px; } }
+
+/* Ways to pay */
+.pay-block { grid-column: 1 / -1; }
+.pay-methods {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+    margin: 4px 0 18px;
+}
+.pay-methods li {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 18px;
+    background: var(--tint);
+    border-radius: 12px;
+    font-size: var(--fs-small);
+    font-weight: 500;
+    line-height: 1.3;
+}
+.pay-methods .ico { width: 26px; height: 26px; color: var(--blue); }
+
+@media (max-width: 900px) { .pay-methods { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
