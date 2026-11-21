@@ -151,20 +151,80 @@ function initDisclosureLinks() {
     window.addEventListener('hashchange', openFromHash);
 }
 
-/* Gentle fade-up as sections enter the viewport */
+/* Home page reveals: masked rise (no fade). Items entering together are
+   staggered; the hero headline is split into words that rise one by one. */
 function initReveal() {
     const items = document.querySelectorAll('[data-reveal]');
     if (!items.length) return;
-    if (!('IntersectionObserver' in window)) {
-        items.forEach((el) => el.classList.add('is-visible'));
-        return;
-    }
-    const io = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (!entry.isIntersecting) return;
-            entry.target.classList.add('is-visible');
-            io.unobserve(entry.target);
+
+    document.querySelectorAll('[data-reveal="words"]').forEach(splitWords);
+
+    const show = (el, delay) => {
+        el.style.setProperty('--reveal-delay', `${delay}ms`);
+        el.classList.add('is-visible');
+        if (el.dataset.reveal !== 'words') {
+            el.addEventListener('transitionend', function done(e) {
+                if (e.target !== el || e.propertyName !== 'clip-path') return;
+                el.classList.add('is-revealed');
+                el.removeEventListener('transitionend', done);
+            });
+        }
+        // Custom icons draw their ink once, then only redraw on hover
+        if (el.querySelector('.draw')) setTimeout(() => el.classList.add('is-drawn'), delay + 2000);
+    };
+
+    // Position check rather than IntersectionObserver: a fully clipped element
+    // counts as invisible to the observer, so it would never be revealed.
+    const pending = new Set(items);
+    let queued = false;
+    const check = () => {
+        queued = false;
+        const line = window.innerHeight * 0.9;
+        let batch = 0;
+        pending.forEach((el) => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top > line) return;
+            // Already scrolled past (e.g. after a jump): show at once, no stagger
+            const delay = rect.bottom < 0 ? 0 : parseInt(el.dataset.revealDelay || '0', 10) + batch++ * 120;
+            show(el, delay);
+            pending.delete(el);
         });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
-    items.forEach((el) => io.observe(el));
+        if (!pending.size) {
+            window.removeEventListener('scroll', onScroll);
+            window.removeEventListener('resize', onScroll);
+        }
+    };
+    const onScroll = () => {
+        if (!queued) { queued = true; requestAnimationFrame(check); }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    check();
+}
+
+/* Wrap each word in a mask so it can slide up on its own */
+function splitWords(el) {
+    el.setAttribute('aria-label', el.textContent.replace(/\s+/g, ' ').trim());
+    let index = 0;
+    const walk = (node) => {
+        Array.from(node.childNodes).forEach((child) => {
+            if (child.nodeType === Node.ELEMENT_NODE) { walk(child); return; }
+            if (child.nodeType !== Node.TEXT_NODE) return;
+            const frag = document.createDocumentFragment();
+            child.textContent.split(/(\s+)/).forEach((part) => {
+                if (!part) return;
+                if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(' ')); return; }
+                const mask = document.createElement('span');
+                mask.className = 'rw';
+                mask.setAttribute('aria-hidden', 'true');
+                const word = document.createElement('span');
+                word.textContent = part;
+                word.style.setProperty('--wi', index++);
+                mask.appendChild(word);
+                frag.appendChild(mask);
+            });
+            child.replaceWith(frag);
+        });
+    };
+    walk(el);
 }

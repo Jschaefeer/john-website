@@ -69,20 +69,79 @@ class PracticeAssistant {
     }
 
     openChat() {
+        if (this.modal.classList.contains('active') && !this.closing) return;
+        if (this.morph) this.morph.cancel();
+        this.closing = false;
+        this.modal.classList.remove('closing');
         this.modal.classList.add('active');
+        document.body.classList.add('chat-open');
         document.body.style.overflow = 'hidden';
+
+        this.morph = this.animateMorph(true);
+        if (this.morph) this.morph.onfinish = () => { this.morph = null; };
 
         if (!this.initialized) {
             this.initialized = true;
-            setTimeout(() => this.loadWelcomeMessage(), 200);
+            setTimeout(() => this.loadWelcomeMessage(), 350);
         }
 
-        setTimeout(() => this.chatInput.focus(), 400);
+        setTimeout(() => this.chatInput.focus({ preventScroll: true }), 450);
     }
 
     closeChat() {
-        this.modal.classList.remove('active');
+        if (!this.modal.classList.contains('active') || this.closing) return;
+        this.closing = true;
+        if (this.morph) this.morph.cancel();
+        this.modal.classList.add('closing');
         document.body.style.overflow = '';
+
+        const finish = () => {
+            this.modal.classList.remove('active', 'closing');
+            document.body.classList.remove('chat-open');
+            if (this.morph) { this.morph.cancel(); this.morph = null; }
+            this.closing = false;
+            document.getElementById('openPracticeChatBtn')?.focus({ preventScroll: true });
+        };
+
+        this.morph = this.animateMorph(false);
+        if (this.morph) this.morph.onfinish = finish;
+        else finish();
+    }
+
+    /* The "Ask the office" pill grows into the chat window (and shrinks back)
+       by animating a clip from the pill's shape to the full panel. */
+    animateMorph(opening) {
+        const box = this.modal.querySelector('.chat-container');
+        const fab = document.getElementById('openPracticeChatBtn');
+        if (!box || !fab || typeof box.animate !== 'function') return null;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return null;
+
+        const b = box.getBoundingClientRect();
+        const f = fab.getBoundingClientRect();
+        if (!f.width) return null;
+        const cs = getComputedStyle(box);
+        const radii = [cs.borderTopLeftRadius, cs.borderTopRightRadius, cs.borderBottomRightRadius, cs.borderBottomLeftRadius].join(' ');
+        const clamp = (v) => Math.max(0, v);
+        const from = `inset(${clamp(f.top - b.top)}px ${clamp(b.right - f.right)}px ${clamp(b.bottom - f.bottom)}px ${clamp(f.left - b.left)}px round ${f.height / 2}px)`;
+        const to = `inset(0px 0px 0px 0px round ${radii})`;
+
+        const frames = [{ clipPath: from }, { clipPath: to }];
+        const anim = box.animate(opening ? frames : frames.reverse(), {
+            duration: opening ? 560 : 380,
+            easing: opening ? 'cubic-bezier(0.2, 0.9, 0.2, 1)' : 'cubic-bezier(0.5, 0, 0.75, 0)',
+            fill: opening ? 'none' : 'forwards',
+        });
+
+        // Let the contents settle into place as the window opens
+        if (opening) {
+            box.querySelectorAll('.chat-header, .chat-messages, .chat-input-area').forEach((el, i) => {
+                el.animate(
+                    [{ transform: 'translateY(14px)' }, { transform: 'none' }],
+                    { duration: 620, delay: 40 + i * 50, easing: 'cubic-bezier(0.16, 1, 0.3, 1)', fill: 'backwards' }
+                );
+            });
+        }
+        return anim;
     }
 
     autoResizeTextarea() {
